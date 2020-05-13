@@ -13,6 +13,31 @@ html
 		include ../_components/ilustracionHeader
 
 		style.
+			.aburrido { 
+				background-image: url('./imagenes/contacto/bg.gif')  ;
+				background-repeat: repeat ;
+				animation: mueveteMadaFaka 5s linear infinite ;
+				-moz-animation: mueveteMadaFaka 5s linear infinite ; 
+				-webkit-animation: mueveteMadaFaka 5s linear infinite ; 
+				-o-animation: mueveteMadaFaka 5s linear infinite ; 
+			}
+
+			@keyframes mueveteMadaFaka {
+				from { background-position: 0 0; }
+				to { background-position: 100% 0; }
+			}
+			@-webkit-keyframes mueveteMadaFaka {
+				from { background-position: 0 0; }
+				to { background-position: 100% 0; }
+			}
+			@-moz-keyframes mueveteMadaFaka {
+				from { background-position: 0 0; }
+				to { background-position: 100% 0; }
+			}
+			@-o-keyframes mueveteMadaFaka {
+				from { background-position: 0 0; }
+				to { background-position: 100% 0; }
+			}
 			div.contacto {
 				width: 400px;
 				margin: 100px auto;
@@ -112,5 +137,23 @@ html
 				div
 					img( src='data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDUwMDAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgODcuMyA5Mi43IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4Ny4zIDkyLjciIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxyZWN0IHg9IjM0LjMiIHk9IjIyLjQiIHdpZHRoPSI0LjMiIGhlaWdodD0iNC4zIj48L3JlY3Q+PHJlY3QgeD0iMzQuMyIgeT0iMzEuNCIgd2lkdGg9IjQuMyIgaGVpZ2h0PSI0LjMiPjwvcmVjdD48cmVjdCB4PSIzNC4zIiB5PSI0MC40IiB3aWR0aD0iNC4zIiBoZWlnaHQ9IjQuMyI+PC9yZWN0PjxyZWN0IHg9IjM0LjMiIHk9IjQ5LjQiIHdpZHRoPSI0LjMiIGhlaWdodD0iNC4zIj48L3JlY3Q+PHBhdGggZD0iTTYzLjMsMTUuNUgyMy4yYy0xLjcsMC0zLjEsMS40LTMuMSwzLjF2NDkuN2MwLDEuNywxLjQsMy4xLDMuMSwzLjFoOC4ydjYuNWw0LjgtNGw0LjgsNHYtNi41aDIyLjNjMS43LDAsMy4xLTEuNCwzLjEtMy4xICAgVjE4LjZDNjYuNCwxNi45LDY1LDE1LjUsNjMuMywxNS41eiBNNjMuNCw2OC4zYzAsMC4xLTAuMSwwLjEtMC4yLDAuMUg0MXYtNC40aC05Ljd2NC40aC04LjJjLTAuMSwwLTAuMi0wLjEtMC4yLTAuMXYtNi4zaDQwLjQgICBWNjguM3ogTTYzLjQsNTguOUgzMVYxOC41aDMyLjJjMC4xLDAsMC4yLDAuMSwwLjIsMC4xVjU4Ljl6Ij48L3BhdGg+PC9nPjwvc3ZnPg==' , alt='Github' )
 				span Github
+
+			script.
+				var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+
+					$(document).keydown(function(e) {
+
+						kkeys.push( e.keyCode );
+
+						if ( kkeys.toString().indexOf( konami ) >= 0 ) {
+
+							$(document).unbind('keydown',arguments.callee);
+
+						    // magia
+						    $( "body , html" ).addClass( "aburrido" );
+
+						}
+
+					});	
 
 		include ../_components/footer
