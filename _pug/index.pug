@@ -1,0 +1,70 @@
+doctype html
+html
+	head
+
+		title COVID 19 | Data Chile
+
+		include ../_components/meta
+
+	body
+
+		include ../_components/header
+
+		include ../_components/ilustracionHeader
+
+		include ../_components/data/resumen
+
+		script.
+			var traeCovid = function( donde , url ){
+				$.ajax({
+					url: url ,
+					dataType:"text",
+					success:function(data) {
+						var data_toda = data.split(/\r?\n|\r/);
+						var table_data = '<table>';
+						for(var count = 0; count<data_toda.length; count++) {
+							var cell_data = data_toda[count].split(",");
+							table_data += '<tr>';
+							for(var cell_count=0; cell_count<cell_data.length; cell_count++) {
+								if(count === 0) {
+									table_data += '<th>'+cell_data[cell_count]+'</th>';
+								} else {
+									table_data += '<td>'+cell_data[cell_count]+'</td>';
+								}
+							}
+							table_data += '</tr>';
+						}
+						table_data += '</table>';
+						$( donde ).html( "<div>" + table_data + "</div>" );
+					}
+				});
+			};
+
+
+
+		div#TotalesNacionales(style='display:none;')
+
+		.graficos
+			link( rel='stylesheet' , href='./css/graficos.min.css' )
+			include ../_components/data/casosTotales
+			include ../_components/data/contagiosPorDia
+			include ../_components/data/fallecidosPorDia
+			include ../_components/data/recuperadosPorDia
+			include ../_components/data/ventiladores
+			include ../_components/data/rangoEtario
+			include ../_components/data/pcrPorRegion
+
+			//- Si no carga la data, recarga
+			script.
+				$( document ).ready(function(){
+					setTimeout(function(){
+						if ( $( "div#resumen .resumen.totalCasos > div.cifras" ).html().length <= 88  ) {
+							location.reload();
+						};
+					},2000);
+				});
+
+		include ../_components/footer
+
+		//- MODAL
+		include ../_components/modal_dataDesactualizada

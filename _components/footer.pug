@@ -1,0 +1,64 @@
+//- Global site tag (gtag.js) - Google Analytics
+script(async='', src='https://www.googletagmanager.com/gtag/js?id=UA-26333447-1')
+script.
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-26333447-1');
+
+
+//- ====================================
+//- => DEV
+//- ====================================
+
+style.
+	body.dev {
+		margin-top: 38px;
+	}
+	body.dev #dev {
+		background: cyan;
+		color: black;
+		text-align: center;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		padding: 10px 0;
+		font-family: Arial;
+	}
+	header nav ul li.dev {
+		display: none;
+	}
+	body.dev header nav ul li.dev {
+		display: block;
+	}
+	
+script.
+	$( document ).ready(function(){
+		if ( location.href.includes( "localhost" ) ) {
+			$( "body" ).addClass( "dev" );
+			$( "body" ).append( "<div id='dev'>Modo <strong>DEV</strong></div>" );
+		};
+	});
+
+footer
+	style.
+		footer .creditos {
+			color: #ABA9A9;
+			text-align: center;
+			width: 100%;
+			margin: 0;
+			padding: 10px 0;
+			font-size: 0.8em;
+			border-top: 1px dashed #ccc;
+			background: #222;
+		}
+		footer p.creditos a {
+			color: #bd4a97;
+		}
+		footer p.creditos a:hover {
+			color: #791d5b;
+		}
+	p.creditos Diseñado y Elaborado con 
+		span( style='color:#FF4433;' ) ♥ 
+		| por 
+		a( href='http://volatil.cl/' , target='_blank' ) Volatil

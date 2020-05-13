@@ -1,0 +1,100 @@
+style.
+	div.modal-fondo {
+		background: #00000085;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 5;
+		cursor: pointer;
+	}
+	div.modal-contenido {
+		background: white;
+		font-family: arial , helvetica, sans-serif;
+		position: fixed;
+		top: 100px;
+		left: 0;
+		right: 0;
+		width: 500px;
+		z-index: 5;
+		margin: 0 auto;
+		border-radius: 6px;
+	}
+	div.modal-fondo ,
+	div.modal-contenido {
+		display: none;
+	}
+	div.modal-contenido > span {
+		background: #656565;
+		position: absolute;
+		color: white;
+		right: 0;
+		letter-spacing: 0.05em;
+		padding: 10px;
+		font-size: 0.6em;
+		cursor: pointer;
+	}
+	div.modal-contenido > h3 {
+		text-transform: uppercase;
+		border-bottom: 1px solid #ccc;
+		padding: 0 10px 10px;
+		text-align: center;
+		font-size: 2em;
+	}
+	div.modal-contenido > p {
+		padding: 0 20px 20px;
+		letter-spacing: 0.03em;
+		line-height: 1.4em;
+	}
+	div.modal-contenido > p > span.dia {
+		font-weight: bold;
+	}
+	@media ( max-width: 510px )	 {
+		div.modal-contenido {
+			width: 90%;
+		}
+		div.modal-contenido > h3 {
+			font-size: 7vw;
+			padding-top: 20px;
+		}
+	}
+div.modal-fondo
+div.modal-contenido
+	span X | Cerrar
+	h3 Actualizaciones
+	p La última actualización fue el 
+		span.dia  
+		| , debido que MINSAL no nos ha enviado los datos, lamentamos los inconvenientes.
+	script.
+		$( document ).ready(function(){
+
+			setTimeout(function(){
+
+				var fechaDiaReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[2]
+				if( fechaDiaReporte.split( "" ).length == 2 && fechaDiaReporte.split( "" )[0] == 0 ) {
+					var fechaDiaReporte = fechaDiaReporte.split( "" )[1];
+				};
+
+				var fechaMesReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[1]
+				if( fechaMesReporte.split( "" ).length == 2 && fechaMesReporte.split( "" )[0] == 0 ) {
+					var fechaMesReporte = fechaMesReporte.split( "" )[1];
+				};
+
+				var fechaActual 		= new Date().getDate();
+
+				$( "div.modal-contenido p span.dia" ).html( fechaDiaReporte + "/" + fechaMesReporte + "/2020" );
+
+				if( fechaDiaReporte != fechaActual && new Date().getHours() >= "8" ) {
+					$( ".modal-fondo" ).show();
+					$( ".modal-contenido" ).show();
+				};
+			
+			},1000);
+			
+		});
+
+		$( ".modal-fondo, .modal-contenido > span" ).click(function(){
+			$( "div.modal-fondo" ).hide();
+			$( "div.modal-contenido" ).hide();
+		});

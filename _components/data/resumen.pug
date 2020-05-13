@@ -1,0 +1,189 @@
+
+link( type='text/css' , media='all' , rel='stylesheet' , href='./css/resumen.min.css' )
+
+div#resumen
+	div.fecha
+		span.raya
+		p 
+
+	div.resumen.totalCasos
+		div.icono
+			img( src='./imagenes/iconos/totalCasos.svg' alt='Total Casos' )
+		p.titulo Total Casos
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+
+	div.resumen.casosNuevos
+		div.icono
+			img( src='./imagenes/iconos/casosNuevos.svg' alt='Casos Nuevos último día' )
+		p.titulo Casos Nuevos último día
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+
+	div.resumen.recuperadosDia
+		div.icono
+			img( src='./imagenes/iconos/check.svg' alt='Recuperados último día' )
+		p.titulo Recuperados último día
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+
+	div.resumen.fallecidosDia
+		div.icono
+			img( src='./imagenes/iconos/none.svg' alt='Fallecidos último día' )
+		p.titulo Fallecidos último día
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+
+	//- FECHA TITULO
+	script.
+		$( document ).ready(function(){
+			setTimeout(function(){
+
+				var fechaDiaReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[2]
+				if ( fechaDiaReporte.split( "" )[0] == 0 ) {
+					var fechaDiaReporte = fechaDiaReporte.split( "" )[1];
+				};
+				var fechaMesReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[1]
+
+				switch ( fechaMesReporte ) {
+					case "01":
+						var fechaMesReporte = "Enero";
+						break;
+					case "02":
+						var fechaMesReporte = "Febrero";
+						break;
+					case "03":
+						var fechaMesReporte = "Marzo";
+						break;
+					case "04":
+						var fechaMesReporte = "Abril";
+						break;
+					case "05":
+						var fechaMesReporte = "Mayo";
+						break;
+					case "06":
+						var fechaMesReporte = "Junio";
+						break;
+					case "07":
+						var fechaMesReporte = "Julio";
+						break;
+					case "08":
+						var fechaMesReporte = "Agosto";
+						break;
+					case "09":
+						var fechaMesReporte = "Septiembre";
+						break;
+					case "10":
+						var fechaMesReporte = "Octubre";
+						break;
+					case "11":
+						var fechaMesReporte = "Noviembre";
+						break;
+					case "12":
+						var fechaMesReporte = "Diciembre";
+						break;
+					default:
+						console.log( "No existe" );
+				};
+				
+				$( "div#resumen div.fecha > p" ).html( "Resumen " + fechaDiaReporte + " de " + fechaMesReporte );
+			},1000);
+		});
+	//- FUNCTIONS
+	script.
+		// Agrega decimales
+		var puntuacion = function( cifra ){
+
+			try {
+
+				switch ( cifra.length ) {
+					case 8:
+						return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
+						break;
+					case 7:
+						return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
+						break;
+					case 6:
+						return cifra.slice(0,3) + "." + cifra.slice(3,6);
+						break;
+					case 5:
+						return cifra.slice(0,2) + "." + cifra.slice(2,5);
+						break;
+					case 4:
+						return cifra.slice(0,1) + "." + cifra.slice(1,4);
+						break;
+					case 3:
+						return cifra = cifra;
+						break;
+					case 2:
+						return cifra = cifra;
+						break;
+					case 1:
+						return cifra = cifra;
+						break;
+					default:
+						console.log( "No tengo un rango seteado." );
+						break;
+				};
+
+			} catch ( error ) {
+
+				setTimeout(function(){
+					location.reload();
+				},2000);
+
+			};
+
+		};
+
+		// RESUMENES: Agrega los datos a cada div de resumen
+		var resumiendo = function( nombreResumen , numeroTR ){
+
+			var contagiosTotalUltimo = $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).last().html();
+			$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+
+			var cifraHoy 			= $( $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" )[ $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).length-1 ] ).html();
+			var cifraAnterior 	= $( $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" )[ $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).length-2 ] ).html();
+			var cifraRestante 	= cifraHoy - cifraAnterior;
+			var calculoInverso 	= cifraRestante * 100 / cifraHoy;
+			
+			if ( calculoInverso.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
+				// es positivo
+				$( "." + nombreResumen + " > div.cifras" ).addClass( "positivo" );
+			} else {
+				// es negativo
+				$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
+			};
+
+			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+
+
+		};
+	//- TOTAL CASOS ACTIVOS
+	script.
+		setTimeout(function(){
+			resumiendo( "totalCasos" , 2 );
+		},1000);
+	//- CASOS NUEVOS
+	script.
+		setTimeout(function(){
+			resumiendo( "casosNuevos" , 7 );
+		},1000);
+	//- TOTAL RECUPERADOS
+	script.
+		setTimeout(function(){
+			resumiendo( "recuperadosDia" , 10 );
+		},1000);
+	//- TOTAL FALLECIDOS
+	script.
+		setTimeout(function(){
+			resumiendo( "fallecidosDia" , 9 );
+		},1000);

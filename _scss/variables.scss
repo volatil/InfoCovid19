@@ -1,0 +1,36 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+$roboto:				'Roboto', sans-serif;
+$c:						#cccccc;
+$representativo:		cyan;
+$positivo:				#34c736;
+$negativo:				#f02c2c;
+
+/*
+============================================
+=> GENERAL
+============================================
+*/
+
+html ,
+body {
+	margin: 0;
+	padding: 0;
+	background: whitesmoke;
+	font-family: $roboto;
+	font-weight: 300 !important;
+}
+
+@mixin transicion($transition) {
+	-webkit-transition: all $transition ease;
+	-moz-transition:    all $transition ease;
+	-o-transition:      all $transition ease;
+	transition:         all $transition ease;
+}
+@mixin rotar($rotacion) {
+	-webkit-transform: rotate($rotacion);
+	-moz-transform: rotate($rotacion);
+	-ms-transform: rotate($rotacion);
+	-o-transform: rotate($rotacion);
+}

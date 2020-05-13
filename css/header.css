@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+/*
+============================================
+=> GENERAL
+============================================
+*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: whitesmoke;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300 !important;
+}
+
+header {
+  position: relative;
+  background: black;
+  margin: 0;
+  padding: 10px 0;
+  height: 40px;
+  z-index: 3;
+}
+
+header h1 {
+  position: absolute;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-weight: 100;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+header .menuIcon {
+  width: 50px;
+  height: 60px;
+  position: relative;
+  top: -10px;
+  cursor: pointer;
+}
+
+header .menuIcon > span {
+  height: 4px;
+  width: 40px;
+  background: white;
+  position: absolute;
+  right: 0px;
+  top: 15px;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+header .menuIcon:hover > span {
+  background: cyan;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+header .menuIcon > span.medio {
+  top: 28px;
+}
+
+header .menuIcon > span.abajo {
+  top: 41px;
+}
+
+header .menuIcon.activo > span.arriba {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+header .menuIcon.activo > span.medio {
+  display: none;
+}
+
+header .menuIcon.activo > span.abajo {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+
+header .menuIcon.activo > span.arriba,
+header .menuIcon.activo > span.abajo {
+  top: 30px;
+  background: cyan;
+}
+
+header nav {
+  display: none;
+}
+
+header nav.activo {
+  display: block;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  background: black;
+  width: 230px;
+  position: absolute;
+  top: 60px;
+}
+
+header nav ul {
+  text-decoration: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+header nav ul li {
+  text-decoration: none;
+  list-style: none;
+}
+
+header nav ul li.activo {
+  border-left: 1px solid cyan;
+}
+
+header nav ul li:hover a,
+header nav ul li.activo > a {
+  color: cyan;
+}
+
+header nav ul li.activo > a img {
+  opacity: 0.5;
+}
+
+header nav ul li a {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  font-weight: 100;
+  letter-spacing: 0.05em;
+  font-size: 1.3em;
+  display: block;
+  padding-left: 20px;
+}
+
+header nav ul li a img {
+  width: 20px;
+  display: inline-block;
+}
+
+header nav ul li a p {
+  display: inline-block;
+}
+
+div.fondoNav {
+  display: none;
+}
+
+div.fondoNav.activo {
+  display: block;
+  background: #000000d1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  header .menuIcon {
+    float: right;
+  }
+
+  header nav.activo {
+    right: 0;
+  }
+}
