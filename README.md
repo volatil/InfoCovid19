@@ -1,6 +1,6 @@
 ![Coronavirus Data](./imagenes/README.jpg)
 
-#InfoCovid19
+# InfoCovid19
 
 Información & Graficos Sobre el Covid-19.
 
