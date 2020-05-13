@@ -30,12 +30,13 @@ div#resumen > div.fecha > p {
 	font-weight: 500;
 }
 div#resumen .resumen {
+	width: 305px;
+	min-height: 90px;
 	background: white;
 	display: inline-block;
 	padding: 20px 60px 20px 20px;
 	margin: 0 10px 10px 0;
 	position: relative;
-	width: 305px;
 }
 div#resumen .resumen > div.icono {
 	width: 80px;
@@ -56,7 +57,7 @@ div#resumen .resumen > p.titulo {
 	font-weight: 500;
 	width: 100%;
 	position: relative;
-	top: 10px;
+	top: 0px;
 	left: 90px;
 	margin: 0;
 	font-size: 1.1em;
@@ -110,12 +111,50 @@ div#resumen .resumen > div.cifras.positivo > span.numero > span.porcentaje:befor
 div#resumen .resumen > div.cifras.negativo > span.numero > span.porcentaje:before {
 	content: "(";
 }
+div#resumen .resumen.sintomas > div.sintoma {
+	width: calc( 100% - 95px );
+	display: block;
+	margin-left: 95px;
+	margin-top: -10px;
+	position: relative;
+	top: 20px;
+}
+div#resumen .resumen.sintomas > div.sintoma > p {
+	margin: 0;
+	width: 45%;
+	display: inline-block;
+}
+div#resumen .resumen.sintomas > div.sintoma > p.conSintomas {
+	border-right: 1px dashed #dbd2fe;
+	padding-right: 10px;
+	margin-right: 10px;
+}
+div#resumen .resumen.sintomas > div.sintoma > p > strong {
+	font-size: 2.3em;
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-align: center;
+}
+div#resumen .resumen.sintomas > div.sintoma > p > span {
+	color: #886cfe;
+	font-weight: 300;
+	font-size: 0.9em;
+	text-align: center;
+	width: 100%;
+	display: inline-block;
+}
 
+/* COLORES */
 div#resumen .resumen.totalCasos > div.icono {
 	background: #cde7ff;
 }
 div#resumen .resumen.casosNuevos > div.icono {
 	background: #ffeab4;
+}
+div#resumen .resumen.casosActivos > div.icono ,
+div#resumen .resumen.sintomas > div.icono {
+	background: #dbd2fe;
 }
 div#resumen .resumen.fallecidosDia > div.icono {
 	background: #ef9aa2;
@@ -128,6 +167,10 @@ div#resumen .resumen.totalCasos > p.titulo {
 }
 div#resumen .resumen.casosNuevos > p.titulo {
 	color: #ffbd02;
+}
+div#resumen .resumen.casosActivos > p.titulo ,
+div#resumen .resumen.sintomas > p.titulo {
+	color: #886cfe;
 }
 div#resumen .resumen.fallecidosDia > p.titulo {
 	color: #c12f32;
@@ -142,24 +185,17 @@ div#resumen .resumen.recuperadosDia > p.titulo {
 	}
 	div#resumen .resumen {
 		width: 260px;
+		min-height: 70px;
 		margin: 0 auto 10px;
 		padding: 20px 20px 35px 20px ;
 		display: block;
-		/*
-		background: red;
-		*/
 	}
 	div#resumen .resumen > p.titulo {
 		width: auto;
-		/*
-		background: cyan;
-		*/
+		font-size: 1em;
 	}
 	div#resumen .resumen > div.cifras {
 		display: table;
-		/*
-		background: yellow;
-		*/
 	}
 	div#resumen .resumen > div.cifras > span.numero {
 		font-size: 2.4em;
@@ -173,5 +209,17 @@ div#resumen .resumen.recuperadosDia > p.titulo {
 		right: auto;
 		left: 24px;
 		top: 45px;
+	}
+	div#resumen .resumen.sintomas > div.sintoma > p {
+		width: 90%;
+	}
+	div#resumen .resumen.sintomas > div.sintoma > p.conSintomas {
+		padding: 0;
+		margin-bottom: 10px;
+		border: none;
+	}
+	div#resumen .resumen.sintomas > div.sintoma > p > strong ,
+	div#resumen .resumen.sintomas > div.sintoma > p > span {
+		text-align: left;
 	}
 }

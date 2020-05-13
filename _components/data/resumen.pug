@@ -24,6 +24,67 @@ div#resumen
 				span.estado
 				span.porcentaje
 
+	div.resumen.casosActivos
+		div.icono
+			img( src='./imagenes/iconos/casosActivos.svg' alt='Casos Activos' )
+		p.titulo Casos Activos
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	div.resumen.sintomas
+		div.icono
+			img( src='./imagenes/iconos/sintomas.svg' alt='sintomaticos/asintomaticos' )
+		p.titulo Casos nuevos
+		div.sintoma
+			p.conSintomas
+				strong
+				span Con sintomas
+			p.sinSintomas
+				strong
+				span Sin sintomas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	div.resumen.recuperadosDia
 		div.icono
 			img( src='./imagenes/iconos/check.svg' alt='Recuperados último día' )
@@ -177,6 +238,21 @@ div#resumen
 		setTimeout(function(){
 			resumiendo( "casosNuevos" , 7 );
 		},1000);
+	//- CASOS ACTIVOS
+	script.
+		setTimeout(function(){
+			resumiendo( "casosActivos" , 5 );
+		},1000);
+
+	//- SINTOMAS
+	script.
+		setTimeout(function(){
+			var conSintomas = $( $( "#TotalesNacionales > div > table tbody tr" )[1] ).find( "td" ).last().html();
+			var sinSintomas = $( $( "#TotalesNacionales > div > table tbody tr" )[6] ).find( "td" ).last().html();
+			$( "div.resumen.sintomas .sintoma p.conSintomas strong" ).html( puntuacion(conSintomas) );
+			$( "div.resumen.sintomas .sintoma p.sinSintomas strong" ).html( puntuacion(sinSintomas) );
+		},1000);
+		
 	//- TOTAL RECUPERADOS
 	script.
 		setTimeout(function(){
