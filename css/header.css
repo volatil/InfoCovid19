@@ -144,6 +144,7 @@ header nav ul li a {
 header nav ul li a img {
   width: 20px;
   display: inline-block;
+  margin-right: 10px;
 }
 
 header nav ul li a p {
