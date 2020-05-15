@@ -265,7 +265,6 @@ div#resumen
 	//- PCR
 	script.
 		setTimeout(function(){
-			$( ".graficos>.grafico#pcrPorRegion" ).show();
 			var sumaTotal = 0;
 
 			for ( var count = 1; count <= $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
@@ -310,3 +309,8 @@ div#resumen
 			}
 
 		},1000);
+
+	//- OPTIMIZANDO CUENTA PCR
+	//- Array a la columna y luego sumar COLTA !
+	script.
+		
