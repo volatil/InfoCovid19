@@ -72,6 +72,15 @@ div#resumen
 				span.estado
 				span.porcentaje
 
+	div.resumen.examenesPCR
+		div.icono
+			img( src='./imagenes/svg/pcr.svg' alt='Ventiladores disponibles' )
+		p.titulo Exámenes PCR últimas 24 horas
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+
 	//- FECHA TITULO
 	script.
 		$( document ).ready(function(){
@@ -252,32 +261,52 @@ div#resumen
 			};
 
 			$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoDisponibles.toString().slice( 0 , 5 ) + "%)" )
+		},1000);
+	//- PCR
+	script.
+		setTimeout(function(){
+			$( ".graficos>.grafico#pcrPorRegion" ).show();
+			var sumaTotal = 0;
 
-			console.log( "================================" );
-			console.log( "Ventiladres Disponibles: " + ventiladoresDisponibles );
-			console.log( "Ventiladres Ayer: " + ventiladoresDisponiblesAyer );
-			console.log( "Ventiladres Restante: " + ventiladoresRestante );
-			console.log( "Ventiladres Porcentaje: " + calculoInversoDisponibles.toString().slice( 0 , 5 ) + "%)" );
-			console.log( "================================" );
+			for ( var count = 1; count <= $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
+				
+				var ultimoValor = $( $( ".graficos>.grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().html();
+				sumaTotal = parseInt( sumaTotal ) + parseInt( ultimoValor ) ;
 
+				if ( count == $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
+					
 
-			/*
-			$( "div#resumen .resumen.ventiladoresDisponibles" )
-			
-			var cifraHoy 			= $( $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" )[ $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).length-1 ] ).html();
-			var cifraAnterior 	= $( $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" )[ $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).length-2 ] ).html();
-			var cifraRestante 	= cifraHoy - cifraAnterior;
-			var calculoInverso 	= cifraRestante * 100 / cifraHoy;
-			
-			if ( calculoInverso.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
-				// es positivo
-				$( "." + nombreResumen + " > div.cifras" ).addClass( "positivo" );
-			} else {
-				// es negativo
-				$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
-			};
+					var sumaPenultimoTotal = 0;
+					for ( var count = 1; count <= $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
 
-			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+						var penultimoValor = $( $( ".graficos>.grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().prev().html();
+						sumaPenultimoTotal = parseInt( sumaPenultimoTotal ) + parseInt( penultimoValor ) ;
 
-			*/
+						if ( count == $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
+
+							var examenesPCRHoy 		= sumaTotal;
+							var examenesPCRAyer 		= sumaPenultimoTotal;
+							var examenesPCRRestante 	= examenesPCRHoy - examenesPCRAyer;
+							var calculoInversoPCR 		= examenesPCRRestante * 100 / examenesPCRHoy;
+
+							$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero" ).html( examenesPCRHoy );
+							$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero" ).html( puntuacion( $( "div#resumen .resumen.examenesPCR > div.cifras > span.numero" ).html() ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+
+							if ( examenesPCRRestante.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
+								// es positivo
+								$( "div#resumen .resumen.examenesPCR > div.cifras " ).addClass( "positivo" );
+							} else {
+								// es negativo
+								$( "div#resumen .resumen.examenesPCR > div.cifras " ).addClass( "negativo" );
+							};
+							$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoPCR.toString().slice( 0 , 5 ) + "%)" )
+						
+						}
+
+					}
+
+				}
+
+			}
+
 		},1000);

@@ -165,6 +165,9 @@ div#resumen .resumen.recuperadosDia > div.icono {
 div#resumen .resumen.ventiladoresDisponibles > div.icono {
 	background: #dd447759;
 }
+div#resumen .resumen.examenesPCR > div.icono {
+	background: #0099c659;
+}
 div#resumen .resumen.totalCasos > p.titulo {
 	color: #1c7fdd;
 }
@@ -184,6 +187,9 @@ div#resumen .resumen.recuperadosDia > p.titulo {
 div#resumen .resumen.ventiladoresDisponibles > p.titulo {
 	color: #dd4477;
 }
+div#resumen .resumen.examenesPCR > p.titulo {
+	color: #0099c6;
+}
 
 @media ( max-width: 768px ) {
 	div#resumen {
@@ -198,7 +204,7 @@ div#resumen .resumen.ventiladoresDisponibles > p.titulo {
 	}
 	div#resumen .resumen > p.titulo {
 		width: auto;
-		font-size: 1em;
+		font-size: .8em;
 	}
 	div#resumen .resumen > div.cifras {
 		display: table;
