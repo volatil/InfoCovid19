@@ -162,6 +162,9 @@ div#resumen .resumen.fallecidosDia > div.icono {
 div#resumen .resumen.recuperadosDia > div.icono {
 	background: #d8f3d8;
 }
+div#resumen .resumen.ventiladoresDisponibles > div.icono {
+	background: #dd447759;
+}
 div#resumen .resumen.totalCasos > p.titulo {
 	color: #1c7fdd;
 }
@@ -177,6 +180,9 @@ div#resumen .resumen.fallecidosDia > p.titulo {
 }
 div#resumen .resumen.recuperadosDia > p.titulo {
 	color: #34c736;
+}
+div#resumen .resumen.ventiladoresDisponibles > p.titulo {
+	color: #dd4477;
 }
 
 @media ( max-width: 768px ) {

@@ -8,7 +8,7 @@ div#resumen
 
 	div.resumen.totalCasos
 		div.icono
-			img( src='./imagenes/iconos/totalCasos.svg' alt='Total Casos' )
+			img( src='./imagenes/svg/totalCasos.svg' alt='Total Casos' )
 		p.titulo Total Casos
 		div.cifras
 			span.numero
@@ -17,7 +17,7 @@ div#resumen
 
 	div.resumen.casosNuevos
 		div.icono
-			img( src='./imagenes/iconos/casosNuevos.svg' alt='Casos Nuevos último día' )
+			img( src='./imagenes/svg/casosNuevos.svg' alt='Casos Nuevos último día' )
 		p.titulo Casos Nuevos último día
 		div.cifras
 			span.numero
@@ -26,30 +26,16 @@ div#resumen
 
 	div.resumen.casosActivos
 		div.icono
-			img( src='./imagenes/iconos/casosActivos.svg' alt='Casos Activos' )
+			img( src='./imagenes/svg/casosActivos.svg' alt='Casos Activos' )
 		p.titulo Casos Activos
 		div.cifras
 			span.numero
 				span.estado
 				span.porcentaje
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	div.resumen.sintomas
 		div.icono
-			img( src='./imagenes/iconos/sintomas.svg' alt='sintomaticos/asintomaticos' )
+			img( src='./imagenes/svg/sintomas.svg' alt='sintomaticos/asintomaticos' )
 		p.titulo Casos nuevos
 		div.sintoma
 			p.conSintomas
@@ -59,35 +45,9 @@ div#resumen
 				strong
 				span Sin sintomas
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	div.resumen.recuperadosDia
 		div.icono
-			img( src='./imagenes/iconos/check.svg' alt='Recuperados último día' )
+			img( src='./imagenes/svg/check.svg' alt='Recuperados último día' )
 		p.titulo Recuperados último día
 		div.cifras
 			span.numero
@@ -96,8 +56,17 @@ div#resumen
 
 	div.resumen.fallecidosDia
 		div.icono
-			img( src='./imagenes/iconos/none.svg' alt='Fallecidos último día' )
+			img( src='./imagenes/svg/none.svg' alt='Fallecidos último día' )
 		p.titulo Fallecidos último día
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+
+	div.resumen.ventiladoresDisponibles
+		div.icono
+			img( src='./imagenes/svg/ventiladores.svg' alt='Ventiladores disponibles' )
+		p.titulo Ventiladores disponibles
 		div.cifras
 			span.numero
 				span.estado
@@ -262,4 +231,53 @@ div#resumen
 	script.
 		setTimeout(function(){
 			resumiendo( "fallecidosDia" , 9 );
+		},1000);
+	//- VENTILADORES DISPONIBLES
+	script.
+		setTimeout(function(){
+			var ventiladoresDisponibles 		= $( $( "#ventiladores table tr" )[2] ).find( "td" ).last().html();
+			var ventiladoresDisponiblesHoy 	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[ $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-1 ] ).html();
+			var ventiladoresDisponiblesAyer 	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[ $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-2 ] ).html();
+			var ventiladoresRestante 			= ventiladoresDisponiblesHoy - ventiladoresDisponiblesAyer;
+			var calculoInversoDisponibles 		= ventiladoresRestante * 100 / ventiladoresDisponiblesHoy;
+
+			$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero" ).html( puntuacion( ventiladoresDisponibles ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+			
+			if ( ventiladoresRestante.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
+				// es positivo
+				$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras " ).addClass( "positivo" );
+			} else {
+				// es negativo
+				$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras " ).addClass( "negativo" );
+			};
+
+			$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoDisponibles.toString().slice( 0 , 5 ) + "%)" )
+
+			console.log( "================================" );
+			console.log( "Ventiladres Disponibles: " + ventiladoresDisponibles );
+			console.log( "Ventiladres Ayer: " + ventiladoresDisponiblesAyer );
+			console.log( "Ventiladres Restante: " + ventiladoresRestante );
+			console.log( "Ventiladres Porcentaje: " + calculoInversoDisponibles.toString().slice( 0 , 5 ) + "%)" );
+			console.log( "================================" );
+
+
+			/*
+			$( "div#resumen .resumen.ventiladoresDisponibles" )
+			
+			var cifraHoy 			= $( $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" )[ $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).length-1 ] ).html();
+			var cifraAnterior 	= $( $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" )[ $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).length-2 ] ).html();
+			var cifraRestante 	= cifraHoy - cifraAnterior;
+			var calculoInverso 	= cifraRestante * 100 / cifraHoy;
+			
+			if ( calculoInverso.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
+				// es positivo
+				$( "." + nombreResumen + " > div.cifras" ).addClass( "positivo" );
+			} else {
+				// es negativo
+				$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
+			};
+
+			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+
+			*/
 		},1000);
