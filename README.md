@@ -4,4 +4,4 @@
 
 Información & Graficos Sobre el Covid-19.
 
-[Visitar Sitio](http://www.infocovid19.cl)
+[Visitar Sitio](https://www.infocovid19.cl)
