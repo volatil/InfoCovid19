@@ -1,0 +1,156 @@
+
+div.grafico#uciPorRegion(style='display:none;height:500px;')
+div.grafico#uci-metropolitana-grafico( style='width: 100%; height: 500px;' )
+div.grafico#uciPorRegion-grafico( style='width: 100%; height: 500px;' )
+script.
+	traeCovid( "#uciPorRegion" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto8/UCI.csv" );
+
+//- INGRESA DATA
+//- REGION METROPOLITANA
+script.
+
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(uciMetropolitana);
+
+	function uciMetropolitana() { 
+			var datauciPorRegion = google.visualization.arrayToDataTable([
+				['Fecha' , 'Metropolitana'],
+				['0' , 0],
+		]);
+		
+		var options = {
+			title : 'UCI: Región Metropolitana (Por Día)',
+			vAxis: {title: 'Exámenes'},
+			hAxis: {title: 'Días'},
+			seriesType: 'bars',
+			colors: ['#0099c6'] ,
+
+			legend: { position: 'top', maxLines: 3 },
+			bar: { groupWidth: '75%' },
+			isStacked: true
+		};
+
+		var chart = new google.visualization.ComboChart(document.getElementById('uci-metropolitana-grafico'));
+		chart.draw(datauciPorRegion, options);
+	
+		for ( sumaTR = 3 ; sumaTR <= $( $( "#uciPorRegion table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+		
+			var fecha					= $( $( $( "#uciPorRegion table tr" )[0] ).find( "th" )[sumaTR] ).html();
+			var metropolitana				= $( $( $( "#uciPorRegion table tr" )[7] ).find( "td" )[sumaTR] ).html();
+			if ( metropolitana == "" ) {
+				var metropolitana = "0";
+			};
+
+			var push_todosTotales 	= '[["' + fecha + '",' + metropolitana + ']]';
+			datauciPorRegion.addRows(JSON.parse(push_todosTotales));
+
+		}
+
+		var chart = new google.visualization.ComboChart(document.getElementById('uci-metropolitana-grafico'));
+		chart.draw(datauciPorRegion, options);
+
+	}
+//- RESTO REGIONES
+script.
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(uciPorRegion);
+
+	function uciPorRegion() { 
+			var datauciPorRegion = google.visualization.arrayToDataTable([
+				['Fecha' , 'Arica y Parinacota' , 'Tarapaca' , 'Antofagasta' , 'Atacama' , 'Coquimbo' , 'Valparaiso' , 'Ohiggins' , 'Maule' , 'Ñuble' , 'Biobio' , 'Araucania' , 'Los Rios' , 'Los Lagos' , 'Aysen' , 'Magallanes'],
+				['0' , 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		]);
+
+		var options = {
+			title : 'UCI: Regiónes (Por Día)',
+			vAxis: {title: 'Exámenes'},
+			hAxis: {title: 'Días'},
+			seriesType: 'bars',
+
+			legend: { position: 'top', maxLines: 3 },
+			bar: { groupWidth: '75%' },
+			isStacked: true
+		};
+
+		var chart = new google.visualization.ComboChart(document.getElementById('uciPorRegion-grafico'));
+		chart.draw(datauciPorRegion, options);
+	
+		for ( sumaTR = 3 ; sumaTR <= $( $( "#uciPorRegion table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+		
+			var fecha					= $( $( $( "#uciPorRegion table tr" )[0] ).find( "th" )[sumaTR] ).html();
+			var aricayParinacota	= $( $( $( "#uciPorRegion table tr" )[1] ).find( "td" )[sumaTR] ).html();
+			if ( aricayParinacota == "" ) {
+				var aricayParinacota = "0";
+			};
+			var tarapaca				= $( $( $( "#uciPorRegion table tr" )[2] ).find( "td" )[sumaTR] ).html();
+			if ( tarapaca == "" ) {
+				var tarapaca = "0";
+			};
+			var antofagasta			= $( $( $( "#uciPorRegion table tr" )[3] ).find( "td" )[sumaTR] ).html();
+			if ( antofagasta == "" ) {
+				var antofagasta = "0";
+			};
+			var atacama				= $( $( $( "#uciPorRegion table tr" )[4] ).find( "td" )[sumaTR] ).html();
+			if ( atacama == "" ) {
+				var atacama = "0";
+			};
+			var coquimbo				= $( $( $( "#uciPorRegion table tr" )[5] ).find( "td" )[sumaTR] ).html();
+			if ( coquimbo == "" ) {
+				var coquimbo = "0";
+			};
+			var valparaiso				= $( $( $( "#uciPorRegion table tr" )[6] ).find( "td" )[sumaTR] ).html();
+			if ( valparaiso == "" ) {
+				var valparaiso = "0";
+			};
+			/*
+			var metropolitana				= $( $( $( "#uciPorRegion table tr" )[7] ).find( "td" )[sumaTR] ).html();
+			if ( metropolitana == "" ) {
+				var metropolitana = "0";
+			};
+			*/
+			var ohiggins				= $( $( $( "#uciPorRegion table tr" )[8] ).find( "td" )[sumaTR] ).html();
+			if ( ohiggins == "" ) {
+				var ohiggins = "0";
+			};
+			var maule				= $( $( $( "#uciPorRegion table tr" )[9] ).find( "td" )[sumaTR] ).html();
+			if ( maule == "" ) {
+				var maule = "0";
+			};
+			var nuble				= $( $( $( "#uciPorRegion table tr" )[10] ).find( "td" )[sumaTR] ).html();
+			if ( nuble == "" ) {
+				var nuble = "0";
+			};
+			var biobio				= $( $( $( "#uciPorRegion table tr" )[11] ).find( "td" )[sumaTR] ).html();
+			if ( biobio == "" ) {
+				var biobio = "0";
+			};
+			var araucania				= $( $( $( "#uciPorRegion table tr" )[12] ).find( "td" )[sumaTR] ).html();
+			if ( araucania == "" ) {
+				var araucania = "0";
+			};
+			var losRios				= $( $( $( "#uciPorRegion table tr" )[13] ).find( "td" )[sumaTR] ).html();
+			if ( losRios == "" ) {
+				var losRios = "0";
+			};
+			var losLados				= $( $( $( "#uciPorRegion table tr" )[14] ).find( "td" )[sumaTR] ).html();
+			if ( losLados == "" ) {
+				var losLados = "0";
+			};
+			var aysen				= $( $( $( "#uciPorRegion table tr" )[15] ).find( "td" )[sumaTR] ).html();
+			if ( aysen == "" ) {
+				var aysen = "0";
+			};
+			var magallanes				= $( $( $( "#uciPorRegion table tr" )[16] ).find( "td" )[sumaTR] ).html();
+			if ( magallanes == "" ) {
+				var magallanes = "0";
+			};
+
+			var push_todosTotales 	= '[["' + fecha + '",' + aricayParinacota + ',' + tarapaca + ',' + antofagasta + ',' + atacama + ',' + coquimbo + ',' + valparaiso + ',' +/* metropolitana + ',' */+ ohiggins + ',' + maule + ',' + nuble + ',' + biobio + ',' + araucania + ',' + losRios + ',' + losLados + ',' + aysen + ',' + magallanes + ']]';
+			datauciPorRegion.addRows(JSON.parse(push_todosTotales));
+
+		}
+
+		var chart = new google.visualization.ComboChart(document.getElementById('uciPorRegion-grafico'));
+		chart.draw(datauciPorRegion, options);
+
+	}
