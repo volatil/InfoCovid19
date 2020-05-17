@@ -83,12 +83,13 @@ div#resumen .resumen > div.cifras > span.numero > span.estado {
 	position: absolute;
 	top: 20px;
 	right: -25px;
+	background-size: .4em;
 }
 div#resumen .resumen > div.cifras.positivo > span.numero > span.estado {
-	background: url( "../imagenes/svg/positivo.svg" );
+	background-image: url( "../imagenes/resumen/positivo.png" );
 }
 div#resumen .resumen > div.cifras.negativo > span.numero > span.estado {
-	background: url( "../imagenes/svg/negativo.svg" );
+	background-image: url( "../imagenes/resumen/negativo.png" );
 }
 div#resumen .resumen > div.cifras > span.numero > span.porcentaje {
 	font-size: 0.3em;
