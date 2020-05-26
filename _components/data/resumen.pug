@@ -24,6 +24,7 @@ div#resumen
 		p.titulo Total Casos
 		div.cifras
 			span.numero 
+				span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') Cargando ...
 				span.estado
 				span.porcentaje
 
@@ -32,7 +33,8 @@ div#resumen
 			img( data-src='./imagenes/resumen/casosNuevos.png' class='lazyload' )
 		p.titulo Casos Nuevos último día
 		div.cifras
-			span.numero 
+			span.numero
+				span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') Cargando ... 
 				span.estado
 				span.porcentaje
 
@@ -41,7 +43,8 @@ div#resumen
 			img( data-src='./imagenes/resumen/casosActivos.png' class='lazyload' )
 		p.titulo Casos Activos
 		div.cifras
-			span.numero 
+			span.numero
+				span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') Cargando ... 
 				span.estado
 				span.porcentaje
 
@@ -62,7 +65,8 @@ div#resumen
 			img( data-src='./imagenes/resumen/check.png' class='lazyload' )
 		p.titulo Recuperados último día
 		div.cifras
-			span.numero 
+			span.numero
+				span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') Cargando ... 
 				span.estado
 				span.porcentaje
 
@@ -71,7 +75,8 @@ div#resumen
 			img( data-src='./imagenes/resumen/none.png' class='lazyload' )
 		p.titulo Fallecidos último día
 		div.cifras
-			span.numero 
+			span.numero
+				span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') Cargando ... 
 				span.estado
 				span.porcentaje
 
@@ -80,7 +85,8 @@ div#resumen
 			img( data-src='./imagenes/resumen/ventiladores.png' class='lazyload' )
 		p.titulo Ventiladores disponibles
 		div.cifras
-			span.numero 
+			span.numero
+				span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') Cargando ... 
 				span.estado
 				span.porcentaje
 
@@ -89,7 +95,8 @@ div#resumen
 			img( data-src='./imagenes/resumen/pcr.png' class='lazyload' )
 		p.titulo Exámenes PCR últimas 24 horas
 		div.cifras
-			span.numero 
+			span.numero
+				span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') Cargando ... 
 				span.estado
 				span.porcentaje
 
@@ -214,7 +221,11 @@ div#resumen
 				$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
 			};
 
-			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+			if ( calculoInverso.toString().slice( 0 , 5 ) + "%)" == undefined ) {
+				alert( "OUCH!" );
+			} else {
+				$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+			};
 
 		};
 
