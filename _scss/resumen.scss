@@ -69,12 +69,15 @@ div#resumen .resumen > div.cifras {
 	left: 90px;
 	display: inline-block;
 }
-
 div#resumen .resumen > div.cifras > span.numero {
 	margin: 0;
 	color: black;
 	font-weight: 500;
 	font-size: 3.1em;
+}
+div#resumen .resumen > div.cifras > span.numero > img ,
+div#resumen .resumen.sintomas > div.sintoma > p > strong > img {
+	width: 50px;
 }
 div#resumen .resumen > div.cifras > span.numero > span.estado {
 	width: 20px;

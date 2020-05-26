@@ -97,6 +97,11 @@ div#resumen .resumen > div.cifras > span.numero {
   font-size: 3.1em;
 }
 
+div#resumen .resumen > div.cifras > span.numero > img,
+div#resumen .resumen.sintomas > div.sintoma > p > strong > img {
+  width: 50px;
+}
+
 div#resumen .resumen > div.cifras > span.numero > span.estado {
   width: 20px;
   height: 20px;
