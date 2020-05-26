@@ -222,7 +222,7 @@ div#resumen
 			};
 
 			if ( calculoInverso.toString().slice( 0 , 5 ) + "%)" == undefined ) {
-				alert( "OUCH!" );
+				console.log( "OUCH!" );
 			} else {
 				$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
 			};
