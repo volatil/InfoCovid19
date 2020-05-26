@@ -1,4 +1,19 @@
 
+div#TotalesNacionales(style='display:none;')
+
+script.
+	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
+
+script.
+	$( "#TotalesNacionales" ).show();
+	$( document ).ready(function(){
+		$.each( $( "#TotalesNacionales table tbody tr" ) , function(){
+			var nombreTR = $( $( this ).find( "td" )[0] ).text().toLowerCase().split( " " ).join( "" );
+			console.log( "Nombre: " + nombreTR );
+			$( this ).addClass( nombreTR );
+		});
+	});
+
 link( type='text/css' , media='all' , rel='stylesheet' , href='./css/resumen.min.css' )
 
 div#resumen
@@ -174,16 +189,18 @@ div#resumen
 				};
 
 			} catch ( error ) {
-
+				/*
 				setTimeout(function(){
 					location.reload();
 				},2000);
-
+				*/
+				console.log( "Cancele el reload()" );
 			};
 
 		};
 
 		// RESUMENES: Agrega los datos a cada div de resumen
+		/*
 		var resumiendo = function( nombreResumen , numeroTR ){
 
 			var contagiosTotalUltimo = $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).last().html();
@@ -204,22 +221,45 @@ div#resumen
 
 			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
 
+		};
+		*/
+		var resumiendo = function( nombreResumen , claseTR ){
+
+			var contagiosTotalUltimo = $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).last().html();
+			$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+
+			var cifraHoy 			= $( $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" )[ $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).length-1 ] ).html();
+			var cifraAnterior 	= $( $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" )[ $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).length-2 ] ).html();
+			var cifraRestante 	= cifraHoy - cifraAnterior;
+			var calculoInverso 	= cifraRestante * 100 / cifraHoy;
+			
+			if ( calculoInverso.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
+				// es positivo
+				$( "." + nombreResumen + " > div.cifras" ).addClass( "positivo" );
+			} else {
+				// es negativo
+				$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
+			};
+
+			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
 
 		};
+
+
 	//- TOTAL CASOS ACTIVOS
 	script.
 		setTimeout(function(){
-			resumiendo( "totalCasos" , 2 );
+			resumiendo( "totalCasos" , "casostotales" );
 		},1000);
 	//- CASOS NUEVOS
 	script.
 		setTimeout(function(){
-			resumiendo( "casosNuevos" , 7 );
+			resumiendo( "casosNuevos" , "casosnuevostotales" );
 		},1000);
 	//- CASOS ACTIVOS
 	script.
 		setTimeout(function(){
-			resumiendo( "casosActivos" , 5 );
+			resumiendo( "casosActivos" , "casosactivos" );
 		},1000);
 
 	//- SINTOMAS
@@ -234,12 +274,15 @@ div#resumen
 	//- TOTAL RECUPERADOS
 	script.
 		setTimeout(function(){
+			/*
 			resumiendo( "recuperadosDia" , 9 );
+			*/
+			resumiendo( "recuperadosDia" , "recuperadosDia" );
 		},1000);
 	//- TOTAL FALLECIDOS
 	script.
 		setTimeout(function(){
-			resumiendo( "fallecidosDia" , 10 );
+			resumiendo( "fallecidosDia" , "fallecidosDia" );
 		},1000);
 	//- VENTILADORES DISPONIBLES
 	script.

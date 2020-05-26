@@ -3,9 +3,6 @@
 div.grafico#TotalesNacionales-grafico( style='width: 100%; height: 500px;' )
 	
 script.
-	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
-
-script.
 	google.charts.load('current', {'packages':['corechart']});
 	google.charts.setOnLoadCallback(drawChart);
 
