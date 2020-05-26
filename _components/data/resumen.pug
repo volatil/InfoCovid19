@@ -221,11 +221,7 @@ div#resumen
 				$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
 			};
 
-			if ( calculoInverso.toString().slice( 0 , 5 ) + "%)" == undefined ) {
-				console.log( "OUCH!" );
-			} else {
-				$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
-			};
+			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
 
 		};
 
