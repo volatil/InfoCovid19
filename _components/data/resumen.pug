@@ -4,12 +4,9 @@ div#TotalesNacionales(style='display:none;')
 script.
 	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
 
-script.
-	$( "#TotalesNacionales" ).show();
 	$( document ).ready(function(){
 		$.each( $( "#TotalesNacionales table tbody tr" ) , function(){
 			var nombreTR = $( $( this ).find( "td" )[0] ).text().toLowerCase().split( " " ).join( "" );
-			console.log( "Nombre: " + nombreTR );
 			$( this ).addClass( nombreTR );
 		});
 	});
@@ -23,76 +20,76 @@ div#resumen
 
 	div.resumen.totalCasos
 		div.icono
-			img( data-src='./imagenes/resumen/totalCasos.png' class='lazyload' alt='Total Casos' )
+			img( data-src='./imagenes/resumen/totalCasos.png' class='lazyload' )
 		p.titulo Total Casos
 		div.cifras
-			span.numero
+			span.numero 
 				span.estado
 				span.porcentaje
 
 	div.resumen.casosNuevos
 		div.icono
-			img( data-src='./imagenes/resumen/casosNuevos.png' class='lazyload' alt='Casos Nuevos último día' )
+			img( data-src='./imagenes/resumen/casosNuevos.png' class='lazyload' )
 		p.titulo Casos Nuevos último día
 		div.cifras
-			span.numero
+			span.numero 
 				span.estado
 				span.porcentaje
 
 	div.resumen.casosActivos
 		div.icono
-			img( data-src='./imagenes/resumen/casosActivos.png' class='lazyload' alt='Casos Activos' )
+			img( data-src='./imagenes/resumen/casosActivos.png' class='lazyload' )
 		p.titulo Casos Activos
 		div.cifras
-			span.numero
+			span.numero 
 				span.estado
 				span.porcentaje
 
 	div.resumen.sintomas
 		div.icono
-			img( data-src='./imagenes/resumen/sintomas.png' class='lazyload' alt='sintomaticos/asintomaticos' )
+			img( data-src='./imagenes/resumen/sintomas.png' class='lazyload' )
 		p.titulo Casos nuevos
 		div.sintoma
 			p.conSintomas
-				strong
+				strong 
 				span Con sintomas
 			p.sinSintomas
-				strong
+				strong 
 				span Sin sintomas
 
 	div.resumen.recuperadosDia
 		div.icono
-			img( data-src='./imagenes/resumen/check.png' class='lazyload' alt='Recuperados último día' )
+			img( data-src='./imagenes/resumen/check.png' class='lazyload' )
 		p.titulo Recuperados último día
 		div.cifras
-			span.numero
+			span.numero 
 				span.estado
 				span.porcentaje
 
 	div.resumen.fallecidosDia
 		div.icono
-			img( data-src='./imagenes/resumen/none.png' class='lazyload' alt='Fallecidos último día' )
+			img( data-src='./imagenes/resumen/none.png' class='lazyload' )
 		p.titulo Fallecidos último día
 		div.cifras
-			span.numero
+			span.numero 
 				span.estado
 				span.porcentaje
 
 	div.resumen.ventiladoresDisponibles
 		div.icono
-			img( data-src='./imagenes/resumen/ventiladores.png' class='lazyload' alt='Ventiladores disponibles' )
+			img( data-src='./imagenes/resumen/ventiladores.png' class='lazyload' )
 		p.titulo Ventiladores disponibles
 		div.cifras
-			span.numero
+			span.numero 
 				span.estado
 				span.porcentaje
 
 	div.resumen.examenesPCR
 		div.icono
-			img( data-src='./imagenes/resumen/pcr.png' class='lazyload' alt='Ventiladores disponibles' )
+			img( data-src='./imagenes/resumen/pcr.png' class='lazyload' )
 		p.titulo Exámenes PCR últimas 24 horas
 		div.cifras
-			span.numero
+			span.numero 
 				span.estado
 				span.porcentaje
 
@@ -189,40 +186,16 @@ div#resumen
 				};
 
 			} catch ( error ) {
-				/*
+				
 				setTimeout(function(){
 					location.reload();
 				},2000);
-				*/
-				console.log( "Cancele el reload()" );
+				
 			};
 
 		};
 
 		// RESUMENES: Agrega los datos a cada div de resumen
-		/*
-		var resumiendo = function( nombreResumen , numeroTR ){
-
-			var contagiosTotalUltimo = $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).last().html();
-			$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) + "<span class='estado'></span><span class='porcentaje'></span>" );
-
-			var cifraHoy 			= $( $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" )[ $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).length-1 ] ).html();
-			var cifraAnterior 	= $( $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" )[ $( $( "#TotalesNacionales > div > table tbody tr" )[numeroTR] ).find( "td" ).length-2 ] ).html();
-			var cifraRestante 	= cifraHoy - cifraAnterior;
-			var calculoInverso 	= cifraRestante * 100 / cifraHoy;
-			
-			if ( calculoInverso.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
-				// es positivo
-				$( "." + nombreResumen + " > div.cifras" ).addClass( "positivo" );
-			} else {
-				// es negativo
-				$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
-			};
-
-			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
-
-		};
-		*/
 		var resumiendo = function( nombreResumen , claseTR ){
 
 			var contagiosTotalUltimo = $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).last().html();
@@ -261,7 +234,6 @@ div#resumen
 		setTimeout(function(){
 			resumiendo( "casosActivos" , "casosactivos" );
 		},1000);
-
 	//- SINTOMAS
 	script.
 		setTimeout(function(){
@@ -270,13 +242,9 @@ div#resumen
 			$( "div.resumen.sintomas .sintoma p.conSintomas strong" ).html( puntuacion(conSintomas) );
 			$( "div.resumen.sintomas .sintoma p.sinSintomas strong" ).html( puntuacion(sinSintomas) );
 		},1000);
-		
 	//- TOTAL RECUPERADOS
 	script.
 		setTimeout(function(){
-			/*
-			resumiendo( "recuperadosDia" , 9 );
-			*/
 			resumiendo( "recuperadosDia" , "recuperadosDia" );
 		},1000);
 	//- TOTAL FALLECIDOS
