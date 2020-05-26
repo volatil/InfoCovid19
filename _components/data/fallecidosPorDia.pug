@@ -5,24 +5,22 @@ div.grafico#fallecidosDia-grafico( style='width: 100%; height: 500px;' )
 
 	script.
 		$( document ).ready(function(){
-			setTimeout(function(){
-				$( $( "#TotalesNacionales table tbody tr" )[4] ).addClass( "fallecidosTotal" );
-				$( "#TotalesNacionales table tbody" ).append( "<tr class='fallecidosDia'><td>Fallecidos Día</td><td>0</td></tr>" );
+			$( $( "#TotalesNacionales table tbody tr" )[4] ).addClass( "fallecidosTotal" );
+			$( "#TotalesNacionales table tbody" ).append( "<tr class='fallecidosDia'><td>Fallecidos Día</td><td>0</td></tr>" );
 
-				// Calcula datos por dia de FALLECIDOS DIA
-				$.each( $( "table tbody tr.fallecidosTotal td" ) , function(){
-					
-					var fallecidosTotal				= parseInt( $( this ).html() );
-					var fallecidosTotalSiguiente	= parseInt( $( this ).next().html() );
-					
-					if( $( this ).next( "td" ).length >= 1 ) {
-						$( "tr.fallecidosDia" ).append( "<td>" + parseInt(fallecidosTotalSiguiente - fallecidosTotal) + "</td>" );
-					};
+			// Calcula datos por dia de FALLECIDOS DIA
+			$.each( $( "table tbody tr.fallecidosTotal td" ) , function(){
+				
+				var fallecidosTotal				= parseInt( $( this ).html() );
+				var fallecidosTotalSiguiente	= parseInt( $( this ).next().html() );
+				
+				if( $( this ).next( "td" ).length >= 1 ) {
+					$( "tr.fallecidosDia" ).append( "<td>" + parseInt(fallecidosTotalSiguiente - fallecidosTotal) + "</td>" );
+				};
 
-				});
-				// Quita el "NaN" porque al restar el nombre de la fila x 0 da NaN
-				$( $( "tr.fallecidosDia td" )[2] ).remove();
-			},100);
+			});
+			// Quita el "NaN" porque al restar el nombre de la fila x 0 da NaN
+			$( $( "tr.fallecidosDia td" )[2] ).remove();
 		});
 
 
