@@ -6,7 +6,7 @@
 	width: 80%;
 	margin: 0 auto;
 }
-.graficos > .grafico {
+.graficos .grafico {
 	width: 95%;
 	height: 400px;
 	margin: 0 1% 1% 0;
@@ -17,23 +17,82 @@
 	-o-transition:      all .2s ease;
 	transition:         all .2s ease;
 }
-	.graficos > .grafico:hover {
+	.graficos .grafico:hover {
 		box-shadow: none;
 		-webkit-transition: all .2s ease;
 		-moz-transition:    all .2s ease;
 		-o-transition:      all .2s ease;
 		transition:         all .2s ease;
 	}
+
+.graficos .tabs {
+	position: relative;
+	height: 500px;
+	margin-top: 80px;
+	margin-bottom: 20px;
+}
+.graficos .tabs .tab {
+	top: 0;
+	position: relative;
+}
+.graficos .tabs .tab > div {
+	top: 0;
+	left: 0;
+}
+.graficos .tabs .tab > p {
+	position: absolute;
+	z-index: 1;
+	cursor: pointer;
+	background: #efefef;
+	top: -55px;
+	padding: 10px 15px;
+}
+.graficos .tabs .tab > p:hover ,
+.graficos .tabs .tab > p.activo {
+	background: white;
+}
+.graficos .tabs .tab:nth-child( 2 ) > p {
+    margin-left: 160px;
+}
+.graficos .tabs .tab:nth-child( 3 ) > p {
+    margin-left: 340px;
+}
+
+
+
+
 @media ( max-width: 768px ) {
 
 	.graficos > #casosTotales ,
-	.graficos > .grafico {
+	.graficos .grafico {
 		width: 96% !important;
 		display: block;
 		margin: 0 auto;
 	}	
 	.graficos {
 		width: 100%;
+	}
+	.graficos .tabs .tab > div {
+		width: 96%;
+		margin: 0 auto;
+		left: 0;
+		right: 0;
+	}
+	.graficos .tabs .tab > p {
+		font-size: 0.8em;
+		width: 70px;
+		text-align: center;
+		top: -62px;
+		padding: 10px 10px;
+	}
+	.graficos .tabs .tab:nth-child( 1 ) > p {
+		margin-left: 15px;
+	}
+	.graficos .tabs .tab:nth-child( 2 ) > p {
+		margin-left: 108px;
+	}
+	.graficos .tabs .tab:nth-child( 3 ) > p {
+		margin-left: 200px;
 	}
 	
 }
