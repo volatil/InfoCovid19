@@ -28,7 +28,6 @@ div#resumen
 		div.cifras
 			span.numero 
 				img( src=loadingggg )
-				//- span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') . . .
 				span.estado
 				span.porcentaje
 
@@ -39,7 +38,6 @@ div#resumen
 		div.cifras
 			span.numero
 				img( src=loadingggg )
-				//- span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') . . . 
 				span.estado
 				span.porcentaje
 
@@ -50,7 +48,6 @@ div#resumen
 		div.cifras
 			span.numero
 				img( src=loadingggg )
-				//- span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') . . . 
 				span.estado
 				span.porcentaje
 
@@ -62,12 +59,10 @@ div#resumen
 			p.conSintomas
 				strong 
 					img( src=loadingggg )
-					//- span.cargando(style='font-size: 0.4em;color: #ccc;font-weight: 300;') . . . 
 				span Con sintomas
 			p.sinSintomas
 				strong 
 					img( src=loadingggg )
-					//- span.cargando(style='font-size: 0.4em;color: #ccc;font-weight: 300;') . . . 
 				span Sin sintomas
 
 	div.resumen.recuperadosDia
@@ -77,7 +72,6 @@ div#resumen
 		div.cifras
 			span.numero
 				img( src=loadingggg )
-				//- span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') . . . 
 				span.estado
 				span.porcentaje
 
@@ -87,7 +81,6 @@ div#resumen
 		p.titulo Fallecidos último día
 		div.cifras
 			span.numero
-				//- span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') . . . 
 				img( src=loadingggg )
 				span.estado
 				span.porcentaje
@@ -99,7 +92,6 @@ div#resumen
 		div.cifras
 			span.numero
 				img( src=loadingggg )
-				//- span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') . . . 
 				span.estado
 				span.porcentaje
 
@@ -110,7 +102,6 @@ div#resumen
 		div.cifras
 			span.numero
 				img( src=loadingggg )
-				//- span.cargando(style='font-size: 0.5em;color: #ccc;font-weight: 300;') . . . 
 				span.estado
 				span.porcentaje
 
@@ -238,8 +229,6 @@ div#resumen
 			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
 
 		};
-
-
 	//- TOTAL CASOS ACTIVOS
 	script.
 		setTimeout(function(){
@@ -299,21 +288,21 @@ div#resumen
 		setTimeout(function(){
 			var sumaTotal = 0;
 
-			for ( var count = 1; count <= $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
+			for ( var count = 1; count <= $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
 				
-				var ultimoValor = $( $( ".graficos>.grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().html();
+				var ultimoValor = $( $( ".graficos .grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().html();
 				sumaTotal = parseInt( sumaTotal ) + parseInt( ultimoValor ) ;
 
-				if ( count == $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
+				if ( count == $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
 					
 
 					var sumaPenultimoTotal = 0;
-					for ( var count = 1; count <= $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
+					for ( var count = 1; count <= $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
 
-						var penultimoValor = $( $( ".graficos>.grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().prev().html();
+						var penultimoValor = $( $( ".graficos .grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().prev().html();
 						sumaPenultimoTotal = parseInt( sumaPenultimoTotal ) + parseInt( penultimoValor ) ;
 
-						if ( count == $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
+						if ( count == $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
 
 							var examenesPCRHoy 		= sumaTotal;
 							var examenesPCRAyer 		= sumaPenultimoTotal;

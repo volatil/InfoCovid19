@@ -339,8 +339,6 @@
         	$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
         
         };
-        
-        
       </script>
       <script>
         setTimeout(function(){
@@ -400,21 +398,21 @@
         setTimeout(function(){
         	var sumaTotal = 0;
         
-        	for ( var count = 1; count <= $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
+        	for ( var count = 1; count <= $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
         		
-        		var ultimoValor = $( $( ".graficos>.grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().html();
+        		var ultimoValor = $( $( ".graficos .grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().html();
         		sumaTotal = parseInt( sumaTotal ) + parseInt( ultimoValor ) ;
         
-        		if ( count == $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
+        		if ( count == $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
         			
         
         			var sumaPenultimoTotal = 0;
-        			for ( var count = 1; count <= $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
+        			for ( var count = 1; count <= $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
         
-        				var penultimoValor = $( $( ".graficos>.grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().prev().html();
+        				var penultimoValor = $( $( ".graficos .grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().prev().html();
         				sumaPenultimoTotal = parseInt( sumaPenultimoTotal ) + parseInt( penultimoValor ) ;
         
-        				if ( count == $( ".graficos > .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
+        				if ( count == $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
         
         					var examenesPCRHoy 		= sumaTotal;
         					var examenesPCRAyer 		= sumaPenultimoTotal;
