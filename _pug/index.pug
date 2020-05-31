@@ -62,23 +62,21 @@ html
 						include ../_components/data/fallecidosPorDia
 
 			
-			script.
-				/*
-				$( $( ".graficos .tabs .tab" )[0] ).css( "visibility" , "initial" );
-				*/
-				setTimeout(function(){
-					$( ".graficos .tabs .tab > div" ).css( "position" , "absolute" );
-					$( $( ".graficos .tabs .tab > p" )[0] ).addClass( "activo" );
-				},1000);
-				$( ".graficos .tabs .tab" ).click(function(){
+				script.
+					setTimeout(function(){
+						$( ".graficos .tabs .tab > div" ).css( "position" , "absolute" );
+						$( $( ".graficos .tabs .tab > p" )[0] ).addClass( "activo" );
+						$( $( ".graficos .tabs .tab" )[0] ).find( "> p" ).click()
+					},1000);
+					$( ".graficos .tabs .tab" ).click(function(){
 
-					$( ".graficos .tabs .tab > p" ).removeClass( "activo" );
-					$( this ).find( "> p" ).addClass( "activo" );
+						$( ".graficos .tabs .tab > p" ).removeClass( "activo" );
+						$( this ).find( "> p" ).addClass( "activo" );
 
-					$( ".graficos .tabs .tab > div" ).css( "visibility" , "hidden" );
-					$( this ).find( "> div" ).css( "visibility" , "initial" );
-				
-				});
+						$( ".graficos .tabs .tab > div" ).css( "visibility" , "hidden" );
+						$( this ).find( "> div" ).css( "visibility" , "initial" );
+					
+					});
 			
 			
 			
