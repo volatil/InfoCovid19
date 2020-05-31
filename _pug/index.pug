@@ -44,9 +44,6 @@ html
 			link( rel='stylesheet' , href='./css/graficos.min.css' )
 			include ../_components/data/casosTotales
 
-
-
-
 			.tabs
 				.tab
 					p Contagios Por Día
@@ -61,32 +58,41 @@ html
 					div
 						include ../_components/data/fallecidosPorDia
 
-			
-				script.
-					setTimeout(function(){
-						$( ".graficos .tabs .tab > div" ).css( "position" , "absolute" );
-						$( $( ".graficos .tabs .tab > p" )[0] ).addClass( "activo" );
-						$( $( ".graficos .tabs .tab" )[0] ).find( "> p" ).click()
-					},1000);
-					$( ".graficos .tabs .tab" ).click(function(){
+			.tabs
+				.tab
+					p UCI Reg. Met.
+					div
+						include ../_components/data/uci 
+				.tab
+					p UCI Regiones
+					div
+						include ../_components/data/uciPorRegion
 
-						$( ".graficos .tabs .tab > p" ).removeClass( "activo" );
-						$( this ).find( "> p" ).addClass( "activo" );
-
-						$( ".graficos .tabs .tab > div" ).css( "visibility" , "hidden" );
-						$( this ).find( "> div" ).css( "visibility" , "initial" );
-					
-					});
-			
-			
-			
-			
-			
-			
 			include ../_components/data/ventiladores
 			include ../_components/data/rangoEtario
 			include ../_components/data/pcrPorRegion
-			include ../_components/data/uci 
+
+
+			//- TABS
+			script.
+				setTimeout(function(){
+					$( ".graficos .tabs .tab > div" ).css( "position" , "absolute" );
+
+					$.each( $( ".graficos .tabs" ) , function(){
+						$( $( this ).find( ".tab ")[0] ).find( "> p" ).addClass( "activo" );
+						$( $( this ).find( ".tab ")[0] ).find( "> p" ).click();
+					});
+				},1000);
+				$( ".graficos .tabs .tab" ).click(function(){
+
+					$( this ).parent().find( ".tab > p" ).removeClass( "activo" );
+					$( this ).find( "> p" ).addClass( "activo" );
+
+					$( this ).parent().find( ".tab > div" ).css( "visibility" , "hidden" );
+					$( this ).find( "> div" ).css( "visibility" , "initial" );
+				
+				});
+
 
 			//- Si no carga la data, recarga
 			script.

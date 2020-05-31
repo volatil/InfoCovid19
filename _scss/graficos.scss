@@ -28,8 +28,8 @@
 .graficos .tabs {
 	position: relative;
 	height: 500px;
-	margin-top: 40px;
-	margin-bottom: 20px;
+	margin-top: 50px;
+	margin-bottom: 60px;
 }
 .graficos .tabs .tab {
 	top: 0;
@@ -44,7 +44,7 @@
 	z-index: 1;
 	cursor: pointer;
 	background: #efefef;
-	top: -55px;
+	top: -57px;
 	padding: 10px 15px;
 }
 .graficos .tabs .tab > p:hover ,
@@ -85,7 +85,7 @@
 		font-size: 0.8em;
 		width: 70px;
 		text-align: center;
-		top: -62px;
+		top: -66px;
 		padding: 10px 10px;
 	}
 	.graficos .tabs .tab:nth-child( 1 ) > p {
