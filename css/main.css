@@ -707,13 +707,6 @@ table tbody tr td {
   text-align: center;
 }
 
-html,
-body {
-  /*
-  background: red !important;
-  */
-}
-
 .ilustracionHeader {
   height: 155px;
   width: 100%;
