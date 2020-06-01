@@ -217,10 +217,12 @@ div#resumen .resumen.sintomas > div.icono {
   background: #dbd2fe;
 }
 
+div#resumen .resumen.fallecidosTotal > div.icono,
 div#resumen .resumen.fallecidosDia > div.icono {
   background: #ef9aa2;
 }
 
+div#resumen .resumen.recuperadosTotal > div.icono,
 div#resumen .resumen.recuperadosDia > div.icono {
   background: #d8f3d8;
 }
@@ -246,10 +248,12 @@ div#resumen .resumen.sintomas > p.titulo {
   color: #886cfe;
 }
 
+div#resumen .resumen.fallecidosTotal > p.titulo,
 div#resumen .resumen.fallecidosDia > p.titulo {
   color: #c12f32;
 }
 
+div#resumen .resumen.recuperadosTotal > p.titulo,
 div#resumen .resumen.recuperadosDia > p.titulo {
   color: #34c736;
 }

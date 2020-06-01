@@ -2,7 +2,7 @@
 - var loadingggg = 'https://www.vibuk.com/assets/img/fluid-loader.gif';
 - var loadingggg = 'https://i.pinimg.com/originals/3f/2c/97/3f2c979b214d06e9caab8ba8326864f3.gif';
 
-div#TotalesNacionales(style='display:none;')
+div#TotalesNacionales(style='display:block;')
 
 script.
 	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
@@ -73,6 +73,14 @@ div#resumen
 				span.estado
 				span.porcentaje
 
+	div.resumen.recuperadosTotal
+		div.icono
+			img( data-src='./imagenes/resumen/check.png' class='lazyload' )
+		p.titulo Total Recuperados
+		div.cifras
+			span.numero
+				img( src=loadingggg )
+
 	div.resumen.fallecidosDia
 		div.icono
 			img( data-src='./imagenes/resumen/none.png' class='lazyload' )
@@ -82,6 +90,14 @@ div#resumen
 				img( src=loadingggg )
 				span.estado
 				span.porcentaje
+
+	div.resumen.fallecidosTotal
+		div.icono
+			img( data-src='./imagenes/resumen/none.png' class='lazyload' )
+		p.titulo Fallecidos último día
+		div.cifras
+			span.numero
+				img( src=loadingggg )
 
 	div.resumen.ventiladoresDisponibles
 		div.icono
@@ -250,15 +266,26 @@ div#resumen
 			$( "div.resumen.sintomas .sintoma p.conSintomas strong" ).html( puntuacion(conSintomas) );
 			$( "div.resumen.sintomas .sintoma p.sinSintomas strong" ).html( puntuacion(sinSintomas) );
 		},1000);
-	//- TOTAL RECUPERADOS
+	//- RECUPERADOS ULTIMO DIA
 	script.
 		setTimeout(function(){
 			resumiendo( "recuperadosDia" , "recuperadosDia" );
 		},1000);
-	//- TOTAL FALLECIDOS
+	//- TOTAL RECUPERADOS 
+	script.
+		//- casosrecuperados
+		setTimeout(function(){
+			$( "div#resumen .resumen.recuperadosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".casosrecuperados > td" ).last().html() ) );
+		},1000);
+	//- FALLECIDOS ULTIMO DIA
 	script.
 		setTimeout(function(){
 			resumiendo( "fallecidosDia" , "fallecidosDia" );
+		},1000);
+	//- TOTAL FALLECIDOS
+	script.
+		setTimeout(function(){
+			$( "div#resumen .resumen.fallecidosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".fallecidosTotal > td" ).last().html() ) );
 		},1000);
 	//- VENTILADORES DISPONIBLES
 	script.
