@@ -34,7 +34,7 @@ body {
 
 div#resumen {
   position: relative;
-  width: 80%;
+  width: 1200px;
   margin: 20px auto 0;
 }
 
@@ -266,7 +266,12 @@ div#resumen .resumen.examenesPCR > p.titulo {
   color: #0099c6;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  div#resumen {
+    width: 790px;
+  }
+}
+@media (max-width: 769px) {
   div#resumen {
     width: 100%;
   }
