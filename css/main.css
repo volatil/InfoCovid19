@@ -113,7 +113,7 @@ div#resumen .resumen > div.cifras > span.numero {
   margin: 0;
   color: black;
   font-weight: 500;
-  font-size: 3.1em;
+  font-size: 2.9em;
 }
 
 div#resumen .resumen > div.cifras > span.numero > img,
@@ -122,8 +122,8 @@ div#resumen .resumen.sintomas > div.sintoma > p > strong > img {
 }
 
 div#resumen .resumen > div.cifras > span.numero > span.estado {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   display: block;
   position: absolute;
   top: 20px;
@@ -298,6 +298,8 @@ div#resumen .resumen.examenesPCR > p.titulo {
   }
 
   div#resumen .resumen > div.cifras > span.numero > span.estado {
+    width: 20px;
+    height: 20px;
     top: 40px;
     right: inherit;
     left: 0;
@@ -563,7 +565,7 @@ body {
   z-index: 1;
   cursor: pointer;
   background: #efefef;
-  top: -57px;
+  top: -55px;
   padding: 10px 15px;
 }
 
@@ -611,7 +613,7 @@ body {
     font-size: 0.8em;
     width: 70px;
     text-align: center;
-    top: -66px;
+    top: -63px;
     padding: 10px 10px;
   }
 
