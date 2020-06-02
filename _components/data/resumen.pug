@@ -2,7 +2,7 @@
 - var loadingggg = 'https://www.vibuk.com/assets/img/fluid-loader.gif';
 - var loadingggg = 'https://i.pinimg.com/originals/3f/2c/97/3f2c979b214d06e9caab8ba8326864f3.gif';
 
-div#TotalesNacionales(style='display:none;')
+div#TotalesNacionales(style='display:block;')
 
 script.
 	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
@@ -181,7 +181,9 @@ div#resumen
 
 			try {
 
-				switch ( cifra.length ) {
+				var x = cifra.length;
+
+				switch ( x ) {
 					case 8:
 						return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
 						break;
@@ -206,8 +208,23 @@ div#resumen
 					case 1:
 						return cifra = cifra;
 						break;
+					/*
+					case 0:
+						return cifra = "ag";
+						break;
+					*/
 					default:
+						/*
+						if (isNaN(x)){
+						   alert("isNaN");
+						   break;
+						} else { 
+							alert( "No es nan" )
+						};
+						break;
+						*/
 						console.log( "No tengo un rango seteado." );
+						return cifra = "S/I";
 						break;
 				};
 
@@ -225,9 +242,13 @@ div#resumen
 		var resumiendo = function( nombreResumen , claseTR ){
 
 			var contagiosTotalUltimo = $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).last().html();
-			$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+			if( isNaN( contagiosTotalUltimo ) ) {
+				$( "." + nombreResumen + " > div.cifras > span.numero" ).html( "S/I" );
+			} else {
+				$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+			};
 
-			var cifraHoy 			= $( $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" )[ $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).length-1 ] ).html();
+			var cifraHoy 		= $( $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" )[ $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).length-1 ] ).html();
 			var cifraAnterior 	= $( $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" )[ $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).length-2 ] ).html();
 			var cifraRestante 	= cifraHoy - cifraAnterior;
 			var calculoInverso 	= cifraRestante * 100 / cifraHoy;

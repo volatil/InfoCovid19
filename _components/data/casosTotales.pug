@@ -24,10 +24,17 @@ script.
 
 			for ( sumaTR = 1 ; sumaTR <= $( $( "#TotalesNacionales table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
 			
-				var fecha 						= $( $( $( "#TotalesNacionales table tr" )[0] ).find( "th" )[sumaTR] ).html();
-				var casosTotales				= $( $( $( "#TotalesNacionales table tr" )[2] ).find( "td" )[sumaTR] ).html();
+				var fecha 				= $( $( $( "#TotalesNacionales table tr" )[0] ).find( "th" )[sumaTR] ).html();
+				var casosTotales		= $( $( $( "#TotalesNacionales table tr" )[2] ).find( "td" )[sumaTR] ).html();
 				var recuperadosTotales	= $( $( $( "#TotalesNacionales table tr" )[3] ).find( "td" )[sumaTR] ).html();
+				if ( recuperadosTotales.split( "" ).length < 1 ) {
+					var recuperadosTotales = 0;
+				};
+
 				var fallecidosTotales		= $( $( $( "#TotalesNacionales table tr" )[4] ).find( "td" )[sumaTR] ).html();
+				if ( fallecidosTotales.split( "" ).length < 1 ) {
+					var fallecidosTotales = 0;
+				};
 
 				var push_todosTotales 	= '[["' + fecha + '",' + casosTotales + ', ' + recuperadosTotales + ', ' + fallecidosTotales + ']]';
 				datosTotales.addRows(JSON.parse(push_todosTotales));
