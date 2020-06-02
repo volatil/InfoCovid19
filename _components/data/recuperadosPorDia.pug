@@ -51,8 +51,6 @@ div.grafico#recuperadosDia-grafico( style='width: 100%; height: 500px;' )
 				for ( sumaTR = 1 ; sumaTR <= $( $( "#TotalesNacionales table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
 					var fecha 				= $( $( $( "#TotalesNacionales table tr" )[0] ).find( "th" )[sumaTR] ).html();
 					var recuperadosDia		= $( $( "#TotalesNacionales table tr.recuperadosDia" ).find( "td" )[sumaTR] ).html();
-					
-					console.log( "Fecha: " + fecha + " Cifra: " + recuperadosDia );
 					if( isNaN( recuperadosDia ) ) {
 						var recuperadosDia = "0";
 					};
