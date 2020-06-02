@@ -14,11 +14,12 @@ body {
 
 div#resumen {
   position: relative;
-  width: 80%;
+  width: 1200px;
   margin: 20px auto 0; }
 
 div#resumen > div.fecha {
-  height: 30px; }
+  height: 30px;
+  margin-bottom: 10px; }
 
 div#resumen > div.fecha > span.raya {
   position: absolute;
@@ -84,15 +85,15 @@ div#resumen .resumen > div.cifras > span.numero {
   margin: 0;
   color: black;
   font-weight: 500;
-  font-size: 3.1em; }
+  font-size: 2.9em; }
 
 div#resumen .resumen > div.cifras > span.numero > img,
 div#resumen .resumen.sintomas > div.sintoma > p > strong > img {
   width: 50px; }
 
 div#resumen .resumen > div.cifras > span.numero > span.estado {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   display: block;
   position: absolute;
   top: 20px;
@@ -170,9 +171,11 @@ div#resumen .resumen.casosActivos > div.icono,
 div#resumen .resumen.sintomas > div.icono {
   background: #dbd2fe; }
 
+div#resumen .resumen.fallecidosTotal > div.icono,
 div#resumen .resumen.fallecidosDia > div.icono {
   background: #ef9aa2; }
 
+div#resumen .resumen.recuperadosTotal > div.icono,
 div#resumen .resumen.recuperadosDia > div.icono {
   background: #d8f3d8; }
 
@@ -192,9 +195,11 @@ div#resumen .resumen.casosActivos > p.titulo,
 div#resumen .resumen.sintomas > p.titulo {
   color: #886cfe; }
 
+div#resumen .resumen.fallecidosTotal > p.titulo,
 div#resumen .resumen.fallecidosDia > p.titulo {
   color: #c12f32; }
 
+div#resumen .resumen.recuperadosTotal > p.titulo,
 div#resumen .resumen.recuperadosDia > p.titulo {
   color: #34c736; }
 
@@ -204,7 +209,11 @@ div#resumen .resumen.ventiladoresDisponibles > p.titulo {
 div#resumen .resumen.examenesPCR > p.titulo {
   color: #0099c6; }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  div#resumen {
+    width: 790px; } }
+
+@media (max-width: 769px) {
   div#resumen {
     width: 100%; }
   div#resumen .resumen {
@@ -221,6 +230,8 @@ div#resumen .resumen.examenesPCR > p.titulo {
   div#resumen .resumen > div.cifras > span.numero {
     font-size: 2.4em; }
   div#resumen .resumen > div.cifras > span.numero > span.estado {
+    width: 20px;
+    height: 20px;
     top: 40px;
     right: inherit;
     left: 0;
