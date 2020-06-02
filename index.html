@@ -276,21 +276,7 @@
         			case 1:
         				return cifra = cifra;
         				break;
-        			/*
-        			case 0:
-        				return cifra = "ag";
-        				break;
-        			*/
         			default:
-        				/*
-        				if (isNaN(x)){
-        				   alert("isNaN");
-        				   break;
-        				} else { 
-        					alert( "No es nan" )
-        				};
-        				break;
-        				*/
         				console.log( "No tengo un rango seteado." );
         				return cifra = "S/I";
         				break;
@@ -591,6 +577,12 @@
                 		for ( sumaTR = 1 ; sumaTR <= $( $( "#TotalesNacionales table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
                 			var fecha 				= $( $( $( "#TotalesNacionales table tr" )[0] ).find( "th" )[sumaTR] ).html();
                 			var recuperadosDia		= $( $( "#TotalesNacionales table tr.recuperadosDia" ).find( "td" )[sumaTR] ).html();
+                			
+                			console.log( "Fecha: " + fecha + " Cifra: " + recuperadosDia );
+                			if( isNaN( recuperadosDia ) ) {
+                				var recuperadosDia = "0";
+                			};
+                
                 			var push_todosTotales 	= '[["' + fecha + '",' + recuperadosDia + ']]';
                 			dataRecuperadosDia.addRows(JSON.parse(push_todosTotales));
                 		}
