@@ -1,0 +1,60 @@
+
+
+h1 Contagios Por Región
+
+
+
+//- https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto18/TasaDeIncidencia.csv
+
+div.grafico#contagiosPorRegion(style='display:block;')
+div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
+script.
+	traeCovid( "#contagiosPorRegion" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto1/Covid-19.csv" );
+
+//- INGRESA DATA
+script.
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(contagiosPorRegion);
+
+	function contagiosPorRegion() { 
+			var dataContagiosPorRegion = google.visualization.arrayToDataTable([
+				['Fecha' , 'San Esteban'],
+				['0' , 0 ],
+		]);
+
+		var options = {
+			title : 'Contagiados Por Región',
+			vAxis: {title: 'Casos'},
+			hAxis: {title: 'Días'},
+			seriesType: 'bars',
+
+			legend: { position: 'top', maxLines: 3 },
+			bar: { groupWidth: '75%' },
+			isStacked: true
+		};
+
+		var chart = new google.visualization.ComboChart(document.getElementById('contagiosPorRegion-grafico'));
+		chart.draw(dataContagiosPorRegion, options);
+	
+		for ( sumaTR = 1 ; sumaTR <= $( $( "#contagiosPorRegion table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+		
+			var fecha			= $( $( $( "#contagiosPorRegion table tr" )[0] ).find( "th" )[sumaTR] ).html();
+			console.log( "Fecha: " + fecha );
+			var sanEsteban	= $( $( $( "#contagiosPorRegion table tr" )[1] ).find( "td" )[sumaTR] ).html();
+			console.log( "San Esteban: " + sanEsteban );
+			/*
+			var losAndes		= $( $( $( "#contagiosPorRegion table tr" )[2] ).find( "td" )[sumaTR] ).html();
+			var push_todosTotales 	= '[["' + fecha + '",' + sanEsteban + ',' + losAndes + ']]';
+			*/
+			var push_todosTotales 	= '[["' + fecha + '",' + sanEsteban + ']]';
+			/*
+			dataContagiosPorRegion.addRows(JSON.parse(push_todosTotales));
+			*/
+
+		}
+		/*
+		var chart = new google.visualization.ComboChart(document.getElementById('contagiosPorRegion-grafico'));
+		chart.draw(dataContagiosPorRegion, options);
+		*/
+
+	}

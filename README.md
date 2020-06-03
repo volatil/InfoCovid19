@@ -26,7 +26,9 @@ TAREAS:
 = https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto15/FechaInicioSintomas.csv
 
 > Tasa de incidencia historica por comuna y total regional
+= https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto1/Covid-19.csv
 = https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto18/TasaDeIncidencia.csv
+= ( https://github.com/MinCiencia/Datos-COVID19/tree/master/output/producto2 )
 
 > Casos actuales por fecha de inicio de síntomas y comuna
 = https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto25/CasosActualesPorComuna.csv
