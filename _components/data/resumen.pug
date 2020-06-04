@@ -351,7 +351,13 @@ div#resumen
 								// es negativo
 								$( "div#resumen .resumen.examenesPCR > div.cifras " ).addClass( "negativo" );
 							};
-							$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoPCR.toString().slice( 0 , 5 ) + "%)" )
+
+							if ( isNaN( calculoInversoPCR ) ) {
+								$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.estado" ).remove();
+								$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.porcentaje" ).remove();
+							} else {
+								$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoPCR.toString().slice( 0 , 5 ) + "%)" )
+							};
 						
 						}
 
@@ -362,3 +368,4 @@ div#resumen
 			}
 
 		},1000);
+	
