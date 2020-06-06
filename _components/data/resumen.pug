@@ -181,47 +181,31 @@ div#resumen
 
 			try {
 
-				var x = cifra.length;
-
-				switch ( x ) {
-					case 8:
-						return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
-						break;
-					case 7:
-						return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
-						break;
-					case 6:
-						return cifra.slice(0,3) + "." + cifra.slice(3,6);
-						break;
-					case 5:
-						return cifra.slice(0,2) + "." + cifra.slice(2,5);
-						break;
-					case 4:
-						return cifra.slice(0,1) + "." + cifra.slice(1,4);
-						break;
-					case 3:
-						return cifra = cifra;
-						break;
-					case 2:
-						return cifra = cifra;
-						break;
-					case 1:
-						return cifra = cifra;
-						break;
-					default:
-						console.log( "No tengo un rango seteado." );
-						return cifra = "S/I";
-						break;
+				if ( isNaN( cifra ) ) {
+					return cifra = "S/I";
+				} else if ( cifra.length == 8 ) {
+					return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
+				} else if ( cifra.length == 7 ) {
+					return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
+				} else if ( cifra.length == 6 ) {
+					return cifra.slice(0,3) + "." + cifra.slice(3,6);
+				} else if ( cifra.length == 5 ) {
+					return cifra.slice(0,2) + "." + cifra.slice(2,5);
+				} else if ( cifra.length == 4 ) {
+					return cifra.slice(0,1) + "." + cifra.slice(1,4);
+				} else if ( cifra.length == 3 ) {
+					return cifra = cifra;
+				} else if ( cifra.length == 2 ) {
+					return cifra = cifra;
+				} else if ( cifra.length == 1 ) {
+					return cifra = cifra;
+				} else {
+					console.log( "No tengo un rango seteado." );
+					return cifra = "S/I";
 				};
 
 			} catch ( error ) {
-				
-				setTimeout(function(){
-					/*
-					location.reload();
-					*/
-				},2000);
-				
+				console.log( "Error: " + error );
 			};
 
 		};
@@ -231,7 +215,7 @@ div#resumen
 
 			var contagiosTotalUltimo = $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).last().html();
 			if( isNaN( contagiosTotalUltimo ) ) {
-				$( "." + nombreResumen + " > div.cifras > span.numero" ).html( "S/I" );
+				$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) );
 			} else {
 				$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) + "<span class='estado'></span><span class='porcentaje'></span>" );
 			};
