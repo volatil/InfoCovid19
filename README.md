@@ -10,6 +10,8 @@ Información & Graficos Sobre el Covid-19.
 
 TAREAS:
 
+> Casos Nuevos último día | Casos nuevos (Sintomatico) | Casos nuevos (Asintomatico)
+
 > Casos nuevos totales por región incremental
 = https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto13/CasosNuevosCumulativo.csv
 
