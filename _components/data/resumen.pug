@@ -8,10 +8,13 @@ script.
 	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
 
 	$( document ).ready(function(){
-		$.each( $( "#TotalesNacionales table tbody tr" ) , function(){
-			var nombreTR = $( $( this ).find( "td" )[0] ).text().toLowerCase().split( " " ).join( "" );
-			$( this ).addClass( nombreTR );
-		});
+		setInterval(function(){
+			console.log( "Interval !" );
+			$.each( $( "#TotalesNacionales table tbody tr" ) , function(){
+				var nombreTR = $( $( this ).find( "td" )[0] ).text().toLowerCase().split( " " ).join( "" );
+				$( this ).addClass( nombreTR );
+			});
+		},1000)
 	});
 
 div#resumen
@@ -240,17 +243,17 @@ div#resumen
 	script.
 		setTimeout(function(){
 			resumiendo( "totalCasos" , "casostotales" );
-		},1000);
+		},3000);
 	//- CASOS NUEVOS
 	script.
 		setTimeout(function(){
 			resumiendo( "casosNuevos" , "casosnuevostotales" );
-		},1000);
+		},3000);
 	//- CASOS ACTIVOS
 	script.
 		setTimeout(function(){
 			resumiendo( "casosActivos" , "casosactivos" );
-		},1000);
+		},3000);
 	//- SINTOMAS
 	script.
 		setTimeout(function(){
@@ -258,28 +261,28 @@ div#resumen
 			var sinSintomas = $( $( "#TotalesNacionales > div > table tbody tr" )[6] ).find( "td" ).last().html();
 			$( "div.resumen.sintomas .sintoma p.conSintomas strong" ).html( puntuacion(conSintomas) );
 			$( "div.resumen.sintomas .sintoma p.sinSintomas strong" ).html( puntuacion(sinSintomas) );
-		},1000);
+		},3000);
 	//- RECUPERADOS ULTIMO DIA
 	script.
 		setTimeout(function(){
 			resumiendo( "recuperadosDia" , "recuperadosDia" );
-		},1000);
+		},3000);
 	//- TOTAL RECUPERADOS 
 	script.
 		//- casosrecuperados
 		setTimeout(function(){
 			$( "div#resumen .resumen.recuperadosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".casosrecuperados > td" ).last().html() ) );
-		},1000);
+		},3000);
 	//- FALLECIDOS ULTIMO DIA
 	script.
 		setTimeout(function(){
 			resumiendo( "fallecidosDia" , "fallecidosDia" );
-		},1000);
+		},3000);
 	//- TOTAL FALLECIDOS
 	script.
 		setTimeout(function(){
 			$( "div#resumen .resumen.fallecidosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".fallecidosTotal > td" ).last().html() ) );
-		},1000);
+		},3000);
 	//- VENTILADORES DISPONIBLES
 	script.
 		setTimeout(function(){
@@ -300,7 +303,7 @@ div#resumen
 			};
 
 			$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoDisponibles.toString().slice( 0 , 5 ) + "%)" )
-		},1000);
+		},3000);
 	//- PCR
 	script.
 		setTimeout(function(){
@@ -353,5 +356,5 @@ div#resumen
 
 			}
 
-		},1000);
+		},3000);
 	
