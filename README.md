@@ -19,6 +19,8 @@ TAREAS:
 > Casos por genero y grupo de edad
 = https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto16/CasosGeneroEtario.csv
 
+> Casos Actuales por Comuna
+= https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto25/CasosActualesPorComuna.csv
 
 
 
