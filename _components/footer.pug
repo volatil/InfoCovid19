@@ -9,16 +9,29 @@ script.
 	gtag('js', new Date());
 	gtag('config', 'UA-166517000-1');
 
+//- One Signal
+script(src='https://cdn.onesignal.com/sdks/OneSignalSDK.js', async='')
+script.
+	var OneSignal = window.OneSignal || [];
+	OneSignal.push(function() {
+		OneSignal.init({
+		appId: "3416b993-458b-433a-bcfb-8352906c7c63",
+			notifyButton: {
+				enable: true,
+			},
+		});
+	});
+
 //- Hotjar
-//- script.
-//- 	(function(h,o,t,j,a,r){
-//- 	h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-//- 	h._hjSettings={hjid:1810887,hjsv:6};
-//- 	a=o.getElementsByTagName('head')[0];
-//- 	r=o.createElement('script');r.async=1;
-//- 	r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-//- 	a.appendChild(r);
-//- 	})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+script.
+	(function(h,o,t,j,a,r){
+	h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+	h._hjSettings={hjid:1810887,hjsv:6};
+	a=o.getElementsByTagName('head')[0];
+	r=o.createElement('script');r.async=1;
+	r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+	a.appendChild(r);
+	})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 
 
 //- ====================================
