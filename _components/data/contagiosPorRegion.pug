@@ -1,7 +1,7 @@
 
 //- https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto18/TasaDeIncidencia.csv
 
-div.grafico#contagiosPorRegion(style='display:none;')
+div.grafico#contagiosPorRegion(style='display:block;')
 div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
 	h1 Contagios Por Región
 	h2
@@ -9,6 +9,7 @@ div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
 	table
 		thead
 			tr
+				td Región
 				td Comuna
 				td Población
 				td Contagios
@@ -19,8 +20,14 @@ style.
 		background: white;
 		padding: 20px;
 	}
-	.grafico#contagiosPorRegion-grafico > * {
+	.grafico#contagiosPorRegion-grafico > h1 {
 		text-align: center;
+		margin: none;
+	}
+	.grafico#contagiosPorRegion-grafico > table thead tr td {
+		text-align: center;
+		font-weight: bold;
+		text-transform: uppercase;
 	}
 script.
 	traeCovid( "#contagiosPorRegion" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto25/CasosActualesPorComuna.csv" );
@@ -33,17 +40,17 @@ script.
 
 			for ( sumaTR = 1 ; sumaTR <= $( "#contagiosPorRegion table" ).find( "tr" ).length-2 ; sumaTR++  ) {
 
-				var contagiosRegion 	= $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" ).last().html();
-				var cantPoblacion 		= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[4] ).first().html();
+				var nombreRegion 		= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[0] ).first().html();
 				var nombreComuna 	= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[2] ).first().html();
+				var cantPoblacion 		= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[4] ).first().html();
+				var contagiosRegion 	= $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" ).last().html();
 				/*
 				console.log( "Comuna: " + nombreComuna + " Población: " + cantPoblacion + " Último Dato: " + contagiosRegion );
 				*/
 
-
-		
 				$( ".grafico#contagiosPorRegion-grafico table tbody" ).append( "" +
 					"<tr>" +
+						"<td>" + nombreRegion + "</td>" +
 						"<td>" + nombreComuna + "</td>" +
 						"<td>" + cantPoblacion + "</td>" +
 						"<td>" + contagiosRegion + "</td>" +
