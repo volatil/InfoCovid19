@@ -10,8 +10,6 @@ Información & Graficos Sobre el Covid-19.
 
 TAREAS:
 
-> Casos Nuevos último día | Casos nuevos (Sintomatico) | Casos nuevos (Asintomatico)
-
 > Casos nuevos totales por región incremental
 = https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto13/CasosNuevosCumulativo.csv
 
@@ -21,8 +19,8 @@ TAREAS:
 > Casos por genero y grupo de edad
 = https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto16/CasosGeneroEtario.csv
 
-> Casos Actuales por Comuna
-= https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto25/CasosActualesPorComuna.csv
+
+
 
 
 
