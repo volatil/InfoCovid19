@@ -1,34 +1,85 @@
 
-//- https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto18/TasaDeIncidencia.csv
-
-div.grafico#contagiosPorRegion(style='display:block;')
+div.grafico#contagiosPorRegion(style='display:none;')
 div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
-	h1 Contagios Por Región
-	h2
-	p
-	table
-		thead
-			tr
-				td Región
-				td Comuna
-				td Población
-				td Contagios
-		tbody
+
+	h1 Contagios Actuales por Región
+	h2 Última Actualizacion: 
+		span
+
+	form
+		input( placeholder='Puedes buscar región o comuna' )
+
+	div
+		table
+			thead
+				tr
+					td Región
+					td Comuna
+					td Población
+					td Contagios
+			tbody
 
 style.
 	.grafico#contagiosPorRegion-grafico {
 		background: white;
 		padding: 20px;
+		padding-bottom: 140px;
 	}
 	.grafico#contagiosPorRegion-grafico > h1 {
 		text-align: center;
-		margin: none;
+		margin: 0;
+		font-size: 1.1em;
+		margin-bottom: 10px;
 	}
-	.grafico#contagiosPorRegion-grafico > table thead tr td {
+	.grafico#contagiosPorRegion-grafico > h2 ,
+	.grafico#contagiosPorRegion-grafico > p {
+		font-size: .9em;
+		font-weight: 400;
+		text-align: center;
+		margin: 0;
+	}
+	.grafico#contagiosPorRegion-grafico > h2 span ,
+	.grafico#contagiosPorRegion-grafico > p span {
+		font-weight: 600;
+	}
+	.grafico#contagiosPorRegion-grafico > form {}
+	.grafico#contagiosPorRegion-grafico > form > input {
+		margin: 10px auto 0;
+		display: block;
+		padding: 7px 10px;
+		width: 250px;
+	}
+	.grafico#contagiosPorRegion-grafico > div {
+		height: 98%;
+		overflow-y: scroll;
+	}
+	.grafico#contagiosPorRegion-grafico > div > table {
+		margin: 20px auto 0;
+		border: none;
+	}
+	.grafico#contagiosPorRegion-grafico > div > table thead tr td {
 		text-align: center;
 		font-weight: bold;
 		text-transform: uppercase;
+		letter-spacing: 0.05em;
 	}
+	.grafico#contagiosPorRegion-grafico > div > table tbody tr {
+		height: 30px;
+	}
+		.grafico#contagiosPorRegion-grafico > div > table tbody tr:hover ,
+		.grafico#contagiosPorRegion-grafico > div > table tbody tr:nth-child( odd ) {
+			background: #efefef94;
+		}
+	.grafico#contagiosPorRegion-grafico > div > table tbody tr td {
+		border: none;
+	}
+	.grafico#contagiosPorRegion-grafico > div > table tbody tr.hide {
+		display: none;
+	}
+	.grafico#contagiosPorRegion-grafico > div > table tbody tr.show {
+		display: table-row;
+	}
+
 script.
 	traeCovid( "#contagiosPorRegion" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto25/CasosActualesPorComuna.csv" );
 
@@ -44,11 +95,8 @@ script.
 				var nombreComuna 	= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[2] ).first().html();
 				var cantPoblacion 		= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[4] ).first().html();
 				var contagiosRegion 	= $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" ).last().html();
-				/*
-				console.log( "Comuna: " + nombreComuna + " Población: " + cantPoblacion + " Último Dato: " + contagiosRegion );
-				*/
 
-				$( ".grafico#contagiosPorRegion-grafico table tbody" ).append( "" +
+				$( ".grafico#contagiosPorRegion-grafico > div table tbody" ).append( "" +
 					"<tr>" +
 						"<td>" + nombreRegion + "</td>" +
 						"<td>" + nombreComuna + "</td>" +
@@ -59,12 +107,42 @@ script.
 
 			};
 
-			var cantComunas 			= $( "#contagiosPorRegion table" ).find( "tr" ).length;
-			var ultimaActualizacion 	= $( $( "#contagiosPorRegion table tr" )[0] ).find( "th" ).last().html();
-
-			$( ".grafico#contagiosPorRegion-grafico h2" ).html( "Última Actualizacion: " + ultimaActualizacion );
-			$( ".grafico#contagiosPorRegion-grafico p" ).html( "Cantidad Comunas: " + cantComunas );
+			$( ".grafico#contagiosPorRegion-grafico h2 span" ).html( $( $( "#contagiosPorRegion table tr" )[0] ).find( "th" ).last().html() );
 		
 		},1000);
+
+	});
+
+script.
+	$( document ).ready(function(){
+		setTimeout(function(){
+			$.each( $( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ) , function(){
+				var region 		= $( $( this ).find( "td" )[0] ).html().toLowerCase();
+				var comuna 	= $( $( this ).find( "td" )[1] ).html().toLowerCase();
+				$( this ).addClass( comuna ).addClass( region );
+				$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr.total" ).remove();
+			});
+		},2000)
+	});
+
+	$( ".grafico#contagiosPorRegion-grafico > form > input" ).keyup(function(){
+
+		$.each( $( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ) , function(){
+
+			var buscado = $( ".grafico#contagiosPorRegion-grafico > form > input" ).val();
+
+			if( buscado.length <= 1 ) {
+				$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ).removeClass( "hide" );
+				$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ).removeClass( "show" );
+			} else if ( $( this ).attr( "class" ).indexOf( buscado ) >= 0 ){
+				$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ).addClass( "hide" );
+				$( this ).addClass( "show" );
+			} else {
+				$( this ).removeClass( "show" );
+				$( this ).removeClass( "hide" );
+				$( this ).addClass( "hide" );
+			};
+
+		});
 
 	});
