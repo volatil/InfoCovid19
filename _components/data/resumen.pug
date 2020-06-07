@@ -8,8 +8,7 @@ script.
 	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
 
 	$( document ).ready(function(){
-		setInterval(function(){
-			console.log( "Interval !" );
+		setTimeout(function(){
 			$.each( $( "#TotalesNacionales table tbody tr" ) , function(){
 				var nombreTR = $( $( this ).find( "td" )[0] ).text().toLowerCase().split( " " ).join( "" );
 				$( this ).addClass( nombreTR );
