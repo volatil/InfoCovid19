@@ -571,10 +571,6 @@ body {
   padding: 10px 15px;
 }
 
-.graficos .tabs.generoEdad .tab:nth-child(2) > p {
-  margin-left: 230px;
-}
-
 .graficos .tabs .tab > p:hover,
 .graficos .tabs .tab > p.activo {
   background: white;
@@ -677,20 +673,24 @@ body {
 => CONTAGIOS POR REGION
 ================================
 */
-.grafico#casosGeneroEtario_F-grafico {
+.grafico#casosGeneroEtario-grafico {
   background: white;
 }
 
-.grafico#casosGeneroEtario_F-grafico > div {
+.grafico#casosGeneroEtario-grafico > div {
   display: inline-block;
 }
 
-.grafico#casosGeneroEtario_F-grafico > div > ul > li {
+.grafico#casosGeneroEtario-grafico > div > ul > li {
   display: none;
   height: 30px;
 }
 
-.grafico#casosGeneroEtario_F-grafico > div > ul > li:nth-child(-n+17) {
+.grafico#casosGeneroEtario-grafico > div.femenino > ul > li:nth-child(-n+17) {
+  display: block;
+}
+
+.grafico#casosGeneroEtario-grafico > div.masculino > ul > li:nth-child(n+18) {
   display: block;
 }
 
