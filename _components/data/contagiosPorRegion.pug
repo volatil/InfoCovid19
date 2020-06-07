@@ -19,68 +19,6 @@ div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
 					td Contagios
 			tbody
 
-style.
-	.grafico#contagiosPorRegion-grafico {
-		background: white;
-		padding: 20px;
-		padding-bottom: 140px;
-	}
-	.grafico#contagiosPorRegion-grafico > h1 {
-		text-align: center;
-		margin: 0;
-		font-size: 1.1em;
-		margin-bottom: 10px;
-	}
-	.grafico#contagiosPorRegion-grafico > h2 ,
-	.grafico#contagiosPorRegion-grafico > p {
-		font-size: .9em;
-		font-weight: 400;
-		text-align: center;
-		margin: 0;
-	}
-	.grafico#contagiosPorRegion-grafico > h2 span ,
-	.grafico#contagiosPorRegion-grafico > p span {
-		font-weight: 600;
-	}
-	.grafico#contagiosPorRegion-grafico > form {}
-	.grafico#contagiosPorRegion-grafico > form > input {
-		margin: 10px auto 0;
-		display: block;
-		padding: 7px 10px;
-		width: 250px;
-	}
-	.grafico#contagiosPorRegion-grafico > div {
-		height: 98%;
-		overflow-y: scroll;
-	}
-	.grafico#contagiosPorRegion-grafico > div > table {
-		margin: 20px auto 0;
-		border: none;
-	}
-	.grafico#contagiosPorRegion-grafico > div > table thead tr td {
-		text-align: left;
-		font-weight: bold;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-	}
-	.grafico#contagiosPorRegion-grafico > div > table tbody tr {
-		height: 30px;
-	}
-		.grafico#contagiosPorRegion-grafico > div > table tbody tr:hover ,
-		.grafico#contagiosPorRegion-grafico > div > table tbody tr:nth-child( odd ) {
-			background: #efefef94;
-		}
-	.grafico#contagiosPorRegion-grafico > div > table tbody tr td {
-		border: none;
-		text-align: left;
-	}
-	.grafico#contagiosPorRegion-grafico > div > table tbody tr.hide {
-		display: none;
-	}
-	.grafico#contagiosPorRegion-grafico > div > table tbody tr.show {
-		display: table-row;
-	}
-
 script.
 	traeCovid( "#contagiosPorRegion" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto25/CasosActualesPorComuna.csv" );
 
