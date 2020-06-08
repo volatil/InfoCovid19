@@ -69,6 +69,7 @@ div#resumen .resumen {
   width: 305px;
   min-height: 90px;
   background: white;
+  border: 1px solid #aaaaaa;
   display: inline-block;
   padding: 20px 60px 20px 20px;
   margin: 0 10px 10px 0;
@@ -525,6 +526,7 @@ body {
 }
 
 .graficos .grafico {
+  border: 1px solid #aaaaaa;
   width: 95%;
   height: 400px;
   margin: 0 1% 1% 0;
@@ -564,28 +566,55 @@ body {
 
 .graficos .tabs .tab > p {
   position: absolute;
+  top: -56px;
   z-index: 1;
   cursor: pointer;
   background: #efefef;
-  top: -55px;
   padding: 10px 15px;
+  border: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
 }
 
 .graficos .tabs .tab > p:hover,
 .graficos .tabs .tab > p.activo {
   background: white;
+  border: 1px solid #aaaaaa;
+  border-bottom: 1px solid transparent;
+}
+
+.graficos .tabs .tab > p:hover {
+  background: #ddd;
+  border-bottom: 1px solid #aaaaaa;
 }
 
 .graficos .tabs .tab > p.activo {
   font-weight: bold;
 }
 
+.graficos .tabs .tab > p.activo:hover {
+  background: white;
+  border-bottom: 1px solid white;
+}
+
 .graficos .tabs .tab:nth-child(2) > p {
-  margin-left: 160px;
+  margin-left: 165px;
 }
 
 .graficos .tabs .tab:nth-child(3) > p {
   margin-left: 340px;
+}
+
+/*
+================================
+=> CONTAGIOS POR DIA
+================================
+*/
+.graficos .tabs.contagiosDia .tab:nth-child(2) > p {
+  margin-left: 165px;
+}
+
+.graficos .tabs.contagiosDia .tab:nth-child(3) > p {
+  margin-left: 350px;
 }
 
 /*
