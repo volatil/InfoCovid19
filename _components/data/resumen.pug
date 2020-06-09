@@ -235,7 +235,13 @@ div#resumen
 				$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
 			};
 
-			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+			// Si termina con un . corta antes el rango con un slice();
+			if ( calculoInverso.toString().slice( 0 , 5 ).split( "" )[4] == "." ) {
+				$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 4 ) + "%)" )
+			} else {
+				$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+			};
+
 
 		};
 	//- TOTAL CASOS ACTIVOS
