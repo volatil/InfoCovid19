@@ -750,7 +750,7 @@ body {
     font-size: 0.8em;
     width: 70px;
     text-align: center;
-    top: -63px;
+    top: -64px;
     padding: 10px 10px;
   }
 
@@ -764,6 +764,14 @@ body {
 
   .graficos .tabs .tab:nth-child(3) > p {
     margin-left: 200px;
+  }
+
+  .graficos .tabs.contagiosDia .tab:nth-child(2) > p {
+    margin-left: 115px;
+  }
+
+  .graficos .tabs.contagiosDia .tab:nth-child(3) > p {
+    margin-left: 220px;
   }
 }
 /*
