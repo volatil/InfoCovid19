@@ -180,7 +180,7 @@ div#resumen
 	script.
 		// Agrega decimales
 		var puntuacion = function( cifra ){
-
+			var cifra = cifra.split( "." )[0]
 			try {
 
 				if ( isNaN( cifra ) ) {
