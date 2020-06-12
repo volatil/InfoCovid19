@@ -2,7 +2,7 @@
 - var loadingggg = './imagenes/resumen/loading2.gif';
 - var loadingggg = './imagenes/resumen/loading1.gif';
 
-div#TotalesNacionales(style='display:none;')
+div#TotalesNacionales(style='display:block;')
 
 script.
 	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
@@ -276,7 +276,7 @@ div#resumen
 	script.
 		//- casosrecuperados
 		setTimeout(function(){
-			$( "div#resumen .resumen.recuperadosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".casosrecuperadosporfis > td" ).last().html() ) );
+			$( "div#resumen .resumen.recuperadosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".recuperadosTotal > td" ).last().html() ) );
 		},5000);
 	//- FALLECIDOS ULTIMO DIA
 	script.
