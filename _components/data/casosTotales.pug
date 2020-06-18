@@ -8,18 +8,15 @@ script.
 
 	function drawChart() {
 		var datosTotales = google.visualization.arrayToDataTable([
-			['Fecha', 'Contagios (Total)', 'Casos Activos (Día)', 'Recuperados (Total)', 'Fallecidos (Total)'],
-			['0',  0,  0,  0,      0],
+			['Fecha', 'Contagios (Total)', 'Casos Activos (Día)', 'Fallecidos (Total)'],
+			['0',  0,  0,  0],
 		]);
 
 		var options = {
 			title: 'Casos Totales (Tabla Acumulada)',
 			vAxis: {title: 'Casos'},
 			hAxis: {title: 'Días'},
-			colors: ['#36c', '#886cfe', '#34c736', '#c12f32'],
-			/*
-			colors: ['#e0440e', '#e6693e', '#ec8f6e'],
-			*/
+			colors: ['#36c', '#886cfe', '#c12f32'],
 			legend: { position: 'top', maxLines: 3 }
 		};
 
@@ -34,17 +31,12 @@ script.
 			
 				var casosActivosDia	= $( $( $( "#TotalesNacionales table tr" )[5] ).find( "td" )[sumaTR] ).html();
 			
-				var recuperadosTotales	= $( $( $( "#TotalesNacionales table tr" )[11] ).find( "td" )[sumaTR] ).html();
-				if ( recuperadosTotales.split( "" ).length < 1 ) {
-					var recuperadosTotales = 0;
-				};
-
 				var fallecidosTotales		= $( $( $( "#TotalesNacionales table tr" )[4] ).find( "td" )[sumaTR] ).html();
 				if ( fallecidosTotales.split( "" ).length < 1 ) {
 					var fallecidosTotales = 0;
 				};
 
-				var push_todosTotales 	= '[["' + fecha + '",' + casosTotales + ', ' + casosActivosDia + ', ' + recuperadosTotales + ', ' + fallecidosTotales + ']]';
+				var push_todosTotales 	= '[["' + fecha + '",' + casosTotales + ', ' + casosActivosDia + ', ' + fallecidosTotales + ']]';
 				datosTotales.addRows(JSON.parse(push_todosTotales));
 
 			}
