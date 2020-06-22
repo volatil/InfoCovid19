@@ -9,20 +9,6 @@ script.
 	gtag('js', new Date());
 	gtag('config', 'UA-166517000-1');
 
-//- One Signal
-script(src='https://cdn.onesignal.com/sdks/OneSignalSDK.js', async='')
-script.
-	var OneSignal = window.OneSignal || [];
-	OneSignal.push(function() {
-		OneSignal.init({
-		appId: "3416b993-458b-433a-bcfb-8352906c7c63",
-			notifyButton: {
-				enable: true,
-			},
-		});
-		OneSignal.showNativePrompt();
-	});
-
 //- Hotjar
 //- script.
 //- 	(function(h,o,t,j,a,r){
