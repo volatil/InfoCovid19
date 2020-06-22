@@ -121,6 +121,16 @@ div#resumen
 				span.estado
 				span.porcentaje
 
+	div.resumen.residenciasSanitarias
+		div.icono
+			img( data-src='./imagenes/resumen/residencia.png' class='lazyload' )
+		p.titulo Cupos Residencias Sanitarias
+		div.cifras
+			span.numero
+				img( src=loadingggg )
+				span.estado
+				span.porcentaje
+
 	//- FECHA TITULO
 	script.
 		$( document ).ready(function(){
@@ -282,12 +292,12 @@ div#resumen
 	script.
 		setTimeout(function(){
 			resumiendo( "fallecidosDia" , "fallecidosDia" );
-		},5000);
+		},3000);
 	//- TOTAL FALLECIDOS
 	script.
 		setTimeout(function(){
 			$( "div#resumen .resumen.fallecidosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".fallecidosTotal > td" ).last().html() ) );
-		},5000);
+		},3000);
 	//- VENTILADORES DISPONIBLES
 	script.
 		setTimeout(function(){
@@ -362,4 +372,50 @@ div#resumen
 			}
 
 		},3000);
-	
+	//- Residencias Sanitarias
+	script.
+
+		setTimeout(function(){
+
+			var cuposTotalesHoy = "0";
+			$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='cuposTotalesHoy'></p>" );
+			for ( region = 1 ; region <= 16 ; region++  ) {
+				var cuposHoy = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().html();
+				var cuposTotalesHoy = parseFloat(cuposHoy) + parseFloat(cuposTotalesHoy);
+				console.log( "HOY: " + cuposTotalesHoy );
+				$( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html( cuposTotalesHoy );
+			};
+
+
+			var cuposTotalesAyer = "0";
+			$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='cuposTotalesAyer'></p>" );
+			for ( region = 1 ; region <= 16 ; region++  ) {
+				var cuposAyer = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().prev().html();
+				var cuposTotalesAyer = parseFloat(cuposAyer) + parseFloat(cuposTotalesAyer);
+				console.log( "AYER: " + cuposTotalesAyer );
+				$( "#residenciasSanitarias-grafico .cuposTotalesAyer" ).html( cuposTotalesAyer );
+			};
+			
+			$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero" ).html( puntuacion( $( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html() )  + "<span class='estado'></span><span class='porcentaje'></span>"  );
+
+			var comparacionAyerHoy = $( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html() - $( "#residenciasSanitarias-grafico .cuposTotalesAyer" ).html();
+			$( "#residenciasSanitarias-grafico" ).append( "<p class='comparacionAyerHoy'>" + comparacionAyerHoy + "</p>" );
+
+			if ( $( ".comparacionAyerHoy" ).html().split( "-" ).length == 1 ) {
+				// es positivo
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras " ).addClass( "positivo" );
+			} else {
+				// es negativo
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras " ).addClass( "negativo" );
+			};
+			
+			var porcentajeResidencia = $( ".comparacionAyerHoy" ).html() * 100 / $( ".cuposTotalesHoy" ).html();
+
+			if ( isNaN( porcentajeResidencia ) ) {
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.estado" ).remove();
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).remove();
+			} else {
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).html( porcentajeResidencia.toString().slice( 0 , 5 ) + "%)" )
+			};
+
+		},3000);
