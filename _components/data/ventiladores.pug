@@ -6,41 +6,45 @@ script.
 
 //- INGRESA DATA
 script.
-	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(ventiladores);
+	try {
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(ventiladores);
 
-	function ventiladores() { 
-			var dataVentiladoresDia = google.visualization.arrayToDataTable([
-				['Fecha', 'Disponibles' , 'Ocupados', 'Total'],
-				['0',  0, 0, 0],
-		]);
+		function ventiladores() { 
+				var dataVentiladoresDia = google.visualization.arrayToDataTable([
+					['Fecha', 'Disponibles' , 'Ocupados', 'Total'],
+					['0',  0, 0, 0],
+			]);
 
-		var options = {
-			title : 'Ventiladores (Por Día)',
-			vAxis: {title: 'Stock'},
-			hAxis: {title: 'Días'},
-			seriesType: 'bars',
-			
-			legend: { position: 'top', maxLines: 3 },
-			bar: { groupWidth: '75%' },
-			isStacked: true
-		};
+			var options = {
+				title : 'Ventiladores (Por Día)',
+				vAxis: {title: 'Stock'},
+				hAxis: {title: 'Días'},
+				seriesType: 'bars',
+				
+				legend: { position: 'top', maxLines: 3 },
+				bar: { groupWidth: '75%' },
+				isStacked: true
+			};
 
-		var chart = new google.visualization.ComboChart(document.getElementById('ventiladores-grafico'));
-		chart.draw(dataVentiladoresDia, options);
-	
-		for ( sumaTR = 1 ; sumaTR <= $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+			var chart = new google.visualization.ComboChart(document.getElementById('ventiladores-grafico'));
+			chart.draw(dataVentiladoresDia, options);
 		
-			var fecha			= $( $( $( "#ventiladores table tr" )[0] ).find( "th" )[sumaTR] ).html();
-			var total			= $( $( $( "#ventiladores table tr" )[1] ).find( "td" )[sumaTR] ).html();
-			var disponibles	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[sumaTR] ).html();
-			var ocupados		= $( $( $( "#ventiladores table tr" )[3] ).find( "td" )[sumaTR] ).html();
-			var push_todosTotales 	= '[["' + fecha + '",' + disponibles + ',' + ocupados + ',' + total + ']]';
-			dataVentiladoresDia.addRows(JSON.parse(push_todosTotales));
+			for ( sumaTR = 1 ; sumaTR <= $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+			
+				var fecha			= $( $( $( "#ventiladores table tr" )[0] ).find( "th" )[sumaTR] ).html();
+				var total			= $( $( $( "#ventiladores table tr" )[1] ).find( "td" )[sumaTR] ).html();
+				var disponibles	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[sumaTR] ).html();
+				var ocupados		= $( $( $( "#ventiladores table tr" )[3] ).find( "td" )[sumaTR] ).html();
+				var push_todosTotales 	= '[["' + fecha + '",' + disponibles + ',' + ocupados + ',' + total + ']]';
+				dataVentiladoresDia.addRows(JSON.parse(push_todosTotales));
+
+			}
+
+			var chart = new google.visualization.ComboChart(document.getElementById('ventiladores-grafico'));
+			chart.draw(dataVentiladoresDia, options);
 
 		}
-
-		var chart = new google.visualization.ComboChart(document.getElementById('ventiladores-grafico'));
-		chart.draw(dataVentiladoresDia, options);
-
-	}
+	} catch ( error ) {
+		console.log( error );
+	};
