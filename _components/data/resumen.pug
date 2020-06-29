@@ -23,7 +23,7 @@ div#resumen
 
 	div.resumen.totalCasos
 		div.icono
-			img( data-src='./imagenes/resumen/totalCasos.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/totalCasos.png' class='lazyload' alt='Total Casos' )
 		p.titulo Total Casos
 		div.cifras
 			span.numero 
@@ -33,7 +33,7 @@ div#resumen
 
 	div.resumen.casosNuevos
 		div.icono
-			img( data-src='./imagenes/resumen/casosNuevos.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/casosNuevos.png' class='lazyload' alt='Casos Nuevos último día' )
 		p.titulo Casos Nuevos último día
 		div.cifras
 			span.numero
@@ -43,7 +43,7 @@ div#resumen
 
 	div.resumen.casosActivos
 		div.icono
-			img( data-src='./imagenes/resumen/casosActivos.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/casosActivos.png' class='lazyload' alt='Casos Activos' )
 		p.titulo Casos Activos
 		div.cifras
 			span.numero
@@ -53,7 +53,7 @@ div#resumen
 
 	div.resumen.sintomas
 		div.icono
-			img( data-src='./imagenes/resumen/sintomas.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/sintomas.png' class='lazyload' alt='Casos nuevos' )
 		p.titulo Casos nuevos
 		div.sintoma
 			p.conSintomas
@@ -67,7 +67,7 @@ div#resumen
 
 	//- div.resumen.recuperadosDia
 	//- 	div.icono
-	//- 		img( data-src='./imagenes/resumen/check.png' class='lazyload' )
+	//- 		img( data-src='./imagenes/resumen/check.png' class='lazyload' alt='Recuperados último día' )
 	//- 	p.titulo Recuperados último día
 	//- 	div.cifras
 	//- 		span.numero
@@ -77,7 +77,7 @@ div#resumen
 
 	//- div.resumen.recuperadosTotal
 	//- 	div.icono
-	//- 		img( data-src='./imagenes/resumen/check.png' class='lazyload' )
+	//- 		img( data-src='./imagenes/resumen/check.png' class='lazyload' alt='Total Recuperados' )
 	//- 	p.titulo Total Recuperados
 	//- 	div.cifras
 	//- 		span.numero
@@ -85,7 +85,7 @@ div#resumen
 
 	div.resumen.fallecidosDia
 		div.icono
-			img( data-src='./imagenes/resumen/none.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/none.png' class='lazyload' alt='Fallecidos último día' )
 		p.titulo Fallecidos último día
 		div.cifras
 			span.numero
@@ -95,7 +95,7 @@ div#resumen
 
 	div.resumen.fallecidosTotal
 		div.icono
-			img( data-src='./imagenes/resumen/none.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/none.png' class='lazyload' alt='Total Fallecidos' )
 		p.titulo Total Fallecidos
 		div.cifras
 			span.numero
@@ -103,7 +103,7 @@ div#resumen
 
 	div.resumen.ventiladoresDisponibles
 		div.icono
-			img( data-src='./imagenes/resumen/ventiladores.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/ventiladores.png' class='lazyload' alt='Ventiladores disponibles' )
 		p.titulo Ventiladores disponibles
 		div.cifras
 			span.numero
@@ -113,7 +113,7 @@ div#resumen
 
 	div.resumen.examenesPCR
 		div.icono
-			img( data-src='./imagenes/resumen/pcr.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/pcr.png' class='lazyload' alt='Exámenes PCR últimas 24 horas' )
 		p.titulo Exámenes PCR últimas 24 horas
 		div.cifras
 			span.numero
@@ -123,7 +123,17 @@ div#resumen
 
 	div.resumen.residenciasSanitarias
 		div.icono
-			img( data-src='./imagenes/resumen/residencia.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/residencia.png' class='lazyload' alt='Residencias Sanitarias' )
+		p.titulo Residencias Sanitarias
+		div.cifras
+			span.numero
+				img( src=loadingggg )
+				span.estado
+				span.porcentaje
+
+	div.resumen.cuposResidenciasSanitarias
+		div.icono
+			img( data-src='./imagenes/resumen/cuposResidencia.png' class='lazyload' alt='Cupos Residencias Sanitarias' )
 		p.titulo Cupos Residencias Sanitarias
 		div.cifras
 			span.numero
@@ -372,7 +382,7 @@ div#resumen
 			}
 
 		},3000);
-	//- Residencias Sanitarias
+	//- Cupos Residencias Sanitarias
 	script.
 
 		setTimeout(function(){
@@ -382,7 +392,6 @@ div#resumen
 			for ( region = 1 ; region <= 16 ; region++  ) {
 				var cuposHoy = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().html();
 				var cuposTotalesHoy = parseFloat(cuposHoy) + parseFloat(cuposTotalesHoy);
-				console.log( "HOY: " + cuposTotalesHoy );
 				$( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html( cuposTotalesHoy );
 			};
 
@@ -392,16 +401,62 @@ div#resumen
 			for ( region = 1 ; region <= 16 ; region++  ) {
 				var cuposAyer = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().prev().html();
 				var cuposTotalesAyer = parseFloat(cuposAyer) + parseFloat(cuposTotalesAyer);
-				console.log( "AYER: " + cuposTotalesAyer );
 				$( "#residenciasSanitarias-grafico .cuposTotalesAyer" ).html( cuposTotalesAyer );
 			};
 			
-			$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero" ).html( puntuacion( $( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html() )  + "<span class='estado'></span><span class='porcentaje'></span>"  );
+			$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero" ).html( puntuacion( $( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html() )  + "<span class='estado'></span><span class='porcentaje'></span>"  );
 
 			var comparacionAyerHoy = $( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html() - $( "#residenciasSanitarias-grafico .cuposTotalesAyer" ).html();
 			$( "#residenciasSanitarias-grafico" ).append( "<p class='comparacionAyerHoy'>" + comparacionAyerHoy + "</p>" );
 
 			if ( $( ".comparacionAyerHoy" ).html().split( "-" ).length == 1 ) {
+				// es positivo
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras " ).addClass( "positivo" );
+			} else {
+				// es negativo
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras " ).addClass( "negativo" );
+			};
+			
+			var porcentajeResidencia = $( ".comparacionAyerHoy" ).html() * 100 / $( ".cuposTotalesHoy" ).html();
+
+			if ( isNaN( porcentajeResidencia ) ) {
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero > span.estado" ).remove();
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).remove();
+			} else {
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).html( porcentajeResidencia.toString().slice( 0 , 5 ) + "%)" )
+			};
+
+		},3000);
+	//- Residencias Sanitarias
+	script.
+
+		setTimeout(function(){
+
+			var residenciasTotalesHoy = "0";
+			$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='residenciasTotalesHoy'></p>" );
+			for ( region = 33 ; region <= 48 ; region++  ) {
+				var cuposHoy = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().html();
+				var residenciasTotalesHoy = parseFloat(cuposHoy) + parseFloat(residenciasTotalesHoy);
+				console.log( "HOY: " + residenciasTotalesHoy );
+				$( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html( residenciasTotalesHoy );
+			};
+
+
+			var residenciasTotalesAyer = "0";
+			$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='residenciasTotalesAyer'></p>" );
+			for ( region = 33 ; region <= 48 ; region++  ) {
+				var cuposAyer = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().prev().html();
+				var residenciasTotalesAyer = parseFloat(cuposAyer) + parseFloat(residenciasTotalesAyer);
+				console.log( "AYER: " + residenciasTotalesAyer );
+				$( "#residenciasSanitarias-grafico .residenciasTotalesAyer" ).html( residenciasTotalesAyer );
+			};
+			
+			$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero" ).html( puntuacion( $( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html() )  + "<span class='estado'></span><span class='porcentaje'></span>"  );
+
+			var residenciasComparacionAyerHoy = $( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html() - $( "#residenciasSanitarias-grafico .residenciasTotalesAyer" ).html();
+			$( "#residenciasSanitarias-grafico" ).append( "<p class='residenciasComparacionAyerHoy'>" + residenciasComparacionAyerHoy + "</p>" );
+
+			if ( $( ".residenciasComparacionAyerHoy" ).html().split( "-" ).length == 1 ) {
 				// es positivo
 				$( "div#resumen .resumen.residenciasSanitarias > div.cifras " ).addClass( "positivo" );
 			} else {
@@ -409,7 +464,7 @@ div#resumen
 				$( "div#resumen .resumen.residenciasSanitarias > div.cifras " ).addClass( "negativo" );
 			};
 			
-			var porcentajeResidencia = $( ".comparacionAyerHoy" ).html() * 100 / $( ".cuposTotalesHoy" ).html();
+			var porcentajeResidencia = $( ".residenciasComparacionAyerHoy" ).html() * 100 / $( ".residenciasTotalesHoy" ).html();
 
 			if ( isNaN( porcentajeResidencia ) ) {
 				$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.estado" ).remove();

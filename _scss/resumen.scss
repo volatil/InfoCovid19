@@ -176,7 +176,8 @@ div#resumen .resumen.ventiladoresDisponibles > div.icono {
 div#resumen .resumen.examenesPCR > div.icono {
 	background: #0099c659;
 }
-div#resumen .resumen.residenciasSanitarias > div.icono {
+div#resumen .resumen.residenciasSanitarias > div.icono ,
+div#resumen .resumen.cuposResidenciasSanitarias > div.icono {
 	background: #ffcf9c;
 }
 div#resumen .resumen.totalCasos > p.titulo {
@@ -203,7 +204,8 @@ div#resumen .resumen.ventiladoresDisponibles > p.titulo {
 div#resumen .resumen.examenesPCR > p.titulo {
 	color: #0099c6;
 }
-div#resumen .resumen.residenciasSanitarias > p.titulo {
+div#resumen .resumen.residenciasSanitarias > p.titulo ,
+div#resumen .resumen.cuposResidenciasSanitarias > p.titulo {
 	color: #ff8400;
 }
 
