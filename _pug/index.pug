@@ -113,15 +113,27 @@ html
 				});
 
 
-			//- Si no carga la data, recarga
 			script.
 				$( document ).ready(function(){
+
+					//- Si no carga RESUMEN
 					setTimeout(function(){
 						if ( $( "div#resumen .resumen.totalCasos > div.cifras" ).html().length <= 88  ) {
 							location.reload();
 							console.log( "Reload ..." );
 						};
 					},2000);
+
+					//- Si no carga GRAFICO
+					setTimeout(function(){
+						if ( $( "defs#_ABSTRACT_RENDERER_ID_2" ).parent().html().split( "2020-04-25" ).length <= 1 ) {
+							console.log( "Reload ..." );
+							setTimeout(function(){
+								location.reload();
+							},6000);
+						};
+					},6000);
+
 				});
 
 		include ../_components/footer
