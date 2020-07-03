@@ -119,14 +119,15 @@ html
 					//- Si no carga RESUMEN
 					setTimeout(function(){
 						if ( $( "div#resumen .resumen.totalCasos > div.cifras" ).html().length <= 88  ) {
+							console.log( "Reload ... 1" );
 							location.reload();
-							console.log( "Reload ..." );
 						};
 					},3000);
 
 					//- Si no carga GRAFICO
 					setTimeout(function(){
 						if ( $( "defs#_ABSTRACT_RENDERER_ID_2" ).parent().html().split( "2020-04-25" ).length <= 1 ) {
+							console.log( "Reload ... 2" );
 							location.reload();
 						};
 					},5000);
