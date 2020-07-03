@@ -437,7 +437,6 @@ div#resumen
 			for ( region = 33 ; region <= 48 ; region++  ) {
 				var cuposHoy = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().html();
 				var residenciasTotalesHoy = parseFloat(cuposHoy) + parseFloat(residenciasTotalesHoy);
-				console.log( "HOY: " + residenciasTotalesHoy );
 				$( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html( residenciasTotalesHoy );
 			};
 
@@ -447,7 +446,6 @@ div#resumen
 			for ( region = 33 ; region <= 48 ; region++  ) {
 				var cuposAyer = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().prev().html();
 				var residenciasTotalesAyer = parseFloat(cuposAyer) + parseFloat(residenciasTotalesAyer);
-				console.log( "AYER: " + residenciasTotalesAyer );
 				$( "#residenciasSanitarias-grafico .residenciasTotalesAyer" ).html( residenciasTotalesAyer );
 			};
 			
