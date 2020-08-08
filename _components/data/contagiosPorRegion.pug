@@ -3,6 +3,19 @@ style.
 	.grafico#contagiosPorRegion-grafico > div > table tbody tr td:nth-child(1) {
 		width: 350px;
 	}
+	.grafico#contagiosPorRegion-grafico > form {
+		width: 250px;
+		margin: 0 auto;
+	}
+	.grafico#contagiosPorRegion-grafico > form > label {
+		display: inline-block;
+		margin-right: 20px;
+	}
+	.grafico#contagiosPorRegion-grafico > form > input {
+		width: 150px;
+		display: inline-block;
+	}
+	
 
 div.grafico#contagiosPorRegion(style='display:none;')
 div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
@@ -12,7 +25,8 @@ div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
 		span
 
 	form
-		input( placeholder='Puedes buscar región o comuna' , type='text' )
+		label( for='buscarRegionComuna' ) Buscar
+		input( id='buscarRegionComuna' , placeholder='Región o comuna' , type='text' )
 
 	div
 		table
