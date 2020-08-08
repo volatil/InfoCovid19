@@ -24,6 +24,19 @@ TAREAS:
 
 
 
+> Casos fallecidos por comuna
+= https://github.com/MinCiencia/Datos-COVID19/tree/master/output/producto38
+
+> Curva Activos vs. Recuperados
+= https://github.com/MinCiencia/Datos-COVID19/tree/master/output/producto46
+
+> Media Movil
+= https://github.com/MinCiencia/Datos-COVID19/tree/master/output/producto47
+
+
+
+
+
 > Casos nuevos por fecha de inicio de síntomas por comuna
 = https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto15/FechaInicioSintomas.csv
 
