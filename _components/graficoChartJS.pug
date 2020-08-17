@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	<title>ChartJS</title>
+</head>
+<body>
+	
+	<!-- https://www.it-swarm.dev/es/javascript/chart.js-carga-datos-totalmente-nuevos/1048508221/ -->
+	
+	<style>
+		canvas#barChart {
+			width: 900px !important;
+			height: 700px !important;
+			display: block !important;
+			margin: 0 auto;
+		}
+	</style>
+	
+	<canvas id="barChart"></canvas>
+	<button class="agregar">Add !</button>
+	
+	<script>
+		var ctx = document.getElementById("barChart");
+		var barChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: [""],
+				datasets: [{
+					backgroundColor: '#00ff00',
+					label: 'Titulo',
+					data: []
+				}]
+			}
+		});
+		
+		function addData(chart, labels, color, data) {
+			chart.data.datasets.push({
+				backgroundColor: color,
+				data: data
+			});
+			chart.update();
+		}
+		
+		// let dataDATOS = [ 12, 13, 14, 15, 16 ];
+		// let dataTITULOS = [ 'Hola' , 'Chao', 'Como estas', 'Test 1', 'Rendir cuentas' ];
+		let agregar = document.querySelector( ".agregar" );
+		agregar.addEventListener( 'click', function(){
+			console.log( "Agregando ..." );
+			setTimeout(function() {
+				// addData(barChart, 'Fecha', '#ff0000', ejemplo);
+				barChart.data.labels = dataTITULOS;
+				barChart.data.datasets[0].data = dataDATOS;
+				barChart.update();
+			}, 3000);	
+		});
+		
+	</script>
+	
+	
+	
+	
+	
+	
+</body>
+</html>
