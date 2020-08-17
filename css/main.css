@@ -69,7 +69,7 @@ div#resumen .resumen {
   width: 300px;
   min-height: 90px;
   background: white;
-  border: 1px solid #aaaaaa;
+  border: 1px solid #dddddd;
   display: inline-block;
   padding: 20px 60px 20px 20px;
   margin: 0 10px 10px 0;
@@ -536,7 +536,7 @@ body {
 }
 
 .graficos .grafico {
-  border: 1px solid #aaaaaa;
+  border: 1px solid #dddddd;
   width: 95%;
   height: 400px;
   margin: 0 1% 1% 0;
@@ -581,19 +581,19 @@ body {
   cursor: pointer;
   background: #efefef;
   padding: 10px 15px;
-  border: 1px solid #aaaaaa;
-  border-bottom: 1px solid #aaaaaa;
+  border: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
 
 .graficos .tabs .tab > p:hover,
 .graficos .tabs .tab > p.activo {
   background: white;
-  border: 1px solid #aaaaaa;
+  border: 1px solid #dddddd;
   border-bottom: 1px solid transparent;
 }
 
 .graficos .tabs .tab > p:hover {
-  background: #ddd;
+  background: #dddddd;
   border-bottom: 1px solid #aaaaaa;
 }
 
@@ -757,11 +757,12 @@ body {
   }
 
   .graficos .tabs .tab > p {
-    font-size: 0.8em;
+    font-size: 0.7em;
     width: 70px;
     text-align: center;
-    top: -64px;
+    top: -60px;
     padding: 10px 10px;
+    min-height: 28px;
   }
 
   .graficos .tabs .tab:nth-child(1) > p {
