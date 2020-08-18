@@ -1,29 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-	<title>ChartJS</title>
-</head>
-<body>
+doctype html
+html( lang="es" )
+	head
+
+	meta( charset="UTF-8" )
+	meta( name="viewport" content="width=device-width, initial-scale=1.0" )
+	script( src="https://code.jquery.com/jquery-3.5.1.min.js" )
+	script( src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" )
+
+body
 	
-	<!-- https://www.it-swarm.dev/es/javascript/chart.js-carga-datos-totalmente-nuevos/1048508221/ -->
+	//- https://www.it-swarm.dev/es/javascript/chart.js-carga-datos-totalmente-nuevos/1048508221/ 
 	
-	<style>
+	style.
 		canvas#barChart {
 			width: 900px !important;
 			height: 700px !important;
 			display: block !important;
 			margin: 0 auto;
 		}
-	</style>
 	
-	<canvas id="barChart"></canvas>
-	<button class="agregar">Add !</button>
+	canvas#barChart
+	button.agregar Add !
 	
-	<script>
+	script.
 		var ctx = document.getElementById("barChart");
 		var barChart = new Chart(ctx, {
 			type: 'bar',
@@ -58,12 +57,9 @@
 			}, 3000);	
 		});
 		
-	</script>
 	
 	
 	
 	
 	
 	
-</body>
-</html>

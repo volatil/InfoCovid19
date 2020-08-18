@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>COVID 19 | Data Chile</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <meta name="description" content="Información &amp; Graficos Sobre el Covid 19.">
+    <link rel="shortcut icon" href="https://www.infocovid19.cl/imagenes/favicon.ico">
+    <link rel="stylesheet" href="./css/main.min.css">
+    <meta property="og:title" content="Información Covid 19">
+    <meta property="og:description" content="Información &amp; Graficos Sobre el Covid 19">
+    <meta property="og:image" content="https://www.infocovid19.cl/imagenes/covid200x200.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="200">
+    <meta property="og:image:height" content="200">
+    <meta property="og:image:alt" content="Información &amp; Graficos Sobre el Covid 19">
+    <meta property="og:url" content="https://www.infocovid19.cl/">
+    <meta property="og:site_name" content="InfoCovid19">
+    <meta property="og:type" content="website">
+    <meta property="fb:app_id" content="531023254236338">
+    <meta property="og:title" content="Información Covid 19">
+    <meta property="og:description" content="Información &amp; Graficos Sobre el Covid 19">
+    <meta property="og:image" content="https://www.infocovid19.cl/imagenes/covid200x200.jpg">
+    <meta property="og:site" content="@Paulombriz">
+    <meta property="og:creator" content="@Paulombriz">
+    <script language="Javascript" type="text/javascript" src="./js//jquery-3.5.0.min.js"></script>
+    <script type="text/javascript" src="./js/loader.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1> </h1>
+      <div class="menuIcon"><span class="arriba"></span><span class="medio"></span><span class="abajo"></span></div>
+      <nav>
+        <ul>
+          <li class="inicio"><a href="./" title="Inicio"> <img class="lazyload" data-src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjRkZGRkZGIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PHBhdGggZD0iTTk0Ljk5LDQ5LjMyYzAtMC4wOTctMC4wMS0wLjE5NC0wLjAyOS0wLjI5Yy0wLjAxLTAuMDU4LTAuMDEtMC4xMjYtMC4wMjktMC4xODRjLTAuMDE5LTAuMDk3LTAuMDQ4LTAuMTg0LTAuMDg3LTAuMjgxICAgYy0wLjAxOS0wLjA0OC0wLjAyOS0wLjEwNi0wLjA1OC0wLjE1NWMtMC4wMzktMC4wOTctMC4wODctMC4xODQtMC4xNDUtMC4yNzFjLTAuMDI5LTAuMDQ4LTAuMDQ4LTAuMDk3LTAuMDg3LTAuMTM1ICAgYy0wLjA0OC0wLjA4Ny0wLjExNi0wLjE1NS0wLjE4NC0wLjIzMmMtMC4wMzktMC4wMzktMC4wNzctMC4wODctMC4xMjYtMC4xMjZjLTAuMDE5LTAuMDI5LTAuMDM5LTAuMDU4LTAuMDY4LTAuMDc3bC02LjYtNS44MDYgICBMNTEuNTk3LDEwLjA5OGMtMC4wMjEtMC4wMTktMC4wNDYtMC4wMzEtMC4wNjgtMC4wNDljLTAuMDY5LTAuMDU3LTAuMTQxLTAuMTA2LTAuMjE0LTAuMTU0Yy0wLjAzMi0wLjAyMS0wLjA2My0wLjA0OS0wLjA5NS0wLjA2OCAgIGMtMC4wMjktMC4wMTctMC4wNi0wLjAzMi0wLjA5Mi0wLjA0NmMtMC4wNjUtMC4wMzQtMC4xMy0wLjA2My0wLjE5Ny0wLjA5MWMtMC4wNDItMC4wMi0wLjA4NS0wLjA0Mi0wLjEyNy0wLjA1NyAgIGMtMC4wMy0wLjAxLTAuMDYyLTAuMDE3LTAuMDk1LTAuMDI1Yy0wLjA4MS0wLjAyNS0wLjE2Mi0wLjA0My0wLjI0NC0wLjA1OWMtMC4wMzItMC4wMDgtMC4wNjMtMC4wMTktMC4wOTYtMC4wMjIgICBjLTAuMDM5LTAuMDA2LTAuMDc1LTAuMDA4LTAuMTEyLTAuMDExYy0wLjA3MS0wLjAwOC0wLjE0MS0wLjAxMi0wLjIxMy0wLjAxM0M1MC4wMjksOS41MDIsNTAuMDE1LDkuNTAyLDUwLDkuNTAxdjAuMDAyICAgYy0wLjAxNSwwLjAwMS0wLjAyOSwwLjAwMS0wLjA0NCwwLjAwMmMtMC4wNzEsMC4wMDEtMC4xNDIsMC4wMDUtMC4yMTMsMC4wMTNjLTAuMDM2LDAuMDAzLTAuMDcyLDAuMDA2LTAuMTEyLDAuMDExICAgYy0wLjAzMywwLjAwNC0wLjA2NSwwLjAxNS0wLjA5NiwwLjAyMmMtMC4wODMsMC4wMTYtMC4xNjQsMC4wMzUtMC4yNDQsMC4wNTljLTAuMDMyLDAuMDA4LTAuMDY1LDAuMDE1LTAuMDk1LDAuMDI1ICAgYy0wLjA0MiwwLjAxNC0wLjA4NSwwLjAzNy0wLjEyNywwLjA1N2MtMC4wNjcsMC4wMjgtMC4xMzIsMC4wNTctMC4xOTcsMC4wOTFjLTAuMDMxLDAuMDE0LTAuMDYzLDAuMDI5LTAuMDkyLDAuMDQ2ICAgYy0wLjAzMiwwLjAxOS0wLjA2MywwLjA0Ny0wLjA5NSwwLjA2OGMtMC4wNzMsMC4wNDgtMC4xNDUsMC4wOTctMC4yMTQsMC4xNTRjLTAuMDIyLDAuMDE4LTAuMDQ3LDAuMDMtMC4wNjgsMC4wNDlMMTIuNDIzLDQxLjc2NCAgIGwtNi42LDUuODA2Yy0wLjAyOSwwLjAxOS0wLjA0OCwwLjA0OC0wLjA2OCwwLjA3N2MtMC4wNDgsMC4wMzktMC4wODcsMC4wODctMC4xMjYsMC4xMjZjLTAuMDY4LDAuMDc3LTAuMTM1LDAuMTQ1LTAuMTg0LDAuMjMyICAgYy0wLjAzOSwwLjAzOS0wLjA1OCwwLjA4Ny0wLjA4NywwLjEzNWMtMC4wNTgsMC4wODctMC4xMDYsMC4xNzQtMC4xNDUsMC4yNzFjLTAuMDI5LDAuMDQ4LTAuMDM5LDAuMTA2LTAuMDU4LDAuMTU1ICAgYy0wLjAzOSwwLjA5Ny0wLjA2OCwwLjE4NC0wLjA4NywwLjI4MWMtMC4wMTksMC4wNTgtMC4wMTksMC4xMjYtMC4wMjksMC4xODRjLTAuMDE5LDAuMDk3LTAuMDI5LDAuMTk0LTAuMDI5LDAuMjkgICBDNS4wMSw0OS4zNDEsNSw0OS4zNyw1LDQ5LjM5YzAsMC4wNDgsMC4wMSwwLjA4NywwLjAxLDAuMTI2YzAuMDEsMC4wOTcsMC4wMTksMC4xODQsMC4wMjksMC4yNzEgICBjMC4wMSwwLjA3NywwLjAyOSwwLjE1NSwwLjA0OCwwLjIyM2MwLjAxOSwwLjA3NywwLjA0OCwwLjE1NSwwLjA3NywwLjIyM2MwLjAyOSwwLjA4NywwLjA1OCwwLjE2NSwwLjA5NywwLjIzMiAgIGMwLjAzOSwwLjA2OCwwLjA2OCwwLjEyNiwwLjEwNywwLjE4NGMwLjA0OCwwLjA4NywwLjEwNiwwLjE2NCwwLjE2NCwwLjI0MmMwLjAyOSwwLjAyOSwwLjAzOSwwLjA2OCwwLjA2OCwwLjA5NyAgIGMwLjAxOSwwLjAxLDAuMDI5LDAuMDE5LDAuMDQ4LDAuMDM5YzAuMDc3LDAuMDg3LDAuMTc0LDAuMTc0LDAuMjcxLDAuMjUyYzAuMDM5LDAuMDI5LDAuMDY4LDAuMDU4LDAuMDk3LDAuMDc3ICAgYzAuMTI2LDAuMDg3LDAuMjYxLDAuMTY1LDAuMzk3LDAuMjMyYzAuMDEsMCwwLjAxOSwwLjAxLDAuMDI5LDAuMDFjMC4zLDAuMTM1LDAuNjI5LDAuMjEzLDAuOTc3LDAuMjEzSDExLjZWODguMDggICBjMCwxLjMzNiwxLjA4MywyLjQxOSwyLjQxOSwyLjQxOWgxOS41OTRjMS40NTYsMCwyLjYzNy0xLjE4MSwyLjYzNy0yLjYzN1Y3NS42N2MwLTcuNTk0LDYuMTU2LTEzLjc1LDEzLjc1LTEzLjc1MXYtMC4wMDIgICBjNy41OTQsMCwxMy43NSw2LjE1NywxMy43NSwxMy43NTF2MTIuMTkyYzAsMS40NTYsMS4xODEsMi42MzcsMi42MzcsMi42MzdoMTkuNTk0YzEuMzM2LDAsMi40MTktMS4wODMsMi40MTktMi40MTlWNTEuODA3aDQuMTgxICAgYzAuMzQ4LDAsMC42NzctMC4wNzcsMC45NzctMC4yMTNjMC4wMSwwLDAuMDE5LTAuMDEsMC4wMjktMC4wMWMwLjEzNS0wLjA2OCwwLjI3MS0wLjE0NSwwLjM5Ny0wLjIzMiAgIGMwLjAyOS0wLjAxOSwwLjA1OC0wLjA0OCwwLjA5Ny0wLjA3N2MwLjA5Ny0wLjA3NywwLjE5My0wLjE2NSwwLjI3MS0wLjI1MmMwLjAxOS0wLjAxOSwwLjAyOS0wLjAyOSwwLjA0OC0wLjAzOSAgIGMwLjAyOS0wLjAyOSwwLjAzOS0wLjA2OCwwLjA2OC0wLjA5N2MwLjA1OC0wLjA3NywwLjExNi0wLjE1NSwwLjE2NC0wLjI0MmMwLjAzOS0wLjA1OCwwLjA2OC0wLjExNiwwLjEwNy0wLjE4NCAgIGMwLjAzOS0wLjA2OCwwLjA2OC0wLjE0NSwwLjA5Ny0wLjIzMmMwLjAyOS0wLjA2OCwwLjA1OC0wLjE0NSwwLjA3Ny0wLjIyM2MwLjAxOS0wLjA2OCwwLjAzOS0wLjE0NSwwLjA0OC0wLjIyMyAgIGMwLjAxLTAuMDg3LDAuMDE5LTAuMTc0LDAuMDI5LTAuMjcxYzAtMC4wMzksMC4wMS0wLjA3NywwLjAxLTAuMTI2Qzk1LDQ5LjM2OSw5NC45OSw0OS4zNCw5NC45OSw0OS4zMnoiPjwvcGF0aD48L2c+PC9zdmc+" alt="Inicio">
+              <p>Inicio</p></a></li>
+          <li class="contacto"><a href="./contacto.html" title="Contacto"><img class="lazyload" data-src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjZmZmZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGRhdGEtbmFtZT0iTGF5ZXIgMSIgdmlld0JveD0iMCAwIDk1IDk1IiB4PSIwcHgiIHk9IjBweCI+PHRpdGxlPmNvbnRhY3Q8L3RpdGxlPjxjaXJjbGUgY3g9IjQ3LjUiIGN5PSIzNS43MSIgcj0iMTQuMDMiPjwvY2lyY2xlPjxwYXRoIGQ9Ik01My4yNCw1My41Nkg0MS43NkExOS43NiwxOS43NiwwLDAsMCwyMiw3My4zMkg3M0ExOS43NiwxOS43NiwwLDAsMCw1My4yNCw1My41NloiPjwvcGF0aD48cGF0aCBkPSJNOTAsNEg1QTEsMSwwLDAsMCw0LDVWOTBhMSwxLDAsMCwwLDEsMUg5MGExLDEsMCwwLDAsMS0xVjVBMSwxLDAsMCwwLDkwLDRaTTg5LDg5SDZWNkg4OVoiPjwvcGF0aD48L3N2Zz4=" alt="Contacto">
+              <p>Contacto</p></a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="fondoNav">
+      <script>
+        // NAV
+        $( ".menuIcon" ).click(function(){
+        	if ( $( ".menuIcon" ).attr( "class" ).includes( "activo" ) ) {
+        		$( this ).removeClass( "activo" );
+        		$( "div.fondoNav" ).removeClass( "activo" );
+        		$( "header nav" ).removeClass( "activo" );
+        	} else {
+        		$( this ).addClass( "activo" );
+        		$( "div.fondoNav" ).addClass( "activo" );
+        		$( "header nav" ).addClass( "activo" );
+        		$( "header nav" ).height( $( window ).height()-100 );
+        		$( "header nav" ).height( $( document ).height() );
+        	};
+        });
+        $( ".fondoNav" ).click(function(){
+        	$( ".menuIcon" ).removeClass( "activo" );
+        	$( "div.fondoNav" ).removeClass( "activo" );
+        	$( "header nav" ).removeClass( "activo" );
+        });
+        // NAV => LUGAR ACTIVO
+        $( document ).ready(function(){
+        
+        	if ( location.href.includes( "dashboard" ) ) {
+        
+        		$( "header nav ul li.dashboard" ).addClass( "activo" );
+        		$( "header h1" ).html( "DASHBOARD" );
+        
+        	} else if ( location.href.includes( "dev" ) ) {
+        
+        		$( "header nav ul li.dev" ).addClass( "activo" );
+        		$( "header h1" ).html( "EXPERIMENTOS" );
+        
+        	} else if ( location.href.includes( "contacto" ) ) {
+        
+        		$( "header nav ul li.contacto" ).addClass( "activo" );
+        		$( "header h1" ).html( "CONTACTO" );
+        
+        	} else {
+        
+        		$( "header nav ul li.inicio" ).addClass( "activo" );
+        		$( "header h1" ).html( "" );
+        
+        	};
+        
+        });
+      </script>
+    </div>
+    <div class="ilustracionHeader"><img class="left lazyload" data-src="./imagenes/ilustracionHeaderLeft-opt.png" alt="InfoCovid"><span>CORONAVIRUS DATA</span><img class="right lazyload" data-src="./imagenes/ilustracionHeaderRight-opt.png" alt="InfoCovid"></div>
+    <script>
+      var traeCovid = function( donde , url ){
+      	$.ajax({
+      		url: url ,
+      		dataType:"text",
+      		success:function(data) {
+      			var data_toda = data.split(/\r?\n|\r/);
+      			var table_data = '<table>';
+      			for(var count = 0; count<data_toda.length; count++) {
+      				var cell_data = data_toda[count].split(",");
+      				table_data += '<tr>';
+      				for(var cell_count=0; cell_count<cell_data.length; cell_count++) {
+      					if(count === 0) {
+      						table_data += '<th>'+cell_data[cell_count]+'</th>';
+      					} else {
+      						table_data += '<td>'+cell_data[cell_count]+'</td>';
+      					}
+      				}
+      				table_data += '</tr>';
+      			}
+      			table_data += '</table>';
+      			$( donde ).html( "<div>" + table_data + "</div>" );
+      		}
+      	});
+      };
+      
+      
+      
+    </script>
+    <div id="TotalesNacionales" style="display:block;"></div>
+    <script>
+      traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
+      
+      $( document ).ready(function(){
+      	setTimeout(function(){
+      		$.each( $( "#TotalesNacionales table tbody tr" ) , function(){
+      			var nombreTR = $( $( this ).find( "td" )[0] ).text().toLowerCase().split( " " ).join( "" );
+      			$( this ).addClass( nombreTR );
+      		});
+      	},1000)
+      });
+      
+    </script>
+    <div id="resumen">
+      <div class="fecha"><span class="raya"></span>
+        <p> </p>
+      </div>
+      <div class="resumen totalCasos">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/totalCasos.png" alt="Total Casos"></div>
+        <p class="titulo">Total Casos</p>
+        <div class="cifras"><span class="numero"> <img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."><span class="estado"></span><span class="porcentaje"></span></span></div>
+      </div>
+      <div class="resumen casosNuevos">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/casosNuevos.png" alt="Casos Nuevos último día"></div>
+        <p class="titulo">Casos Nuevos último día</p>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."><span class="estado"></span><span class="porcentaje"></span></span></div>
+      </div>
+      <div class="resumen casosActivos">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/casosActivos.png" alt="Casos Activos"></div>
+        <p class="titulo">Casos Activos</p>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."><span class="estado"></span><span class="porcentaje"></span></span></div>
+      </div>
+      <div class="resumen sintomas">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/sintomas.png" alt="Casos nuevos"></div>
+        <p class="titulo">Casos nuevos</p>
+        <div class="sintoma">
+          <p class="conSintomas"><strong> <img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."></strong><span>Con sintomas</span></p>
+          <p class="sinSintomas"><strong> <img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."></strong><span>Sin sintomas</span></p>
+        </div>
+      </div>
+      <script>
+        $( document ).ready(function(){
+        	setTimeout(function(){
+        
+        		var fechaDiaReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[2]
+        		if ( fechaDiaReporte.split( "" )[0] == 0 ) {
+        			var fechaDiaReporte = fechaDiaReporte.split( "" )[1];
+        		};
+        		var fechaMesReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[1]
+        
+        		switch ( fechaMesReporte ) {
+        			case "01":
+        				var fechaMesReporte = "Enero";
+        				break;
+        			case "02":
+        				var fechaMesReporte = "Febrero";
+        				break;
+        			case "03":
+        				var fechaMesReporte = "Marzo";
+        				break;
+        			case "04":
+        				var fechaMesReporte = "Abril";
+        				break;
+        			case "05":
+        				var fechaMesReporte = "Mayo";
+        				break;
+        			case "06":
+        				var fechaMesReporte = "Junio";
+        				break;
+        			case "07":
+        				var fechaMesReporte = "Julio";
+        				break;
+        			case "08":
+        				var fechaMesReporte = "Agosto";
+        				break;
+        			case "09":
+        				var fechaMesReporte = "Septiembre";
+        				break;
+        			case "10":
+        				var fechaMesReporte = "Octubre";
+        				break;
+        			case "11":
+        				var fechaMesReporte = "Noviembre";
+        				break;
+        			case "12":
+        				var fechaMesReporte = "Diciembre";
+        				break;
+        			default:
+        				console.log( "No existe" );
+        		};
+        		
+        		$( "div#resumen div.fecha > p" ).html( "Resumen " + fechaDiaReporte + " de " + fechaMesReporte );
+        	},1000);
+        });
+      </script>
+      <script>
+        // Agrega decimales
+        var puntuacion = function( cifra ){
+        	var cifra = cifra.split( "." )[0]
+        	try {
+        
+        		if ( isNaN( cifra ) ) {
+        			return cifra = "S/I";
+        		} else if ( cifra.length == 8 ) {
+        			return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
+        		} else if ( cifra.length == 7 ) {
+        			return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
+        		} else if ( cifra.length == 6 ) {
+        			return cifra.slice(0,3) + "." + cifra.slice(3,6);
+        		} else if ( cifra.length == 5 ) {
+        			return cifra.slice(0,2) + "." + cifra.slice(2,5);
+        		} else if ( cifra.length == 4 ) {
+        			return cifra.slice(0,1) + "." + cifra.slice(1,4);
+        		} else if ( cifra.length == 3 ) {
+        			return cifra = cifra;
+        		} else if ( cifra.length == 2 ) {
+        			return cifra = cifra;
+        		} else if ( cifra.length == 1 ) {
+        			return cifra = cifra;
+        		} else {
+        			console.log( "No tengo un rango seteado." );
+        			return cifra = "S/I";
+        		};
+        
+        	} catch ( error ) {
+        		console.log( "Error: " + error );
+        	};
+        
+        };
+        
+        // RESUMENES: Agrega los datos a cada div de resumen
+        var resumiendo = function( nombreResumen , claseTR ){
+        
+        	var contagiosTotalUltimo = $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).last().html();
+        	if( isNaN( contagiosTotalUltimo ) ) {
+        		$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) );
+        	} else {
+        		$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+        	};
+        
+        	var cifraHoy 		= $( $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" )[ $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).length-1 ] ).html();
+        	var cifraAnterior 	= $( $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" )[ $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).length-2 ] ).html();
+        	var cifraRestante 	= cifraHoy - cifraAnterior;
+        	var calculoInverso 	= cifraRestante * 100 / cifraHoy;
+        	
+        	if ( calculoInverso.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
+        		// es positivo
+        		$( "." + nombreResumen + " > div.cifras" ).addClass( "positivo" );
+        	} else {
+        		// es negativo
+        		$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
+        	};
+        
+        	// Si termina con un . corta antes el rango con un slice();
+        	if ( calculoInverso.toString().slice( 0 , 5 ).split( "" )[4] == "." ) {
+        		$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 4 ) + "%)" )
+        	} else {
+        		$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+        	};
+        };
+      </script>
+      <script>
+        setTimeout(function(){
+        	resumiendo( "totalCasos" , "casostotales" );
+        },3000);
+      </script>
+      <script>
+        setTimeout(function(){
+        	resumiendo( "casosNuevos" , "casosnuevostotales" );
+        },3000);
+      </script>
+      <script>
+        setTimeout(function(){
+        	resumiendo( "casosActivos" , "casosactivos" );
+        },3000);
+      </script>
+      <script>
+        setTimeout(function(){
+        	var conSintomas = $( $( "#TotalesNacionales > div > table tbody tr" )[1] ).find( "td" ).last().html();
+        	var sinSintomas = $( $( "#TotalesNacionales > div > table tbody tr" )[6] ).find( "td" ).last().html();
+        	$( "div.resumen.sintomas .sintoma p.conSintomas strong" ).html( puntuacion(conSintomas) );
+        	$( "div.resumen.sintomas .sintoma p.sinSintomas strong" ).html( puntuacion(sinSintomas) );
+        },3000);
+      </script>
+    </div>
+    <div class="graficos">
+      <div class="tabs contagiosDia">
+        <div class="tab">
+          <p>Contagios Por Día</p>
+          <div>
+            <div class="grafico" id="casosNuevos-grafico" style="width: 100%; height: 500px;">
+              <script>
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(casosNuevos);
+                
+                function casosNuevos() { 
+                		var dataContagiosDia = google.visualization.arrayToDataTable([
+                			['Fecha', 'Contagiados (Por Día)'],
+                			['0',  0],
+                	]);
+                
+                	var options = {
+                	title : 'Contagiados (Por Día)',
+                	vAxis: {title: 'Casos'},
+                	hAxis: {title: 'Días'},
+                	seriesType: 'bars',
+                	legend: { position: 'top', maxLines: 3 },
+                	series: {5: {type: 'line'}}        };
+                
+                	var chart = new google.visualization.ComboChart(document.getElementById('casosNuevos-grafico'));
+                	chart.draw(dataContagiosDia, options);
+                
+                
+                	
+                
+                	for ( sumaTR = 1 ; sumaTR <= $( $( "#TotalesNacionales table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+                	
+                		var fecha 				= $( $( $( "#TotalesNacionales table tr" )[0] ).find( "th" )[sumaTR] ).html();
+                		var contagiosDia		= $( $( $( "#TotalesNacionales table tr" )[7] ).find( "td" )[sumaTR] ).html();
+                		var push_todosTotales 	= '[["' + fecha + '",' + contagiosDia + ']]';
+                		dataContagiosDia.addRows(JSON.parse(push_todosTotales));
+                
+                	}
+                
+                	var chart = new google.visualization.ComboChart(document.getElementById('casosNuevos-grafico'));
+                	chart.draw(dataContagiosDia, options);
+                
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+        <div class="tab">
+          <p>Casos Activos Por Día</p>
+          <div>
+            <div class="grafico" id="casosActivos-grafico" style="width: 100%; height: 500px;">
+              <script>
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(casosNuevos);
+                
+                function casosNuevos() { 
+                		var dataActualesDia = google.visualization.arrayToDataTable([
+                			['Fecha', 'Contagiados (Por Día)'],
+                			['0',  0],
+                	]);
+                
+                	var options = {
+                	title : 'Casos Activos (Por Día)',
+                	vAxis: {title: 'Casos'},
+                	hAxis: {title: 'Días'},
+                	seriesType: 'bars',
+                		colors: ['#886cfe'] ,
+                	legend: { position: 'top', maxLines: 3 },
+                	series: {5: {type: 'line'}}        };
+                
+                	var chart = new google.visualization.ComboChart(document.getElementById('casosActivos-grafico'));
+                	chart.draw(dataActualesDia, options);
+                
+                	for ( sumaTR = 1 ; sumaTR <= $( $( "#TotalesNacionales table tr" )[5] ).find( "td" ).length-1 ; sumaTR++  ) {
+                	
+                		var fecha 				= $( $( $( "#TotalesNacionales table tr" )[0] ).find( "th" )[sumaTR] ).html();
+                		var contagiosDia		= $( $( $( "#TotalesNacionales table tr" )[5] ).find( "td" )[sumaTR] ).html();
+                		var push_todosTotales 	= '[["' + fecha + '",' + contagiosDia + ']]';
+                		dataActualesDia.addRows(JSON.parse(push_todosTotales));
+                
+                	}
+                
+                	var chart = new google.visualization.ComboChart(document.getElementById('casosActivos-grafico'));
+                	chart.draw(dataActualesDia, options);
+                
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      setTimeout(function(){
+      	$( ".graficos .tabs .tab > div" ).css( "position" , "absolute" );
+      
+      	$.each( $( ".graficos .tabs" ) , function(){
+      		$( $( this ).find( ".tab ")[0] ).find( "> p" ).addClass( "activo" );
+      		$( $( this ).find( ".tab ")[0] ).find( "> p" ).click();
+      	});
+      },1000);
+      $( ".graficos .tabs .tab" ).click(function(){
+      
+      	$( this ).parent().find( ".tab > p" ).removeClass( "activo" );
+      	$( this ).find( "> p" ).addClass( "activo" );
+      
+      	$( this ).parent().find( ".tab > div" ).css( "visibility" , "hidden" );
+      	$( this ).find( "> div" ).css( "visibility" , "initial" );
+      
+      });
+      
+    </script>
+    <script src="./js/lazysizes.min.js" async=""></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-166517000-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-166517000-1');
+      
+    </script>
+    <style>
+      body.dev {
+      	margin-top: 38px;
+      }
+      body.dev #dev {
+      	background: cyan;
+      	color: black;
+      	text-align: center;
+      	position: fixed;
+      	top: 0;
+      	width: 100%;
+      	padding: 10px 0;
+      	font-family: Arial;
+      	z-index: 1;
+      }
+      header nav ul li.dev {
+      	display: none;
+      }
+      body.dev header nav ul li.dev {
+      	display: block;
+      }
+      
+    </style>
+    <script>
+      $( document ).ready(function(){
+      	if ( location.href.includes( "localhost" ) ) {
+      		$( "body" ).addClass( "dev" );
+      		$( "body" ).append( "<div id='dev'>Modo <strong>DEV</strong></div>" );
+      	};
+      });
+      
+    </script>
+    <footer>
+      <div id="subir"><img class="lazyload" alt="Subir" data-src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjZmZmZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiPjx0aXRsZT50by11cDwvdGl0bGU+PGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+PGcgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGcgZmlsbD0iI2ZmZmZmZiIgZmlsbC1ydWxlPSJub256ZXJvIj48cGF0aCBkPSJNMTMsNi41MzQ5MjQyNCBMMTMsMjAgQzEzLDIwLjU1MjI4NDcgMTIuNTUyMjg0NywyMSAxMiwyMSBDMTEuNDQ3NzE1MywyMSAxMSwyMC41NTIyODQ3IDExLDIwIEwxMSw2LjUzNDkyNDI0IEw3Ljc0MjQ2MjEyLDkuNzkyNDYyMTIgQzcuMzMyNDExNjEsMTAuMjAyNTEyNiA2LjY2NzU4ODM5LDEwLjIwMjUxMjYgNi4yNTc1Mzc4OCw5Ljc5MjQ2MjEyIEM1Ljg0NzQ4NzM3LDkuMzgyNDExNjEgNS44NDc0ODczNyw4LjcxNzU4ODM5IDYuMjU3NTM3ODgsOC4zMDc1Mzc4OCBMMTEuMjU3NTM3OSwzLjMwNzUzNzg4IEMxMS42Njc1ODg0LDIuODk3NDg3MzcgMTIuMzMyNDExNiwyLjg5NzQ4NzM3IDEyLjc0MjQ2MjEsMy4zMDc1Mzc4OCBMMTcuNzQyNDYyMSw4LjMwNzUzNzg4IEMxOC4xNTI1MTI2LDguNzE3NTg4MzkgMTguMTUyNTEyNiw5LjM4MjQxMTYxIDE3Ljc0MjQ2MjEsOS43OTI0NjIxMiBDMTcuMzMyNDExNiwxMC4yMDI1MTI2IDE2LjY2NzU4ODQsMTAuMjAyNTEyNiAxNi4yNTc1Mzc5LDkuNzkyNDYyMTIgTDEzLDYuNTM0OTI0MjQgWiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+">
+        <script>
+          $(document).ready(function(){
+          
+          	$('#subir').click(function(){
+          		$('body, html').animate({
+          			scrollTop: '0px'
+          		}, 300);
+          	});
+          
+          	$(window).scroll(function(){
+          		if( $(this).scrollTop() > 400 ){
+          			$('#subir').fadeIn();
+          		} else {
+          			$('#subir').fadeOut();
+          		}
+          	});
+          
+          });
+          
+          
+        </script>
+      </div>
+      <style>
+        footer .creditos {
+        	color: #ABA9A9;
+        	text-align: center;
+        	width: 100%;
+        	margin: 0;
+        	padding: 10px 0;
+        	font-size: 0.8em;
+        	border-top: 1px dashed #ccc;
+        	background: #222;
+        }
+        footer p.creditos a {
+        	color: #bd4a97;
+        }
+        footer p.creditos a:hover {
+        	color: #791d5b;
+        }
+      </style>
+      <p class="creditos">Diseñado y elaborado con el <span style="color:#FF4433;">♥ </span>por <a href="https://volatil.cl/">Volatil</a></p>
+    </footer>
+    <style>
+      div.modal-fondo {
+      	background: #00000085;
+      	position: fixed;
+      	top: 0;
+      	left: 0;
+      	width: 100%;
+      	height: 100%;
+      	z-index: 5;
+      	cursor: pointer;
+      }
+      div.modal-contenido {
+      	background: white;
+      	font-family: arial , helvetica, sans-serif;
+      	position: fixed;
+      	top: 100px;
+      	left: 0;
+      	right: 0;
+      	width: 500px;
+      	z-index: 5;
+      	margin: 0 auto;
+      	border-radius: 6px;
+      }
+      div.modal-fondo ,
+      div.modal-contenido {
+      	display: none;
+      }
+      div.modal-contenido > span {
+      	background: #656565;
+      	position: absolute;
+      	color: white;
+      	right: 0;
+      	letter-spacing: 0.05em;
+      	padding: 10px;
+      	font-size: 0.6em;
+      	cursor: pointer;
+      }
+      div.modal-contenido > h3 {
+      	text-transform: uppercase;
+      	border-bottom: 1px solid #ccc;
+      	padding: 0 10px 10px;
+      	text-align: center;
+      	font-size: 2em;
+      }
+      div.modal-contenido > p {
+      	padding: 0 20px 20px;
+      	letter-spacing: 0.03em;
+      	line-height: 1.4em;
+      }
+      div.modal-contenido > p > span.dia {
+      	font-weight: bold;
+      }
+      @media ( max-width: 510px )	 {
+      	div.modal-contenido {
+      		width: 90%;
+      	}
+      	div.modal-contenido > h3 {
+      		font-size: 7vw;
+      		padding-top: 20px;
+      	}
+      }
+    </style>
+    <div class="modal-fondo"></div>
+    <div class="modal-contenido"><span>X | Cerrar</span>
+      <h3>Actualizaciones</h3>
+      <p>La última actualización fue el <span class="dia"> </span>, debido que MINSAL no ha liberado los datos, lamentamos los inconvenientes.</p>
+      <script>
+        $( document ).ready(function(){
+        
+        	setTimeout(function(){
+        
+        		var fechaDiaReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[2]
+        		if( fechaDiaReporte.split( "" ).length == 2 && fechaDiaReporte.split( "" )[0] == 0 ) {
+        			var fechaDiaReporte = fechaDiaReporte.split( "" )[1];
+        		};
+        
+        		var fechaMesReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[1]
+        		if( fechaMesReporte.split( "" ).length == 2 && fechaMesReporte.split( "" )[0] == 0 ) {
+        			var fechaMesReporte = fechaMesReporte.split( "" )[1];
+        		};
+        
+        		var fechaActual 		= new Date().getDate();
+        
+        		$( "div.modal-contenido p span.dia" ).html( fechaDiaReporte + "/" + fechaMesReporte + "/2020" );
+        
+        		if( fechaDiaReporte != fechaActual && new Date().getHours() >= "8" ) {
+        			$( ".modal-fondo" ).show();
+        			$( ".modal-contenido" ).show();
+        		};
+        	
+        	},1000);
+        	
+        });
+        
+        $( ".modal-fondo, .modal-contenido > span" ).click(function(){
+        	$( "div.modal-fondo" ).hide();
+        	$( "div.modal-contenido" ).hide();
+        });
+      </script>
+    </div>
+  </body>
+</html>
