@@ -1,5 +1,5 @@
 doctype html
-html
+html( lang="es" )
 	head
 
 		title COVID 19 | Data Chile
@@ -38,20 +38,26 @@ html
 				});
 			};
 
+
+
 		include ../_components/data/resumen
-		
+
 		.graficos
 			include ../_components/data/casosTotales
 
-			.tabs
+			.tabs.contagiosDia
 				.tab
 					p Contagios Por Día
 					div
 						include ../_components/data/contagiosPorDia
 				.tab
-					p Recuperados Por Día
+					p Casos Activos Por Día
 					div
-						include ../_components/data/recuperadosPorDia
+						include ../_components/data/casosActivosPorDia
+				//- .tab
+				//- 	p Recuperados Por Día
+				//- 	div
+				//- 		include ../_components/data/recuperadosPorDia
 				.tab
 					p Fallecidos Por Día
 					div
@@ -78,8 +84,14 @@ html
 						include ../_components/data/pcrPorRegion
 
 			include ../_components/data/ventiladores
+			//- include ../_components/data/ventiladoresCHARTJS
 			include ../_components/data/rangoEtario
-
+			include ../_components/data/contagiosPorRegion
+			
+			//- TESTING
+			//- include ../_components/data/casosGeneroEtario
+			include ../_components/data/residenciasSanitarias
+			
 
 			//- TABS
 			script.
@@ -102,15 +114,29 @@ html
 				});
 
 
-			//- Si no carga la data, recarga
 			script.
 				$( document ).ready(function(){
+
+					//- Si no carga RESUMEN
 					setTimeout(function(){
 						if ( $( "div#resumen .resumen.totalCasos > div.cifras" ).html().length <= 88  ) {
+							console.log( "Reload ... 1" );
 							location.reload();
-							console.log( "Reload ..." );
 						};
-					},2000);
+					},3000);
+
+					//- Si no carga GRAFICO
+					/*
+					if ( $( document ).width() >= 768 ) {
+						setTimeout(function(){
+							if ( $( "defs#_ABSTRACT_RENDERER_ID_2" ).parent().html().split( "2020-04-25" ).length <= 1 ) {
+								console.log( "Reload ... 2" );
+								location.reload();
+							};
+						},5000);
+					};
+					*/
+
 				});
 
 		include ../_components/footer

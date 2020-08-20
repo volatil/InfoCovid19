@@ -31,9 +31,10 @@ div#resumen > div.fecha > p {
 	font-weight: 500;
 }
 div#resumen .resumen {
-	width: 305px;
+	width: 300px;
 	min-height: 90px;
 	background: white;
+	border: 1px solid $d;
 	display: inline-block;
 	padding: 20px 60px 20px 20px;
 	margin: 0 10px 10px 0;
@@ -120,7 +121,7 @@ div#resumen .resumen.sintomas > div.sintoma {
 	width: calc( 100% - 95px );
 	display: block;
 	margin-left: 95px;
-	margin-top: -10px;
+	margin-top: -14px;
 	position: relative;
 	top: 20px;
 }
@@ -175,6 +176,10 @@ div#resumen .resumen.ventiladoresDisponibles > div.icono {
 div#resumen .resumen.examenesPCR > div.icono {
 	background: #0099c659;
 }
+div#resumen .resumen.residenciasSanitarias > div.icono ,
+div#resumen .resumen.cuposResidenciasSanitarias > div.icono {
+	background: #ffcf9c;
+}
 div#resumen .resumen.totalCasos > p.titulo {
 	color: #1c7fdd;
 }
@@ -198,6 +203,10 @@ div#resumen .resumen.ventiladoresDisponibles > p.titulo {
 }
 div#resumen .resumen.examenesPCR > p.titulo {
 	color: #0099c6;
+}
+div#resumen .resumen.residenciasSanitarias > p.titulo ,
+div#resumen .resumen.cuposResidenciasSanitarias > p.titulo {
+	color: #ff8400;
 }
 
 @media ( max-width: 1200px ) {

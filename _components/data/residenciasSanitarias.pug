@@ -1,0 +1,62 @@
+
+//-https://github.com/MinCiencia/Datos-COVID19/blob/master/output/producto36/ResidenciasSanitarias.csv
+
+div.grafico#residenciasSanitarias(style='display:none;')
+div.grafico#residenciasSanitarias-grafico( style='width: 100%; height: 500px; display: none;' )
+script.
+	traeCovid( "#residenciasSanitarias" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto36/ResidenciasSanitarias.csv" );
+
+//- INGRESA DATA
+script.
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(residenciasSanitarias);
+
+	function residenciasSanitarias() { 
+			var dataResidenciasSanitarias = google.visualization.arrayToDataTable([
+				['Fecha', '<=39'],
+				['0',  0],
+		]);
+
+		var options = {
+			title : 'Residencias Sanitarias (Por Día)',
+			vAxis: {title: 'Edad'},
+			hAxis: {title: 'Días'},
+			seriesType: 'bars',
+
+			legend: { position: 'top', maxLines: 3 },
+			bar: { groupWidth: '75%' },
+			isStacked: true
+		};
+
+		var chart = new google.visualization.ComboChart(document.getElementById('residenciasSanitarias-grafico'));
+		chart.draw(dataResidenciasSanitarias, options);
+	
+		for ( sumaTR = 2 ; sumaTR <= $( $( "#residenciasSanitarias table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+		
+			var fecha		= $( $( $( "#residenciasSanitarias table tr" )[0] ).find( "th" )[sumaTR] ).html();
+			var menos39	= $( $( $( "#residenciasSanitarias table tr" )[1] ).find( "td" )[sumaTR] ).html();
+
+			/*
+			var push_todosTotales 	= '[["' + fecha + '",' + ']]';
+			*/
+			/*
+			var push_todosTotales 	= '[["' + fecha + '",' + menos39 + ']]';
+			dataResidenciasSanitarias.addRows(JSON.parse(push_todosTotales));
+			*/
+
+		}
+
+		var chart = new google.visualization.ComboChart(document.getElementById('residenciasSanitarias-grafico'));
+		chart.draw(dataResidenciasSanitarias, options);
+
+	}
+
+
+
+
+
+
+
+
+
+

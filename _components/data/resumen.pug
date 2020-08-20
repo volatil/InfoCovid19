@@ -1,6 +1,6 @@
 
-- var loadingggg = 'https://www.vibuk.com/assets/img/fluid-loader.gif';
-- var loadingggg = 'https://i.pinimg.com/originals/3f/2c/97/3f2c979b214d06e9caab8ba8326864f3.gif';
+- var loadingggg = './imagenes/resumen/loading2.gif';
+- var loadingggg = './imagenes/resumen/loading1.gif';
 
 div#TotalesNacionales(style='display:none;')
 
@@ -8,10 +8,12 @@ script.
 	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
 
 	$( document ).ready(function(){
-		$.each( $( "#TotalesNacionales table tbody tr" ) , function(){
-			var nombreTR = $( $( this ).find( "td" )[0] ).text().toLowerCase().split( " " ).join( "" );
-			$( this ).addClass( nombreTR );
-		});
+		setTimeout(function(){
+			$.each( $( "#TotalesNacionales table tbody tr" ) , function(){
+				var nombreTR = $( $( this ).find( "td" )[0] ).text().toLowerCase().split( " " ).join( "" );
+				$( this ).addClass( nombreTR );
+			});
+		},1000)
 	});
 
 div#resumen
@@ -21,101 +23,121 @@ div#resumen
 
 	div.resumen.totalCasos
 		div.icono
-			img( data-src='./imagenes/resumen/totalCasos.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/totalCasos.png' class='lazyload' alt='Total Casos' )
 		p.titulo Total Casos
 		div.cifras
 			span.numero 
-				img( src=loadingggg )
+				img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 				span.estado
 				span.porcentaje
 
 	div.resumen.casosNuevos
 		div.icono
-			img( data-src='./imagenes/resumen/casosNuevos.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/casosNuevos.png' class='lazyload' alt='Casos Nuevos último día' )
 		p.titulo Casos Nuevos último día
 		div.cifras
 			span.numero
-				img( src=loadingggg )
+				img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 				span.estado
 				span.porcentaje
 
 	div.resumen.casosActivos
 		div.icono
-			img( data-src='./imagenes/resumen/casosActivos.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/casosActivos.png' class='lazyload' alt='Casos Activos' )
 		p.titulo Casos Activos
 		div.cifras
 			span.numero
-				img( src=loadingggg )
+				img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 				span.estado
 				span.porcentaje
 
 	div.resumen.sintomas
 		div.icono
-			img( data-src='./imagenes/resumen/sintomas.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/sintomas.png' class='lazyload' alt='Casos nuevos' )
 		p.titulo Casos nuevos
 		div.sintoma
 			p.conSintomas
 				strong 
-					img( src=loadingggg )
+					img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 				span Con sintomas
 			p.sinSintomas
 				strong 
-					img( src=loadingggg )
+					img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 				span Sin sintomas
 
-	div.resumen.recuperadosDia
-		div.icono
-			img( data-src='./imagenes/resumen/check.png' class='lazyload' )
-		p.titulo Recuperados último día
-		div.cifras
-			span.numero
-				img( src=loadingggg )
-				span.estado
-				span.porcentaje
+	//- div.resumen.recuperadosDia
+	//- 	div.icono
+	//- 		img( data-src='./imagenes/resumen/check.png' class='lazyload' alt='Recuperados último día' )
+	//- 	p.titulo Recuperados último día
+	//- 	div.cifras
+	//- 		span.numero
+	//- 			img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
+	//- 			span.estado
+	//- 			span.porcentaje
 
-	div.resumen.recuperadosTotal
-		div.icono
-			img( data-src='./imagenes/resumen/check.png' class='lazyload' )
-		p.titulo Total Recuperados
-		div.cifras
-			span.numero
-				img( src=loadingggg )
+	//- div.resumen.recuperadosTotal
+	//- 	div.icono
+	//- 		img( data-src='./imagenes/resumen/check.png' class='lazyload' alt='Total Recuperados' )
+	//- 	p.titulo Total Recuperados
+	//- 	div.cifras
+	//- 		span.numero
+	//- 			img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 
 	div.resumen.fallecidosDia
 		div.icono
-			img( data-src='./imagenes/resumen/none.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/none.png' class='lazyload' alt='Fallecidos último día' )
 		p.titulo Fallecidos último día
 		div.cifras
 			span.numero
-				img( src=loadingggg )
+				img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 				span.estado
 				span.porcentaje
 
 	div.resumen.fallecidosTotal
 		div.icono
-			img( data-src='./imagenes/resumen/none.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/none.png' class='lazyload' alt='Total Fallecidos' )
 		p.titulo Total Fallecidos
 		div.cifras
 			span.numero
-				img( src=loadingggg )
+				img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 
 	div.resumen.ventiladoresDisponibles
 		div.icono
-			img( data-src='./imagenes/resumen/ventiladores.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/ventiladores.png' class='lazyload' alt='Ventiladores disponibles' )
 		p.titulo Ventiladores disponibles
 		div.cifras
 			span.numero
-				img( src=loadingggg )
+				img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 				span.estado
 				span.porcentaje
 
 	div.resumen.examenesPCR
 		div.icono
-			img( data-src='./imagenes/resumen/pcr.png' class='lazyload' )
+			img( data-src='./imagenes/resumen/pcr.png' class='lazyload' alt='Exámenes PCR últimas 24 horas' )
 		p.titulo Exámenes PCR últimas 24 horas
 		div.cifras
 			span.numero
-				img( src=loadingggg )
+				img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
+				span.estado
+				span.porcentaje
+
+	div.resumen.residenciasSanitarias
+		div.icono
+			img( data-src='./imagenes/resumen/residencia.png' class='lazyload' alt='Residencias Sanitarias' )
+		p.titulo Residencias Sanitarias
+		div.cifras
+			span.numero
+				img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
+				span.estado
+				span.porcentaje
+
+	div.resumen.cuposResidenciasSanitarias
+		div.icono
+			img( data-src='./imagenes/resumen/cuposResidencia.png' class='lazyload' alt='Cupos Residencias Sanitarias' )
+		p.titulo Cupos Residencias Sanitarias
+		div.cifras
+			span.numero
+				img( class='lazyload' data-src=loadingggg , alt='Cargando ...' )
 				span.estado
 				span.porcentaje
 
@@ -178,48 +200,34 @@ div#resumen
 	script.
 		// Agrega decimales
 		var puntuacion = function( cifra ){
-
+			var cifra = cifra.split( "." )[0]
 			try {
 
-				var x = cifra.length;
-
-				switch ( x ) {
-					case 8:
-						return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
-						break;
-					case 7:
-						return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
-						break;
-					case 6:
-						return cifra.slice(0,3) + "." + cifra.slice(3,6);
-						break;
-					case 5:
-						return cifra.slice(0,2) + "." + cifra.slice(2,5);
-						break;
-					case 4:
-						return cifra.slice(0,1) + "." + cifra.slice(1,4);
-						break;
-					case 3:
-						return cifra = cifra;
-						break;
-					case 2:
-						return cifra = cifra;
-						break;
-					case 1:
-						return cifra = cifra;
-						break;
-					default:
-						console.log( "No tengo un rango seteado." );
-						return cifra = "S/I";
-						break;
+				if ( isNaN( cifra ) ) {
+					return cifra = "S/I";
+				} else if ( cifra.length == 8 ) {
+					return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
+				} else if ( cifra.length == 7 ) {
+					return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
+				} else if ( cifra.length == 6 ) {
+					return cifra.slice(0,3) + "." + cifra.slice(3,6);
+				} else if ( cifra.length == 5 ) {
+					return cifra.slice(0,2) + "." + cifra.slice(2,5);
+				} else if ( cifra.length == 4 ) {
+					return cifra.slice(0,1) + "." + cifra.slice(1,4);
+				} else if ( cifra.length == 3 ) {
+					return cifra = cifra;
+				} else if ( cifra.length == 2 ) {
+					return cifra = cifra;
+				} else if ( cifra.length == 1 ) {
+					return cifra = cifra;
+				} else {
+					console.log( "No tengo un rango seteado." );
+					return cifra = "S/I";
 				};
 
 			} catch ( error ) {
-				
-				setTimeout(function(){
-					location.reload();
-				},2000);
-				
+				console.log( "Error: " + error );
 			};
 
 		};
@@ -229,7 +237,7 @@ div#resumen
 
 			var contagiosTotalUltimo = $( "#TotalesNacionales > div > table tbody tr." + claseTR ).find( "td" ).last().html();
 			if( isNaN( contagiosTotalUltimo ) ) {
-				$( "." + nombreResumen + " > div.cifras > span.numero" ).html( "S/I" );
+				$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) );
 			} else {
 				$( "." + nombreResumen + " > div.cifras > span.numero" ).html( puntuacion( contagiosTotalUltimo ) + "<span class='estado'></span><span class='porcentaje'></span>" );
 			};
@@ -247,24 +255,30 @@ div#resumen
 				$( "." + nombreResumen + " > div.cifras" ).addClass( "negativo" );
 			};
 
-			$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+			// Si termina con un . corta antes el rango con un slice();
+			if ( calculoInverso.toString().slice( 0 , 5 ).split( "" )[4] == "." ) {
+				$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 4 ) + "%)" )
+			} else {
+				$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
+			};
+
 
 		};
 	//- TOTAL CASOS ACTIVOS
 	script.
 		setTimeout(function(){
 			resumiendo( "totalCasos" , "casostotales" );
-		},1000);
+		},3000);
 	//- CASOS NUEVOS
 	script.
 		setTimeout(function(){
 			resumiendo( "casosNuevos" , "casosnuevostotales" );
-		},1000);
+		},3000);
 	//- CASOS ACTIVOS
 	script.
 		setTimeout(function(){
 			resumiendo( "casosActivos" , "casosactivos" );
-		},1000);
+		},3000);
 	//- SINTOMAS
 	script.
 		setTimeout(function(){
@@ -272,28 +286,28 @@ div#resumen
 			var sinSintomas = $( $( "#TotalesNacionales > div > table tbody tr" )[6] ).find( "td" ).last().html();
 			$( "div.resumen.sintomas .sintoma p.conSintomas strong" ).html( puntuacion(conSintomas) );
 			$( "div.resumen.sintomas .sintoma p.sinSintomas strong" ).html( puntuacion(sinSintomas) );
-		},1000);
+		},3000);
 	//- RECUPERADOS ULTIMO DIA
 	script.
 		setTimeout(function(){
 			resumiendo( "recuperadosDia" , "recuperadosDia" );
-		},1000);
+		},5000);
 	//- TOTAL RECUPERADOS 
 	script.
 		//- casosrecuperados
 		setTimeout(function(){
-			$( "div#resumen .resumen.recuperadosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".casosrecuperados > td" ).last().html() ) );
-		},1000);
+			$( "div#resumen .resumen.recuperadosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".recuperadosTotal > td" ).last().html() ) );
+		},5000);
 	//- FALLECIDOS ULTIMO DIA
 	script.
 		setTimeout(function(){
 			resumiendo( "fallecidosDia" , "fallecidosDia" );
-		},1000);
+		},3000);
 	//- TOTAL FALLECIDOS
 	script.
 		setTimeout(function(){
 			$( "div#resumen .resumen.fallecidosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".fallecidosTotal > td" ).last().html() ) );
-		},1000);
+		},3000);
 	//- VENTILADORES DISPONIBLES
 	script.
 		setTimeout(function(){
@@ -314,7 +328,7 @@ div#resumen
 			};
 
 			$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoDisponibles.toString().slice( 0 , 5 ) + "%)" )
-		},1000);
+		},3000);
 	//- PCR
 	script.
 		setTimeout(function(){
@@ -351,7 +365,13 @@ div#resumen
 								// es negativo
 								$( "div#resumen .resumen.examenesPCR > div.cifras " ).addClass( "negativo" );
 							};
-							$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoPCR.toString().slice( 0 , 5 ) + "%)" )
+
+							if ( isNaN( calculoInversoPCR ) ) {
+								$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.estado" ).remove();
+								$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.porcentaje" ).remove();
+							} else {
+								$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoPCR.toString().slice( 0 , 5 ) + "%)" )
+							};
 						
 						}
 
@@ -361,4 +381,94 @@ div#resumen
 
 			}
 
-		},1000);
+		},3000);
+	//- Cupos Residencias Sanitarias
+	script.
+
+		setTimeout(function(){
+
+			var cuposTotalesHoy = "0";
+			$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='cuposTotalesHoy'></p>" );
+			for ( region = 1 ; region <= 16 ; region++  ) {
+				var cuposHoy = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().html();
+				var cuposTotalesHoy = parseFloat(cuposHoy) + parseFloat(cuposTotalesHoy);
+				$( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html( cuposTotalesHoy );
+			};
+
+
+			var cuposTotalesAyer = "0";
+			$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='cuposTotalesAyer'></p>" );
+			for ( region = 1 ; region <= 16 ; region++  ) {
+				var cuposAyer = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().prev().html();
+				var cuposTotalesAyer = parseFloat(cuposAyer) + parseFloat(cuposTotalesAyer);
+				$( "#residenciasSanitarias-grafico .cuposTotalesAyer" ).html( cuposTotalesAyer );
+			};
+			
+			$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero" ).html( puntuacion( $( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html() )  + "<span class='estado'></span><span class='porcentaje'></span>"  );
+
+			var comparacionAyerHoy = $( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html() - $( "#residenciasSanitarias-grafico .cuposTotalesAyer" ).html();
+			$( "#residenciasSanitarias-grafico" ).append( "<p class='comparacionAyerHoy'>" + comparacionAyerHoy + "</p>" );
+
+			if ( $( ".comparacionAyerHoy" ).html().split( "-" ).length == 1 ) {
+				// es positivo
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras " ).addClass( "positivo" );
+			} else {
+				// es negativo
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras " ).addClass( "negativo" );
+			};
+			
+			var porcentajeResidencia = $( ".comparacionAyerHoy" ).html() * 100 / $( ".cuposTotalesHoy" ).html();
+
+			if ( isNaN( porcentajeResidencia ) ) {
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero > span.estado" ).remove();
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).remove();
+			} else {
+				$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).html( porcentajeResidencia.toString().slice( 0 , 5 ) + "%)" )
+			};
+
+		},3000);
+	//- Residencias Sanitarias
+	script.
+
+		setTimeout(function(){
+
+			var residenciasTotalesHoy = "0";
+			$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='residenciasTotalesHoy'></p>" );
+			for ( region = 33 ; region <= 48 ; region++  ) {
+				var cuposHoy = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().html();
+				var residenciasTotalesHoy = parseFloat(cuposHoy) + parseFloat(residenciasTotalesHoy);
+				$( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html( residenciasTotalesHoy );
+			};
+
+
+			var residenciasTotalesAyer = "0";
+			$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='residenciasTotalesAyer'></p>" );
+			for ( region = 33 ; region <= 48 ; region++  ) {
+				var cuposAyer = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().prev().html();
+				var residenciasTotalesAyer = parseFloat(cuposAyer) + parseFloat(residenciasTotalesAyer);
+				$( "#residenciasSanitarias-grafico .residenciasTotalesAyer" ).html( residenciasTotalesAyer );
+			};
+			
+			$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero" ).html( puntuacion( $( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html() )  + "<span class='estado'></span><span class='porcentaje'></span>"  );
+
+			var residenciasComparacionAyerHoy = $( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html() - $( "#residenciasSanitarias-grafico .residenciasTotalesAyer" ).html();
+			$( "#residenciasSanitarias-grafico" ).append( "<p class='residenciasComparacionAyerHoy'>" + residenciasComparacionAyerHoy + "</p>" );
+
+			if ( $( ".residenciasComparacionAyerHoy" ).html().split( "-" ).length == 1 ) {
+				// es positivo
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras " ).addClass( "positivo" );
+			} else {
+				// es negativo
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras " ).addClass( "negativo" );
+			};
+			
+			var porcentajeResidencia = $( ".residenciasComparacionAyerHoy" ).html() * 100 / $( ".residenciasTotalesHoy" ).html();
+
+			if ( isNaN( porcentajeResidencia ) ) {
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.estado" ).remove();
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).remove();
+			} else {
+				$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).html( porcentajeResidencia.toString().slice( 0 , 5 ) + "%)" )
+			};
+
+		},3000);

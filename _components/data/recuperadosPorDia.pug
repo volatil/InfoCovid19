@@ -5,45 +5,41 @@ div.grafico#recuperadosDia-grafico( style='width: 100%; height: 500px;' )
 
 	script.
 		$( document ).ready(function(){
-			$( $( "#TotalesNacionales table tbody tr" )[3] ).addClass( "recuperadosTotal" );
-			$( "#TotalesNacionales table tbody" ).append( "<tr class='recuperadosDia'><td>Recuperados Día</td><td>0</td></tr>" );
+			setTimeout(function(){
+				$( $( "#TotalesNacionales table tbody tr" )[11] ).addClass( "recuperadosTotal" );
+				$( "#TotalesNacionales table tbody" ).append( "<tr class='recuperadosDia'><td>Recuperados Día</td><td>0</td></tr>" );
 
-			// Calcula datos por dia de FALLECIDOS DIA
-			$.each( $( "table tbody tr.recuperadosTotal td" ) , function(){
-				
-				var recuperadosTotal				= parseInt( $( this ).html() );
-				var recuperadosTotalSiguiente	= parseInt( $( this ).next().html() );
-				
-				if( $( this ).next( "td" ).length >= 1 ) {
-					$( "tr.recuperadosDia" ).append( "<td>" + parseInt(recuperadosTotalSiguiente - recuperadosTotal) + "</td>" );
-				};
+				// Calcula datos por dia de FALLECIDOS DIA
+				$.each( $( "table tbody tr.recuperadosTotal td" ) , function(){
+					
+					var recuperadosTotal				= parseInt( $( this ).html() );
+					var recuperadosTotalSiguiente	= parseInt( $( this ).next().html() );
+					
+					if( $( this ).next( "td" ).length >= 1 ) {
+						$( "tr.recuperadosDia" ).append( "<td>" + parseInt(recuperadosTotalSiguiente - recuperadosTotal) + "</td>" );
+					};
 
-			});
-			// Quita el "NaN" porque al restar el nombre de la fila x 0 da NaN
-			$( $( "tr.recuperadosDia td" )[2] ).remove();
+				});
+				// Quita el "NaN" porque al restar el nombre de la fila x 0 da NaN
+				$( $( "tr.recuperadosDia td" )[2] ).remove();
+			},2000);
 		});
 
 
 
 	script.
-		google.charts.load('current', {'packages':['corechart']});
-		google.charts.setOnLoadCallback(casosRecuperadosNuevos);
+		setTimeout(function(){
 
-		function casosRecuperadosNuevos() { 
-				var dataRecuperadosDia = google.visualization.arrayToDataTable([
-					['Fecha', 'Recuperados (Por Día)'],
-					['0',  0],
-			]);
+			google.charts.load('current', {'packages':['corechart']});
+			google.charts.setOnLoadCallback(casosRecuperadosNuevos);
 
-			var options = {
-			title : 'Recuperados (Por Día)',
-			vAxis: {title: 'Casos'},
-			hAxis: {title: 'Días'},
-			seriesType: 'bars',
-			legend: { position: 'top', maxLines: 3 },
-			colors: ['#34c736'] ,
-			series: {5: {type: 'line'}}        };
+			function casosRecuperadosNuevos() { 
+					var dataRecuperadosDia = google.visualization.arrayToDataTable([
+						['Fecha', 'Recuperados (Por Día)'],
+						['0',  0],
+				]);
 
+<<<<<<< HEAD
 			var chart = new google.visualization.ComboChart(document.getElementById('recuperadosDia-grafico'));
 			chart.draw(dataRecuperadosDia, options);
 			
@@ -54,12 +50,36 @@ div.grafico#recuperadosDia-grafico( style='width: 100%; height: 500px;' )
 					if( isNaN( recuperadosDia ) ) {
 						var recuperadosDia = "0";
 					};
+=======
+				var options = {
+				title : 'Recuperados (Por Día)',
+				vAxis: {title: 'Casos'},
+				hAxis: {title: 'Días'},
+				seriesType: 'bars',
+				legend: { position: 'top', maxLines: 3 },
+				colors: ['#34c736'] ,
+				series: {5: {type: 'line'}}        };
+>>>>>>> 764bfc3fc9811470fc89ab096e5f43e8bf99001f
 
-					var push_todosTotales 	= '[["' + fecha + '",' + recuperadosDia + ']]';
-					dataRecuperadosDia.addRows(JSON.parse(push_todosTotales));
-				}
 				var chart = new google.visualization.ComboChart(document.getElementById('recuperadosDia-grafico'));
 				chart.draw(dataRecuperadosDia, options);
-			},200);
+				
+				setTimeout(function(){
+					for ( sumaTR = 1 ; sumaTR <= $( $( "#TotalesNacionales table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+						var fecha 				= $( $( $( "#TotalesNacionales table tr" )[0] ).find( "th" )[sumaTR] ).html();
+						var recuperadosDia		= $( $( "#TotalesNacionales table tr.recuperadosDia" ).find( "td" )[sumaTR] ).html();
+						
+						if( isNaN( recuperadosDia ) ) {
+							var recuperadosDia = "0";
+						};
 
-		}
+						var push_todosTotales 	= '[["' + fecha + '",' + recuperadosDia + ']]';
+						dataRecuperadosDia.addRows(JSON.parse(push_todosTotales));
+					}
+					var chart = new google.visualization.ComboChart(document.getElementById('recuperadosDia-grafico'));
+					chart.draw(dataRecuperadosDia, options);
+				},200);
+
+			}
+			
+		},3000);

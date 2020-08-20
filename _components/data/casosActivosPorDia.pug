@@ -1,0 +1,38 @@
+
+div.grafico#casosActivos-grafico( style='width: 100%; height: 500px;' )
+
+	script.
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(casosNuevos);
+
+		function casosNuevos() { 
+				var dataActualesDia = google.visualization.arrayToDataTable([
+					['Fecha', 'Contagiados (Por Día)'],
+					['0',  0],
+			]);
+
+			var options = {
+			title : 'Casos Activos (Por Día)',
+			vAxis: {title: 'Casos'},
+			hAxis: {title: 'Días'},
+			seriesType: 'bars',
+				colors: ['#886cfe'] ,
+			legend: { position: 'top', maxLines: 3 },
+			series: {5: {type: 'line'}}        };
+
+			var chart = new google.visualization.ComboChart(document.getElementById('casosActivos-grafico'));
+			chart.draw(dataActualesDia, options);
+		
+			for ( sumaTR = 1 ; sumaTR <= $( $( "#TotalesNacionales table tr" )[5] ).find( "td" ).length-1 ; sumaTR++  ) {
+			
+				var fecha 				= $( $( $( "#TotalesNacionales table tr" )[0] ).find( "th" )[sumaTR] ).html();
+				var contagiosDia		= $( $( $( "#TotalesNacionales table tr" )[5] ).find( "td" )[sumaTR] ).html();
+				var push_todosTotales 	= '[["' + fecha + '",' + contagiosDia + ']]';
+				dataActualesDia.addRows(JSON.parse(push_todosTotales));
+
+			}
+
+			var chart = new google.visualization.ComboChart(document.getElementById('casosActivos-grafico'));
+			chart.draw(dataActualesDia, options);
+
+		}
