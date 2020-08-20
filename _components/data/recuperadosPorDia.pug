@@ -39,7 +39,6 @@ div.grafico#recuperadosDia-grafico( style='width: 100%; height: 500px;' )
 						['0',  0],
 				]);
 
-<<<<<<< HEAD
 			var chart = new google.visualization.ComboChart(document.getElementById('recuperadosDia-grafico'));
 			chart.draw(dataRecuperadosDia, options);
 			
@@ -50,16 +49,6 @@ div.grafico#recuperadosDia-grafico( style='width: 100%; height: 500px;' )
 					if( isNaN( recuperadosDia ) ) {
 						var recuperadosDia = "0";
 					};
-=======
-				var options = {
-				title : 'Recuperados (Por Día)',
-				vAxis: {title: 'Casos'},
-				hAxis: {title: 'Días'},
-				seriesType: 'bars',
-				legend: { position: 'top', maxLines: 3 },
-				colors: ['#34c736'] ,
-				series: {5: {type: 'line'}}        };
->>>>>>> 764bfc3fc9811470fc89ab096e5f43e8bf99001f
 
 				var chart = new google.visualization.ComboChart(document.getElementById('recuperadosDia-grafico'));
 				chart.draw(dataRecuperadosDia, options);
