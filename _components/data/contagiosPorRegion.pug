@@ -36,6 +36,7 @@ div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
 					td Comuna
 					td Población
 					td Contagios
+					td Porcentaje
 			tbody
 
 script.
@@ -53,6 +54,15 @@ script.
 				var nombreComuna 	= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[2] ).first().html();
 				var cantPoblacion 		= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[4] ).first().html();
 				var contagiosRegion 	= $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" ).last().html();
+				//- var porcentaje          = contagiosRegion*100/cantPoblacion;
+				var porcentaje = function(){
+					if ( contagiosRegion*100/cantPoblacion == Infinity ) {
+						return "";
+					} else {
+						var algo = contagiosRegion*100/cantPoblacion;
+						return algo.toFixed( 2 )+"%";
+					};
+				};
 
 				$( ".grafico#contagiosPorRegion-grafico > div table tbody" ).append( "" +
 					"<tr>" +
@@ -60,6 +70,7 @@ script.
 						"<td>" + nombreComuna + "</td>" +
 						"<td>" + cantPoblacion + "</td>" +
 						"<td>" + contagiosRegion + "</td>" +
+						"<td>" + porcentaje() + "</td>" +
 					"</tr>" +
 				"" );
 
@@ -83,6 +94,7 @@ script.
 		},2000)
 	});
 
+	//- BUSCADOR
 	$( ".grafico#contagiosPorRegion-grafico > form > input" ).keyup(function(){
 
 		$.each( $( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ) , function(){
@@ -104,3 +116,6 @@ script.
 		});
 
 	});
+
+
+
