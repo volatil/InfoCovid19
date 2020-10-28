@@ -35,11 +35,13 @@ html( lang="es" )
 						table_data += '</table>';
 						$( donde ).html( "<div>" + table_data + "</div>" );
 						//- FIX: Deja los campos vacios con valor 0
+						/*
 						for( var uwu = 1; uwu <= $( "#TotalesNacionales table tbody tr td" ).length; uwu++ ) {
 							if( $( $( "#TotalesNacionales table tbody tr td" )[uwu] ).html() == "" ) {
 								$( $( "#TotalesNacionales table tbody tr td" )[uwu] ).html( "0" );
 							}
 						}
+						*/
 					}
 				});
 			};
