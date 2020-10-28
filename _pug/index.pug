@@ -34,6 +34,12 @@ html( lang="es" )
 						}
 						table_data += '</table>';
 						$( donde ).html( "<div>" + table_data + "</div>" );
+						//- FIX: Deja los campos vacios con valor 0
+						for( var uwu = 1; uwu <= $( "#TotalesNacionales table tbody tr td" ).length; uwu++ ) {
+							if( $( $( "#TotalesNacionales table tbody tr td" )[uwu] ).html() == "" ) {
+								$( $( "#TotalesNacionales table tbody tr td" )[uwu] ).html( "0" );
+							}
+						}
 					}
 				});
 			};
@@ -86,11 +92,9 @@ html( lang="es" )
 						include ../_components/data/pcrPorRegion
 
 			include ../_components/data/ventiladores
-			//- include ../_components/data/ventiladoresCHARTJS
 			include ../_components/data/rangoEtario
 			
 			//- TESTING
-			//- include ../_components/data/casosGeneroEtario
 			include ../_components/data/residenciasSanitarias
 			
 
