@@ -1,5 +1,5 @@
 
-div.grafico#ventiladores(style='display:none;')
+div.grafico#ventiladores(style='display:block;')
 div.grafico#ventiladores-grafico( style='width: 100%; height: 500px;' )
 script.
 	traeCovid( "#ventiladores" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/input/ReporteDiario/NumeroVentiladores.csv" );
@@ -35,7 +35,13 @@ script.
 				var fecha			= $( $( $( "#ventiladores table tr" )[0] ).find( "th" )[sumaTR] ).html();
 				var total			= $( $( $( "#ventiladores table tr" )[1] ).find( "td" )[sumaTR] ).html();
 				var disponibles	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[sumaTR] ).html();
+				if ( disponibles == "" ) {
+					disponibles = 0;
+				};
 				var ocupados		= $( $( $( "#ventiladores table tr" )[3] ).find( "td" )[sumaTR] ).html();
+				if ( ocupados == "" ) {
+					ocupados = 0;
+				};
 				var push_todosTotales 	= '[["' + fecha + '",' + disponibles + ',' + ocupados + ',' + total + ']]';
 				dataVentiladoresDia.addRows(JSON.parse(push_todosTotales));
 
