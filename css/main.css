@@ -887,7 +887,7 @@ table tbody tr td {
   top: -10px;
 }
 
-.ilustracionHeader > span {
+.ilustracionHeader > p {
   font-family: "Roboto Mono", monospace;
   text-align: center;
   width: 100%;
@@ -897,7 +897,15 @@ table tbody tr td {
   line-height: 3em;
   position: absolute;
   z-index: 1;
-  text-shadow: 0px 0px 18px #3d2637;
+  text-shadow: -1px 2px 5px #3d2637;
+  margin: 0;
+}
+
+.ilustracionHeader > p span {
+  position: absolute;
+  top: -30px;
+  font-size: 0.3em;
+  color: #dd3232;
 }
 
 .ilustracionHeader > img {
@@ -915,6 +923,21 @@ table tbody tr td {
 @media (max-width: 600px) {
   .ilustracionHeader > img.right {
     display: none;
+  }
+}
+@media (max-width: 300px) {
+  .ilustracionHeader {
+    height: 85px;
+  }
+
+  .ilustracionHeader > p {
+    height: 95px;
+    font-size: 1.8em;
+    line-height: 3em;
+  }
+
+  .ilustracionHeader > p span {
+    top: -20px;
   }
 }
 footer #subir {
