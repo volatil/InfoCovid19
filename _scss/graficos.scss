@@ -159,6 +159,77 @@
 	display: table-row;
 }
 
+
+/*
+================================
+=> FASE DE CADA COMUNA
+================================
+*/
+
+.grafico#comunasFases-grafico {
+	background: white;
+	padding-bottom: 140px;
+}
+.grafico#comunasFases-grafico > h1 {
+	padding-top: 20px;
+	text-align: center;
+	margin: 0;
+	font-size: 1.1em;
+	margin-bottom: 10px;
+}
+.grafico#comunasFases-grafico > h2 ,
+.grafico#comunasFases-grafico > p {
+	font-size: .9em;
+	font-weight: 400;
+	text-align: center;
+	margin: 0;
+}
+.grafico#comunasFases-grafico > h2 span ,
+.grafico#comunasFases-grafico > p span {
+	font-weight: 600;
+}
+.grafico#comunasFases-grafico > form {}
+.grafico#comunasFases-grafico > form > input {
+	margin: 10px auto 0;
+	display: block;
+	padding: 7px 10px;
+	width: 250px;
+}
+.grafico#comunasFases-grafico > div {
+	height: 98%;
+	overflow-y: scroll;
+	margin-top: 20px;
+}
+.grafico#comunasFases-grafico > div > table {
+	margin: 20px auto 0;
+	border: none;
+}
+.grafico#comunasFases-grafico > div > table thead tr td {
+	text-align: left;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	padding-left: 10px;
+}
+.grafico#comunasFases-grafico > div > table tbody tr {
+	height: 30px;
+}
+	.grafico#comunasFases-grafico > div > table tbody tr:hover ,
+	.grafico#comunasFases-grafico > div > table tbody tr:nth-child( odd ) {
+		background: #efefef94;
+	}
+.grafico#comunasFases-grafico > div > table tbody tr td {
+	border: none;
+	text-align: left;
+	padding: 0 0 0 10px;
+}
+.grafico#comunasFases-grafico > div > table tbody tr.hide {
+	display: none;
+}
+.grafico#comunasFases-grafico > div > table tbody tr.show {
+	display: table-row;
+}
+
 /*
 ================================
 => CONTAGIOS POR REGION

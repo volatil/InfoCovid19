@@ -1,0 +1,106 @@
+
+style.
+	.grafico#comunasFases-grafico > div > table tbody tr td:nth-child(1) {
+		width: 350px;
+	}
+	.grafico#comunasFases-grafico > form {
+		width: 250px;
+		margin: 0 auto;
+	}
+	.grafico#comunasFases-grafico > form > label {
+		display: inline-block;
+		margin-right: 20px;
+	}
+	.grafico#comunasFases-grafico > form > input {
+		width: 150px;
+		display: inline-block;
+	}
+
+div.grafico#comunasFases(style='display:none;')
+div.grafico#comunasFases-grafico( style='width: 100%; height: 500px;' )
+
+	h1 Fases de cada Comuna
+	h2 Última Actualizacion: 
+		span
+
+	form
+		label( for='buscarRegionComuna' ) Buscar
+		input( id='buscarRegionComuna' , placeholder='Región o comuna' , type='text' )
+
+	div
+		table
+			thead
+				tr
+					td Región
+					td Comuna
+					td Fase
+			tbody
+
+script.
+	traeCovid( "#comunasFases" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto74/paso_a_paso.csv" );
+
+//- INGRESA DATA
+script.
+	$( document ).ready(function(){
+
+		setTimeout(function(){
+
+			for ( sumaTR = 1 ; sumaTR <= $( "#comunasFases table" ).find( "tr" ).length-2 ; sumaTR++  ) {
+
+				var nombreRegion 	          = $( $( $( "#comunasFases table" ).find( "tr" )[sumaTR] ).find( "td" )[1] ).first().html();
+				var nombreComuna 	          = $( $( $( "#comunasFases table" ).find( "tr" )[sumaTR] ).find( "td" )[3] ).first().html();
+				var fechaUltimaActualizacion  = $( $( "#comunasFases table" ).find( "tr" )[sumaTR] ).find( "td" ).last().html();
+				var faseComuna 		          = $( $( "#comunasFases table" ).find( "tr" )[sumaTR] ).find( "td" ).last().html();
+
+				$( ".grafico#comunasFases-grafico > div table tbody" ).append( "" +
+					"<tr>" +
+						"<td>" + nombreRegion + "</td>" +
+						"<td>" + nombreComuna + "</td>" +
+						"<td>" + faseComuna + "</td>" +
+					"</tr>" +
+				"" );
+
+			};
+
+			$( ".grafico#comunasFases-grafico h2 span" ).html( $( $( "#comunasFases table tr" )[0] ).find( "th" ).last().html() );
+
+		},1000);
+
+	});
+
+script.
+	//- Agrega como clase el nombre de cada comuna y region
+	$( document ).ready(function(){
+		setTimeout(function(){
+			$.each( $( ".grafico#comunasFases-grafico > div > table tbody tr" ) , function(){
+				var region 		= $( $( this ).find( "td" )[0] ).html().toLowerCase();
+				var comuna 	= $( $( this ).find( "td" )[1] ).html().toLowerCase();
+				$( this ).addClass( comuna ).addClass( region );
+				$( ".grafico#comunasFases-grafico > div > table tbody tr.total" ).remove();
+			});
+		},2000)
+	});
+
+	//- BUSCADOR
+	$( ".grafico#comunasFases-grafico > form > input" ).keyup(function(){
+		
+		console.log( "PUSH" );
+		
+		$.each( $( ".grafico#comunasFases-grafico > div > table tbody tr" ) , function(){
+
+			var buscado = $( ".grafico#comunasFases-grafico > form > input" ).val();
+
+			if( buscado.length <= 1 ) {
+				$( ".grafico#comunasFases-grafico > div > table tbody tr" ).removeClass( "hide" );
+				$( ".grafico#comunasFases-grafico > div > table tbody tr" ).removeClass( "show" );
+			} else if ( $( this ).attr( "class" ).indexOf( buscado ) >= 0 ){
+				$( ".grafico#comunasFases-grafico > div > table tbody tr" ).addClass( "hide" );
+				$( this ).addClass( "show" );
+			} else {
+				$( this ).removeClass( "show" );
+				$( this ).removeClass( "hide" );
+				$( this ).addClass( "hide" );
+			};
+
+		});
+	});
