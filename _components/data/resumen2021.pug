@@ -2,7 +2,7 @@
 - var loadingggg = './imagenes/resumen/loading1.gif';
 - var loadingggg = './imagenes/resumen/loading2.gif';
 
-div#TotalesNacionales(style='display:none;')
+div#TotalesNacionales(style='display:block;')
 
 script.
 	traeCovid( "#TotalesNacionales" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" );
@@ -65,23 +65,8 @@ div#resumen
 					img( class='lazyload' data-src=loadingggg )
 				span Sin sintomas
 
-	//- div.resumen.recuperadosDia
-	//- 	div.icono
-	//- 		img( class='lazyload' data-src='./imagenes/resumen/check.png' )
-	//- 	p.titulo Recuperados último día
-	//- 	div.cifras
-	//- 		span.numero
-	//- 			img( class='lazyload' data-src=loadingggg )
-	//- 			span.estado
-	//- 			span.porcentaje
 
-	//- div.resumen.recuperadosTotal
-	//- 	div.icono
-	//- 		img( class='lazyload' data-src='./imagenes/resumen/check.png' )
-	//- 	p.titulo Total Recuperados
-	//- 	div.cifras
-	//- 		span.numero
-	//- 			img( class='lazyload' data-src=loadingggg )
+
 
 	div.resumen.fallecidosDia
 		div.icono
@@ -92,6 +77,14 @@ div#resumen
 				img( class='lazyload' data-src=loadingggg )
 				span.estado
 				span.porcentaje
+			
+		script.
+			var cantidadDatos   = $( ".fallecidos" ).find( "td" ).length;
+			var ultimo          = $( $( ".fallecidos" ).find( "td" )[cantidadDatos-1] ).html();
+			var penultimo       = $( $( ".fallecidos" ).find( "td" )[cantidadDatos-2] ).html();
+			console.log( `Fallecidos TOTAL último día: ${ultimo}` );
+			console.log( `Fallecidos TOTAL penultimo día: ${penultimo}` );
+			console.log( `Fallecidos último día: ${ultimo-penultimo}` );
 
 	div.resumen.fallecidosTotal
 		div.icono
@@ -472,3 +465,6 @@ div#resumen
 			};
 
 		},3000);
+	
+	
+	

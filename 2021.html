@@ -90,8 +90,9 @@
         });
       </script>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <div class="ilustracionHeader"><img class="left lazyload" data-src="./imagenes/ilustracionHeaderLeft-opt.png" alt="InfoCovid"><span>CORONAVIRUS DATA</span><img class="right lazyload" data-src="./imagenes/ilustracionHeaderRight-opt.png" alt="InfoCovid"></div>
+    <div class="ilustracionHeader"><img class="left lazyload" data-src="./imagenes/ilustracionHeaderLeft-opt.png" alt="InfoCovid">
+      <p><span>ESTADISTICAS</span>CORONAVIRUS</p><img class="right lazyload" data-src="./imagenes/ilustracionHeaderRight-opt.png" alt="InfoCovid">
+    </div>
     <script>
       var traeCovid = function( donde , url ){
       	$.ajax({
@@ -114,11 +115,16 @@
       			}
       			table_data += '</table>';
       			$( donde ).html( "<div>" + table_data + "</div>" );
+      			//- FIX CASOS ACTIVOS: Deja los campos vacios con valor 0
+      			$.each( $( $( "#TotalesNacionales table tbody tr" )[5] ).find( "td" ) , function(){
+      				if ( $( this ).html() == "" ) {
+      					$( this ).html( "0" );
+      				}
+      			});
+      			
       		}
       	});
       };
-      
-      
       
     </script>
     <div id="TotalesNacionales" style="display:block;"></div>
@@ -140,27 +146,66 @@
         <p> </p>
       </div>
       <div class="resumen totalCasos">
-        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/totalCasos.png" alt="Total Casos"></div>
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/totalCasos.png"></div>
         <p class="titulo">Total Casos</p>
-        <div class="cifras"><span class="numero"> <img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."><span class="estado"></span><span class="porcentaje"></span></span></div>
+        <div class="cifras"><span class="numero"> <img class="lazyload" data-src="./imagenes/resumen/loading2.gif"><span class="estado"></span><span class="porcentaje"></span></span></div>
       </div>
       <div class="resumen casosNuevos">
-        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/casosNuevos.png" alt="Casos Nuevos último día"></div>
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/casosNuevos.png"></div>
         <p class="titulo">Casos Nuevos último día</p>
-        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."><span class="estado"></span><span class="porcentaje"></span></span></div>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif"><span class="estado"></span><span class="porcentaje"></span></span></div>
       </div>
       <div class="resumen casosActivos">
-        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/casosActivos.png" alt="Casos Activos"></div>
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/casosActivos.png"></div>
         <p class="titulo">Casos Activos</p>
-        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."><span class="estado"></span><span class="porcentaje"></span></span></div>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif"><span class="estado"></span><span class="porcentaje"></span></span></div>
       </div>
       <div class="resumen sintomas">
-        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/sintomas.png" alt="Casos nuevos"></div>
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/sintomas.png"></div>
         <p class="titulo">Casos nuevos</p>
         <div class="sintoma">
-          <p class="conSintomas"><strong> <img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."></strong><span>Con sintomas</span></p>
-          <p class="sinSintomas"><strong> <img class="lazyload" data-src="./imagenes/resumen/loading2.gif" alt="Cargando ..."></strong><span>Sin sintomas</span></p>
+          <p class="conSintomas"><strong> <img class="lazyload" data-src="./imagenes/resumen/loading2.gif"></strong><span>Con sintomas</span></p>
+          <p class="sinSintomas"><strong> <img class="lazyload" data-src="./imagenes/resumen/loading2.gif"></strong><span>Sin sintomas</span></p>
         </div>
+      </div>
+      <div class="resumen fallecidosDia">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/none.png"></div>
+        <p class="titulo">Fallecidos último día</p>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif"><span class="estado"></span><span class="porcentaje"></span></span></div>
+        <script>
+          var cantidadDatos   = $( ".fallecidos" ).find( "td" ).length;
+          var ultimo          = $( $( ".fallecidos" ).find( "td" )[cantidadDatos-1] ).html();
+          var penultimo       = $( $( ".fallecidos" ).find( "td" )[cantidadDatos-2] ).html();
+          console.log( `Fallecidos TOTAL último día: ${ultimo}` );
+          console.log( `Fallecidos TOTAL penultimo día: ${penultimo}` );
+          console.log( `Fallecidos último día: ${ultimo-penultimo}` );
+          
+        </script>
+      </div>
+      <div class="resumen fallecidosTotal">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/none.png"></div>
+        <p class="titulo">Total Fallecidos</p>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif"></span></div>
+      </div>
+      <div class="resumen ventiladoresDisponibles">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/ventiladores.png"></div>
+        <p class="titulo">Ventiladores disponibles</p>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif"><span class="estado"></span><span class="porcentaje"></span></span></div>
+      </div>
+      <div class="resumen examenesPCR">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/pcr.png"></div>
+        <p class="titulo">Exámenes PCR últimas 24 horas</p>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif"><span class="estado"></span><span class="porcentaje"></span></span></div>
+      </div>
+      <div class="resumen residenciasSanitarias">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/residencia.png"></div>
+        <p class="titulo">Residencias Sanitarias</p>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif"><span class="estado"></span><span class="porcentaje"></span></span></div>
+      </div>
+      <div class="resumen cuposResidenciasSanitarias">
+        <div class="icono"><img class="lazyload" data-src="./imagenes/resumen/cuposResidencia.png"></div>
+        <p class="titulo">Cupos Residencias Sanitarias</p>
+        <div class="cifras"><span class="numero"><img class="lazyload" data-src="./imagenes/resumen/loading2.gif"><span class="estado"></span><span class="porcentaje"></span></span></div>
       </div>
       <script>
         $( document ).ready(function(){
@@ -281,6 +326,8 @@
         	} else {
         		$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
         	};
+        
+        
         };
       </script>
       <script>
@@ -306,113 +353,191 @@
         	$( "div.resumen.sintomas .sintoma p.sinSintomas strong" ).html( puntuacion(sinSintomas) );
         },3000);
       </script>
+      <script>
+        setTimeout(function(){
+        	resumiendo( "recuperadosDia" , "recuperadosDia" );
+        },5000);
+      </script>
+      <script>
+        //- casosrecuperados
+        setTimeout(function(){
+        	$( "div#resumen .resumen.recuperadosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".recuperadosTotal > td" ).last().html() ) );
+        },5000);
+      </script>
+      <script>
+        setTimeout(function(){
+        	resumiendo( "fallecidosDia" , "fallecidosDia" );
+        },3000);
+      </script>
+      <script>
+        setTimeout(function(){
+        	$( "div#resumen .resumen.fallecidosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".fallecidosTotal > td" ).last().html() ) );
+        },3000);
+      </script>
+      <script>
+        setTimeout(function(){
+        	var ventiladoresDisponibles 		= $( $( "#ventiladores table tr" )[2] ).find( "td" ).last().html();
+        	var ventiladoresDisponiblesHoy 	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[ $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-1 ] ).html();
+        	var ventiladoresDisponiblesAyer 	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[ $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-2 ] ).html();
+        	var ventiladoresRestante 			= ventiladoresDisponiblesHoy - ventiladoresDisponiblesAyer;
+        	var calculoInversoDisponibles 		= ventiladoresRestante * 100 / ventiladoresDisponiblesHoy;
+        
+        	$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero" ).html( puntuacion( ventiladoresDisponibles ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+        	
+        	if ( ventiladoresRestante.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
+        		// es positivo
+        		$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras " ).addClass( "positivo" );
+        	} else {
+        		// es negativo
+        		$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras " ).addClass( "negativo" );
+        	};
+        
+        	$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoDisponibles.toString().slice( 0 , 5 ) + "%)" )
+        },3000);
+      </script>
+      <script>
+        setTimeout(function(){
+        	var sumaTotal = 0;
+        
+        	for ( var count = 1; count <= $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
+        		
+        		var ultimoValor = $( $( ".graficos .grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().html();
+        		sumaTotal = parseInt( sumaTotal ) + parseInt( ultimoValor ) ;
+        
+        		if ( count == $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
+        			
+        
+        			var sumaPenultimoTotal = 0;
+        			for ( var count = 1; count <= $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2; count++ ) {
+        
+        				var penultimoValor = $( $( ".graficos .grafico#pcrPorRegion tr" )[count] ).find( "td" ).last().prev().html();
+        				sumaPenultimoTotal = parseInt( sumaPenultimoTotal ) + parseInt( penultimoValor ) ;
+        
+        				if ( count == $( ".graficos .grafico#pcrPorRegion" ).find( "tr" ).length-2 ) {
+        
+        					var examenesPCRHoy 		= sumaTotal;
+        					var examenesPCRAyer 		= sumaPenultimoTotal;
+        					var examenesPCRRestante 	= examenesPCRHoy - examenesPCRAyer;
+        					var calculoInversoPCR 		= examenesPCRRestante * 100 / examenesPCRHoy;
+        
+        					$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero" ).html( examenesPCRHoy );
+        					$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero" ).html( puntuacion( $( "div#resumen .resumen.examenesPCR > div.cifras > span.numero" ).html() ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+        
+        					if ( examenesPCRRestante.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
+        						// es positivo
+        						$( "div#resumen .resumen.examenesPCR > div.cifras " ).addClass( "positivo" );
+        					} else {
+        						// es negativo
+        						$( "div#resumen .resumen.examenesPCR > div.cifras " ).addClass( "negativo" );
+        					};
+        
+        					if ( isNaN( calculoInversoPCR ) ) {
+        						$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.estado" ).remove();
+        						$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.porcentaje" ).remove();
+        					} else {
+        						$( "div#resumen .resumen.examenesPCR > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoPCR.toString().slice( 0 , 5 ) + "%)" )
+        					};
+        				
+        				}
+        
+        			}
+        
+        		}
+        
+        	}
+        
+        },3000);
+      </script>
+      <script>
+        setTimeout(function(){
+        
+        	var cuposTotalesHoy = "0";
+        	$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='cuposTotalesHoy'></p>" );
+        	for ( region = 1 ; region <= 16 ; region++  ) {
+        		var cuposHoy = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().html();
+        		var cuposTotalesHoy = parseFloat(cuposHoy) + parseFloat(cuposTotalesHoy);
+        		$( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html( cuposTotalesHoy );
+        	};
+        
+        
+        	var cuposTotalesAyer = "0";
+        	$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='cuposTotalesAyer'></p>" );
+        	for ( region = 1 ; region <= 16 ; region++  ) {
+        		var cuposAyer = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().prev().html();
+        		var cuposTotalesAyer = parseFloat(cuposAyer) + parseFloat(cuposTotalesAyer);
+        		$( "#residenciasSanitarias-grafico .cuposTotalesAyer" ).html( cuposTotalesAyer );
+        	};
+        	
+        	$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero" ).html( puntuacion( $( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html() )  + "<span class='estado'></span><span class='porcentaje'></span>"  );
+        
+        	var comparacionAyerHoy = $( "#residenciasSanitarias-grafico .cuposTotalesHoy" ).html() - $( "#residenciasSanitarias-grafico .cuposTotalesAyer" ).html();
+        	$( "#residenciasSanitarias-grafico" ).append( "<p class='comparacionAyerHoy'>" + comparacionAyerHoy + "</p>" );
+        
+        	if ( $( ".comparacionAyerHoy" ).html().split( "-" ).length == 1 ) {
+        		// es positivo
+        		$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras " ).addClass( "positivo" );
+        	} else {
+        		// es negativo
+        		$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras " ).addClass( "negativo" );
+        	};
+        	
+        	var porcentajeResidencia = $( ".comparacionAyerHoy" ).html() * 100 / $( ".cuposTotalesHoy" ).html();
+        
+        	if ( isNaN( porcentajeResidencia ) ) {
+        		$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero > span.estado" ).remove();
+        		$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).remove();
+        	} else {
+        		$( "div#resumen .resumen.cuposResidenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).html( porcentajeResidencia.toString().slice( 0 , 5 ) + "%)" )
+        	};
+        
+        },3000);
+      </script>
+      <script>
+        setTimeout(function(){
+        
+        	var residenciasTotalesHoy = "0";
+        	$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='residenciasTotalesHoy'></p>" );
+        	for ( region = 33 ; region <= 48 ; region++  ) {
+        		var cuposHoy = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().html();
+        		var residenciasTotalesHoy = parseFloat(cuposHoy) + parseFloat(residenciasTotalesHoy);
+        		$( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html( residenciasTotalesHoy );
+        	};
+        
+        
+        	var residenciasTotalesAyer = "0";
+        	$( "#residenciasSanitarias-grafico" ).append( "<p style='display:none;' class='residenciasTotalesAyer'></p>" );
+        	for ( region = 33 ; region <= 48 ; region++  ) {
+        		var cuposAyer = $( $( "#residenciasSanitarias table tr" )[region] ).find( "td" ).last().prev().html();
+        		var residenciasTotalesAyer = parseFloat(cuposAyer) + parseFloat(residenciasTotalesAyer);
+        		$( "#residenciasSanitarias-grafico .residenciasTotalesAyer" ).html( residenciasTotalesAyer );
+        	};
+        	
+        	$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero" ).html( puntuacion( $( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html() )  + "<span class='estado'></span><span class='porcentaje'></span>"  );
+        
+        	var residenciasComparacionAyerHoy = $( "#residenciasSanitarias-grafico .residenciasTotalesHoy" ).html() - $( "#residenciasSanitarias-grafico .residenciasTotalesAyer" ).html();
+        	$( "#residenciasSanitarias-grafico" ).append( "<p class='residenciasComparacionAyerHoy'>" + residenciasComparacionAyerHoy + "</p>" );
+        
+        	if ( $( ".residenciasComparacionAyerHoy" ).html().split( "-" ).length == 1 ) {
+        		// es positivo
+        		$( "div#resumen .resumen.residenciasSanitarias > div.cifras " ).addClass( "positivo" );
+        	} else {
+        		// es negativo
+        		$( "div#resumen .resumen.residenciasSanitarias > div.cifras " ).addClass( "negativo" );
+        	};
+        	
+        	var porcentajeResidencia = $( ".residenciasComparacionAyerHoy" ).html() * 100 / $( ".residenciasTotalesHoy" ).html();
+        
+        	if ( isNaN( porcentajeResidencia ) ) {
+        		$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.estado" ).remove();
+        		$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).remove();
+        	} else {
+        		$( "div#resumen .resumen.residenciasSanitarias > div.cifras > span.numero > span.porcentaje" ).html( porcentajeResidencia.toString().slice( 0 , 5 ) + "%)" )
+        	};
+        
+        },3000);
+      </script>
     </div>
-    <div class="graficos">
-      <div class="tabs contagiosDia">
-        <div class="tab">
-          <p>Contagios Por Día</p>
-          <div>
-            <style>
-              canvas#barChartContagiosPorDia {
-              	display: block !important;
-              	margin: 0 auto;
-              	background: white;
-              }
-              
-            </style>
-            <canvas id="barChartContagiosPorDia"></canvas>
-            <script>
-              var ctx = document.getElementById("barChartContagiosPorDia");
-              var barChartContagiosPorDia = new Chart(ctx, {
-              	type: 'bar',
-              	responsive: true,
-              	data: {
-              		labels: [ "test 3" , "test 4" ],
-              		datasets: [{
-              			backgroundColor: 'transparent',
-              			//- label: "test 1",
-              			label: "",
-              			data: []
-              		}]
-              	}
-              });
-              
-              setTimeout(function() {
-              	console.log( "Agregando ..." );
-              	
-              	var contagiosPorDia = [];
-              	$.each( $( $( "#TotalesNacionales tr" )[7] ).find( "td" ) , function(){
-              		let valor = $( this ).text();
-              		contagiosPorDia.push( valor );
-              	});
-              	
-              	var dataDATOS = [];
-              	$.each( $( $( "#TotalesNacionales table tbody tr" )[0] ).find( "th" ) , function(){
-              		var fecha = $( this ).html();
-              		dataDATOS.push( fecha );
-              	});
-              
-              	barChartContagiosPorDia.data.labels = dataDATOS;
-              	barChartContagiosPorDia.data.datasets[0].data = contagiosPorDia;
-              	barChartContagiosPorDia.data.datasets[0].backgroundColor = "#ff5a00";
-              	barChartContagiosPorDia.update();
-              }, 3000);	
-            </script>
-          </div>
-        </div>
-        <div class="tab">
-          <p>Casos Activos Por Día</p>
-          <div>
-            <style>
-              canvas#barChartCasosActivosPorDia {
-              	display: block !important;
-              	margin: 0 auto;
-              	background: white;
-              }
-              
-            </style>
-            <canvas id="barChartCasosActivosPorDia"></canvas>
-            <script>
-              var ctx = document.getElementById("barChartCasosActivosPorDia");
-              var barChartCasosActivosPorDia = new Chart(ctx, {
-              	type: 'bar',
-              	responsive: true,
-              	data: {
-              		labels: [ "test 3" , "test 4" ],
-              		datasets: [{
-              			backgroundColor: 'transparent',
-              			//- label: "test 1",
-              			label: "",
-              			data: []
-              		}]
-              	}
-              });
-              
-              setTimeout(function() {
-              	console.log( "Agregando ..." );
-              	
-              	var casosActivosPorDia = [];
-              	$.each( $( $( "#TotalesNacionales tr" )[5] ).find( "td" ) , function(){
-              		let valor = $( this ).text();
-              		casosActivosPorDia.push( valor );
-              	});
-              	
-              	var dataDATOS = [];
-              	$.each( $( $( "#TotalesNacionales table tbody tr" )[0] ).find( "th" ) , function(){
-              		var fecha = $( this ).html();
-              		dataDATOS.push( fecha );
-              	});
-              
-              	barChartCasosActivosPorDia.data.labels = dataDATOS;
-              	barChartCasosActivosPorDia.data.datasets[0].data = casosActivosPorDia;
-              	barChartCasosActivosPorDia.data.datasets[0].backgroundColor = "#ff5a00";
-              	barChartCasosActivosPorDia.update();
-              }, 3000);	
-            </script>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="graficos"></div>
     <script>
       setTimeout(function(){
       	$( ".graficos .tabs .tab > div" ).css( "position" , "absolute" );
@@ -430,6 +555,17 @@
       	$( this ).parent().find( ".tab > div" ).css( "visibility" , "hidden" );
       	$( this ).find( "> div" ).css( "visibility" , "initial" );
       
+      });
+      
+    </script>
+    <script>
+      $( document ).ready(function(){
+      	setTimeout(function(){
+      		if ( $( "div#resumen .resumen.totalCasos > div.cifras" ).html().length <= 88  ) {
+      			console.log( "Reload ... 1" );
+      			location.reload();
+      		};
+      	},3000);
       });
       
     </script>
@@ -518,105 +654,5 @@
       </style>
       <p class="creditos">Diseñado y elaborado con el <span style="color:#FF4433;">♥ </span>por <a href="https://volatil.cl/">Volatil</a></p>
     </footer>
-    <style>
-      div.modal-fondo {
-      	background: #00000085;
-      	position: fixed;
-      	top: 0;
-      	left: 0;
-      	width: 100%;
-      	height: 100%;
-      	z-index: 5;
-      	cursor: pointer;
-      }
-      div.modal-contenido {
-      	background: white;
-      	font-family: arial , helvetica, sans-serif;
-      	position: fixed;
-      	top: 100px;
-      	left: 0;
-      	right: 0;
-      	width: 500px;
-      	z-index: 5;
-      	margin: 0 auto;
-      	border-radius: 6px;
-      }
-      div.modal-fondo ,
-      div.modal-contenido {
-      	display: none;
-      }
-      div.modal-contenido > span {
-      	background: #656565;
-      	position: absolute;
-      	color: white;
-      	right: 0;
-      	letter-spacing: 0.05em;
-      	padding: 10px;
-      	font-size: 0.6em;
-      	cursor: pointer;
-      }
-      div.modal-contenido > h3 {
-      	text-transform: uppercase;
-      	border-bottom: 1px solid #ccc;
-      	padding: 0 10px 10px;
-      	text-align: center;
-      	font-size: 2em;
-      }
-      div.modal-contenido > p {
-      	padding: 0 20px 20px;
-      	letter-spacing: 0.03em;
-      	line-height: 1.4em;
-      }
-      div.modal-contenido > p > span.dia {
-      	font-weight: bold;
-      }
-      @media ( max-width: 510px )	 {
-      	div.modal-contenido {
-      		width: 90%;
-      	}
-      	div.modal-contenido > h3 {
-      		font-size: 7vw;
-      		padding-top: 20px;
-      	}
-      }
-    </style>
-    <div class="modal-fondo"></div>
-    <div class="modal-contenido"><span>X | Cerrar</span>
-      <h3>Actualizaciones</h3>
-      <p>La última actualización fue el <span class="dia"> </span>, debido que MINSAL no ha liberado los datos, lamentamos los inconvenientes.</p>
-      <script>
-        $( document ).ready(function(){
-        
-        	setTimeout(function(){
-        
-        		var fechaDiaReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[2]
-        		if( fechaDiaReporte.split( "" ).length == 2 && fechaDiaReporte.split( "" )[0] == 0 ) {
-        			var fechaDiaReporte = fechaDiaReporte.split( "" )[1];
-        		};
-        
-        		var fechaMesReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[1]
-        		if( fechaMesReporte.split( "" ).length == 2 && fechaMesReporte.split( "" )[0] == 0 ) {
-        			var fechaMesReporte = fechaMesReporte.split( "" )[1];
-        		};
-        
-        		var fechaActual 		= new Date().getDate();
-        
-        		$( "div.modal-contenido p span.dia" ).html( fechaDiaReporte + "/" + fechaMesReporte + "/2020" );
-        
-        		if( fechaDiaReporte != fechaActual && new Date().getHours() >= "8" ) {
-        			$( ".modal-fondo" ).show();
-        			$( ".modal-contenido" ).show();
-        		};
-        	
-        	},1000);
-        	
-        });
-        
-        $( ".modal-fondo, .modal-contenido > span" ).click(function(){
-        	$( "div.modal-fondo" ).hide();
-        	$( "div.modal-contenido" ).hide();
-        });
-      </script>
-    </div>
   </body>
 </html>
