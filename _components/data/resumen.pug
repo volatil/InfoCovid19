@@ -16,8 +16,6 @@ script.
 		},1000)
 	});
 	
-
-	
 script( src="https://unpkg.com/papaparse@5.3.0/papaparse.min.js" )
 script( type="text/javascript" ).
 	// Agrega decimales
@@ -26,6 +24,7 @@ script( type="text/javascript" ).
 		try {
 
 			if ( isNaN( cifra ) ) {
+				console.log( "S/I" )
 				return cifra = "S/I";
 			} else if ( cifra.length == 8 ) {
 				return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
@@ -44,7 +43,7 @@ script( type="text/javascript" ).
 			} else if ( cifra.length == 1 ) {
 				return cifra = cifra;
 			} else {
-				console.log( "No tengo un rango seteado." );
+				console.log( `No tengo un rango seteado. [202103130038] .${ cifra }.` );
 				return cifra = "S/I";
 			};
 
@@ -77,7 +76,6 @@ script( type="text/javascript" ).
 					$( `.resumen${dondeImprimir} .cifras` ).addClass( "negativo" );
 				};
 				
-				//- console.log( `Donde: ${dondeImprimir}, Puntuacion: ${puntuando}, Hoy: ${dataHoy}, Posicion: ${posicionData}, URL: ${urlGet}` );
 			}
 		});
 	}
@@ -89,14 +87,14 @@ script( type="text/javascript" ).
 			
 				var totalHoy = "";
 				for( var count = 1; count <= intervalo.split( " " ).length; count++ ) {
-					var fila        = results.data[count];
+					var fila        = results.data[String(intervalo).split( " " )[count-1]];
 					var dataHoy     = fila[fila.length-1];
 					totalHoy = Number( totalHoy ) + Number( dataHoy );
 				};
 			
 				var totalAyer = "";
 				for( var count = 1; count <= intervalo.split( " " ).length; count++ ) {
-					var fila        = results.data[count];
+					var fila        = results.data[String(intervalo).split( " " )[count-1]];
 					var dataAyer     = fila[fila.length-2];
 					totalAyer = Number( totalAyer ) + Number( dataAyer );
 				};
@@ -108,6 +106,36 @@ script( type="text/javascript" ).
 					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${puntuacion( String( totalHoy ) )}` );
 				} else {
 					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${ String( totalHoy ) }` );
+				}
+				
+				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 5 )}%)` );
+				
+				if ( dataHoy >= dataAyer ) {
+					$( `.resumen${dondeImprimir} .cifras` ).addClass( "positivo" );
+				} else {
+					$( `.resumen${dondeImprimir} .cifras` ).addClass( "negativo" );
+				};
+				
+			}
+		});
+	}
+	
+	var resumenUltimoDia = function( dondeImprimir , puntuando , posicionData , urlGet ){
+		Papa.parse( urlGet , {
+			download: true,
+			complete: function(results) {
+				var fila            = results.data[posicionData];
+				var dataHoy         = fila[fila.length-1];
+				var dataAyer        = fila[fila.length-2];
+				var dataUltimoDia   = dataHoy - dataAyer;
+				
+				var posi_restante   = dataHoy - dataAyer;
+				var calculoPorcentaje 	= posi_restante * 100 / dataHoy;
+				
+				if ( puntuando === "si" ) {
+					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${puntuacion(dataUltimoDia)}` );
+				} else {
+					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${dataHoy}` );
 				}
 				
 				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 5 )}%)` );
@@ -145,6 +173,9 @@ div#resumen
 			}
 			div#resumen .resumen.positividadDiaria > p.titulo {
 				color: #ff5a00;
+			}
+			div#resumen .resumen.positividadDiaria > .cifras > span.numero:after {
+				content: "%";
 			}
 		script.
 			resumen( ".positividadDiaria" , "no" , 3 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto49/Positividad_Diaria_Media.csv" )
@@ -218,14 +249,8 @@ div#resumen
 				span.estado
 				span.porcentaje
 				
-	br
-	br
-	br
-	
-	
 	div.resumen.residenciasSanitarias
 		script.
-			//- resumenIntervaloDatos( ".residenciasSanitarias" , "si" , "17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto36/ResidenciasSanitarias.csv" );
 			resumenIntervaloDatos( ".residenciasSanitarias" , "si" , "33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto36/ResidenciasSanitarias.csv" );
 		div.icono
 			img( class='lazyload' data-src='./imagenes/resumen/residencia.png' )
@@ -234,6 +259,43 @@ div#resumen
 			span.numero
 				span.estado
 				span.porcentaje
+				
+	div.resumen.examenesPCR
+		script.
+			resumenIntervaloDatos( ".examenesPCR" , "si" , "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto7/PCR.csv" )
+		div.icono
+			img( class='lazyload' data-src='./imagenes/resumen/pcr.png' )
+		p.titulo Exámenes PCR últimas 24 horas
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+				
+	br
+	br
+	br
+	br
+	br
+	br
+	
+	
+
+	div.resumen.fallecidosDia
+		script.
+			/*
+			89
+			-75.2%
+			*/
+			//- resumen( ".fallecidosDia" , "si" , 4 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
+			resumenUltimoDia( ".fallecidosDia" , "si" , 4 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
+		div.icono
+			img( class='lazyload' data-src='./imagenes/resumen/none.png' )
+		p.titulo Fallecidos último día
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+
 
 	
 	br
@@ -241,48 +303,10 @@ div#resumen
 	br
 	br
 	br
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	br
+	br
+	br
+	br
 
 	div.resumen.sintomas
 		div.icono
@@ -307,26 +331,6 @@ div#resumen
 	//- 			img( class='lazyload' data-src=loadingggg )
 	//- 			span.estado
 	//- 			span.porcentaje
-
-	div.resumen.fallecidosDia
-		div.icono
-			img( class='lazyload' data-src='./imagenes/resumen/none.png' )
-		p.titulo Fallecidos último día
-		div.cifras
-			span.numero
-				img( class='lazyload' data-src=loadingggg )
-				span.estado
-				span.porcentaje
-
-	div.resumen.examenesPCR
-		div.icono
-			img( class='lazyload' data-src='./imagenes/resumen/pcr.png' )
-		p.titulo Exámenes PCR últimas 24 horas
-		div.cifras
-			span.numero
-				img( class='lazyload' data-src=loadingggg )
-				span.estado
-				span.porcentaje
 
 	//- FECHA TITULO
 	script.
@@ -385,39 +389,6 @@ div#resumen
 		});
 	//- FUNCTIONS
 	script.
-		// Agrega decimales
-		var puntuacion = function( cifra ){
-			var cifra = cifra.split( "." )[0]
-			try {
-
-				if ( isNaN( cifra ) ) {
-					return cifra = "S/I";
-				} else if ( cifra.length == 8 ) {
-					return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
-				} else if ( cifra.length == 7 ) {
-					return cifra.slice(0,1) + "." + cifra.slice(1,4) + "." + cifra.slice(4,7);
-				} else if ( cifra.length == 6 ) {
-					return cifra.slice(0,3) + "." + cifra.slice(3,6);
-				} else if ( cifra.length == 5 ) {
-					return cifra.slice(0,2) + "." + cifra.slice(2,5);
-				} else if ( cifra.length == 4 ) {
-					return cifra.slice(0,1) + "." + cifra.slice(1,4);
-				} else if ( cifra.length == 3 ) {
-					return cifra = cifra;
-				} else if ( cifra.length == 2 ) {
-					return cifra = cifra;
-				} else if ( cifra.length == 1 ) {
-					return cifra = cifra;
-				} else {
-					console.log( "No tengo un rango seteado." );
-					return cifra = "S/I";
-				};
-
-			} catch ( error ) {
-				console.log( "Error: " + error );
-			};
-		};
-
 		// RESUMENES: Agrega los datos a cada div de resumen
 		var resumiendo = function( nombreResumen , claseTR ){
 
@@ -447,12 +418,7 @@ div#resumen
 			} else {
 				$( "." + nombreResumen + " > div.cifras > span.numero > span.porcentaje" ).html( calculoInverso.toString().slice( 0 , 5 ) + "%)" )
 			};
-
-
 		};
-	//- TOTAL CASOS ACTIVOS
-	script.
-		
 	
 	//- CASOS NUEVOS
 	//- script.
@@ -461,9 +427,9 @@ div#resumen
 	//- 	},3000);
 	//- CASOS ACTIVOS
 	script.
-		setTimeout(function(){
-			resumiendo( "casosActivos" , "casosactivos" );
-		},3000);
+		//- setTimeout(function(){
+		//- 	resumiendo( "casosActivos" , "casosactivos" );
+		//- },3000);
 	//- SINTOMAS
 	script.
 		setTimeout(function(){
@@ -474,48 +440,48 @@ div#resumen
 		},3000);
 	//- RECUPERADOS ULTIMO DIA
 	script.
-		setTimeout(function(){
-			resumiendo( "recuperadosDia" , "recuperadosDia" );
-		},5000);
+		//- setTimeout(function(){
+		//- 	resumiendo( "recuperadosDia" , "recuperadosDia" );
+		//- },5000);
 	//- TOTAL RECUPERADOS 
 	script.
 		//- casosrecuperados
-		setTimeout(function(){
-			$( "div#resumen .resumen.recuperadosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".recuperadosTotal > td" ).last().html() ) );
-		},5000);
+		//- setTimeout(function(){
+		//- 	$( "div#resumen .resumen.recuperadosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".recuperadosTotal > td" ).last().html() ) );
+		//- },5000);
 	//- FALLECIDOS ULTIMO DIA
 	script.
-		setTimeout(function(){
-			resumiendo( "fallecidosDia" , "fallecidosDia" );
-		},3000);
+		//- setTimeout(function(){
+		//- 	resumiendo( "fallecidosDia" , "fallecidosDia" );
+		//- },3000);
 	//- TOTAL FALLECIDOS
 	script.
-		setTimeout(function(){
-			$( "div#resumen .resumen.fallecidosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".fallecidosTotal > td" ).last().html() ) );
-		},3000);
+		//- setTimeout(function(){
+		//- 	$( "div#resumen .resumen.fallecidosTotal > div.cifras > span.numero" ).html( puntuacion( $( ".fallecidosTotal > td" ).last().html() ) );
+		//- },3000);
 	//- VENTILADORES DISPONIBLES
 	script.
-		setTimeout(function(){
-			var ventiladoresDisponibles 		= $( $( "#ventiladores table tr" )[2] ).find( "td" ).last().html();
-			var ventiladoresDisponiblesHoy 	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[ $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-1 ] ).html();
-			var ventiladoresDisponiblesAyer 	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[ $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-2 ] ).html();
-			var ventiladoresRestante 			= ventiladoresDisponiblesHoy - ventiladoresDisponiblesAyer;
-			var calculoInversoDisponibles 		= ventiladoresRestante * 100 / ventiladoresDisponiblesHoy;
+		//- setTimeout(function(){
+		//- 	var ventiladoresDisponibles 		= $( $( "#ventiladores table tr" )[2] ).find( "td" ).last().html();
+		//- 	var ventiladoresDisponiblesHoy 	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[ $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-1 ] ).html();
+		//- 	var ventiladoresDisponiblesAyer 	= $( $( $( "#ventiladores table tr" )[2] ).find( "td" )[ $( $( "#ventiladores table tr" )[2] ).find( "td" ).length-2 ] ).html();
+		//- 	var ventiladoresRestante 			= ventiladoresDisponiblesHoy - ventiladoresDisponiblesAyer;
+		//- 	var calculoInversoDisponibles 		= ventiladoresRestante * 100 / ventiladoresDisponiblesHoy;
 
-			$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero" ).html( puntuacion( ventiladoresDisponibles ) + "<span class='estado'></span><span class='porcentaje'></span>" );
+		//- 	$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero" ).html( puntuacion( ventiladoresDisponibles ) + "<span class='estado'></span><span class='porcentaje'></span>" );
 			
-			if ( ventiladoresRestante.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
-				// es positivo
-				$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras " ).addClass( "positivo" );
-			} else {
-				// es negativo
-				$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras " ).addClass( "negativo" );
-			};
+		//- 	if ( ventiladoresRestante.toString().slice( 0 , 4 ).split( "-" ).length == 1 ) {
+		//- 		// es positivo
+		//- 		$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras " ).addClass( "positivo" );
+		//- 	} else {
+		//- 		// es negativo
+		//- 		$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras " ).addClass( "negativo" );
+		//- 	};
 
-			$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoDisponibles.toString().slice( 0 , 5 ) + "%)" )
-		},3000);
+		//- 	$( "div#resumen .resumen.ventiladoresDisponibles > div.cifras > span.numero > span.porcentaje" ).html( calculoInversoDisponibles.toString().slice( 0 , 5 ) + "%)" )
+		//- },3000);
 	//- PCR
-	script.
+	//- script.
 		setTimeout(function(){
 			var sumaTotal = 0;
 
@@ -568,7 +534,7 @@ div#resumen
 
 		},3000);
 	//- Cupos Residencias Sanitarias
-	script.
+	//- script.
 
 		setTimeout(function(){
 
@@ -613,7 +579,7 @@ div#resumen
 
 		},3000);
 	//- Residencias Sanitarias
-	script.
+	//- script.
 
 		setTimeout(function(){
 
