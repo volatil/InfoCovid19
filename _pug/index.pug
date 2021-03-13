@@ -53,13 +53,11 @@ html( lang="es" )
 				});
 			};
 
-
-
 		include ../_components/data/resumen
 
 		.graficos
 			
-			//- include ../_components/data/casosTotales
+			include ../_components/data/casosTotales
 
 			.tabs.contagiosDia
 				.tab
@@ -71,54 +69,43 @@ html( lang="es" )
 					div
 						include ../_components/data/casosActivosPorDia
 						
-						
-						
-						
-						
 				//- .tab
 				//- 	p Recuperados Por Día
 				//- 	div
 				//- 		include ../_components/data/recuperadosPorDia
-				
-				
-				
-				
-				
 				
 				.tab
 					p Fallecidos Por Día
 					div
 						include ../_components/data/fallecidosPorDia
 			
-			//- include ../_components/data/comunasFase
+			include ../_components/data/comunasFase
 			
-			//- include ../_components/data/contagiosPorRegion
+			include ../_components/data/contagiosPorRegion
 
 			.tabs
 				.tab
 					p UCI Reg. Metrop.
 					div
-						//- include ../_components/data/uciRM 
+						include ../_components/data/uciRM 
 				.tab
 					p UCI Regiones
 					div
-						//- include ../_components/data/uciPorRegion
+						include ../_components/data/uciPorRegion
 
 			.tabs
 				.tab
 					p PCR Reg. Metrop.
 					div
-						//- include ../_components/data/pcrRM
+						include ../_components/data/pcrRM
 				.tab
 					p PCR Regiones
 					div
-						//- include ../_components/data/pcrPorRegion
+						include ../_components/data/pcrPorRegion
 
-			//- include ../_components/data/ventiladores
-			//- include ../_components/data/rangoEtario
-			
-			//- TESTING
-			//- include ../_components/data/residenciasSanitarias
+			include ../_components/data/ventiladores
+			include ../_components/data/rangoEtario
+			include ../_components/data/residenciasSanitarias
 			
 
 			//- TABS
@@ -139,20 +126,6 @@ html( lang="es" )
 					$( this ).parent().find( ".tab > div" ).css( "visibility" , "hidden" );
 					$( this ).find( "> div" ).css( "visibility" , "initial" );
 				
-				});
-
-
-			script.
-				$( document ).ready(function(){
-
-					//- Si no carga RESUMEN
-					setTimeout(function(){
-						if ( $( "div#resumen .resumen.totalCasos > div.cifras" ).html().length <= 88  ) {
-							console.log( "Reload ... 1" );
-							location.reload();
-						};
-					},3000);
-
 				});
 
 		include ../_components/footer

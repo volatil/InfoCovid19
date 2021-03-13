@@ -1,4 +1,4 @@
-style.
+style( type='text/css' ).
 	div.modal-fondo {
 		background: #00000085;
 		position: fixed;
@@ -66,34 +66,29 @@ div.modal-contenido
 	p La última actualización fue el 
 		span.dia  
 		| , debido que MINSAL no ha liberado los datos, lamentamos los inconvenientes.
-	script.
-		$( document ).ready(function(){
-
-			setTimeout(function(){
-
-				var fechaDiaReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[2]
-				if( fechaDiaReporte.split( "" ).length == 2 && fechaDiaReporte.split( "" )[0] == 0 ) {
-					var fechaDiaReporte = fechaDiaReporte.split( "" )[1];
-				};
-
-				var fechaMesReporte 				= $( "#TotalesNacionales th" ).last().html().split( "-" )[1]
-				if( fechaMesReporte.split( "" ).length == 2 && fechaMesReporte.split( "" )[0] == 0 ) {
-					var fechaMesReporte = fechaMesReporte.split( "" )[1];
-				};
-
-				var fechaActual 		= new Date().getDate();
-
-				$( "div.modal-contenido p span.dia" ).html( fechaDiaReporte + "/" + fechaMesReporte + "/2020" );
-
-				if( fechaDiaReporte != fechaActual && new Date().getHours() >= "8" ) {
+	
+	script( type="text/javascript" ).
+		Papa.parse( "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" , {
+			download: true,
+			complete: function(results) {
+				var fila            = results.data[0];
+				var fechaHoy        = fila[fila.length-1];
+				var fechaDiaReporte = fechaHoy.split( "-" )[2];
+				var fechaMesReporte = fechaHoy.split( "-" )[1];
+				var fechaAnoReporte = fechaHoy.split( "-" )[0];
+				var fechaActual 	= new Date().getDate();
+				
+				$( "div.modal-contenido p span.dia" ).html( `${fechaDiaReporte}/${fechaMesReporte}/${fechaAnoReporte}` );
+				
+				if( fechaDiaReporte != fechaActual && new Date().getHours() >= "1" ) {
 					$( ".modal-fondo" ).show();
 					$( ".modal-contenido" ).show();
 				};
-			
-			},1000);
-			
+				
+				
+			}
 		});
-
+		
 		$( ".modal-fondo, .modal-contenido > span" ).click(function(){
 			$( "div.modal-fondo" ).hide();
 			$( "div.modal-contenido" ).hide();

@@ -1,6 +1,6 @@
 
-- var loadingggg = './imagenes/resumen/loading2.gif';
-- var loadingggg = './imagenes/resumen/loading1.gif';
+//- - var loadingggg = './imagenes/resumen/loading2.gif';
+//- - var loadingggg = './imagenes/resumen/loading1.gif';
 
 div#TotalesNacionales(style='display:none;')
 
@@ -68,7 +68,7 @@ script( type="text/javascript" ).
 					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${dataHoy}` );
 				}
 				
-				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 5 )}%)` );
+				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 4 )}%)` );
 				
 				if ( dataHoy >= dataAyer ) {
 					$( `.resumen${dondeImprimir} .cifras` ).addClass( "positivo" );
@@ -108,7 +108,7 @@ script( type="text/javascript" ).
 					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${ String( totalHoy ) }` );
 				}
 				
-				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 5 )}%)` );
+				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 4 )}%)` );
 				
 				if ( dataHoy >= dataAyer ) {
 					$( `.resumen${dondeImprimir} .cifras` ).addClass( "positivo" );
@@ -133,12 +133,12 @@ script( type="text/javascript" ).
 				var calculoPorcentaje 	= posi_restante * 100 / dataHoy;
 				
 				if ( puntuando === "si" ) {
-					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${puntuacion(dataUltimoDia)}` );
+					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${puntuacion(String(dataUltimoDia))}` );
 				} else {
-					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${dataHoy}` );
+					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${dataUltimoDia}` );
 				}
 				
-				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 5 )}%)` );
+				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 4 )}%)` );
 				
 				if ( dataHoy >= dataAyer ) {
 					$( `.resumen${dondeImprimir} .cifras` ).addClass( "positivo" );
@@ -209,6 +209,21 @@ div#resumen
 				span.estado
 				span.porcentaje
 	
+	div.resumen.fallecidosDia
+		script.
+			/*
+			89
+			-75.2%
+			*/
+			resumenUltimoDia( ".fallecidosDia" , "si" , 4 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
+		div.icono
+			img( class='lazyload' data-src='./imagenes/resumen/none.png' )
+		p.titulo Fallecidos último día
+		div.cifras
+			span.numero
+				span.estado
+				span.porcentaje
+	
 	div.resumen.fallecidosTotal
 		script.
 			resumen( ".fallecidosTotal" , "si" , 4 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
@@ -217,7 +232,16 @@ div#resumen
 		p.titulo Total Fallecidos
 		div.cifras
 			span.numero
-
+	
+	div.resumen.recuperadosTotal
+		script.
+			resumen( ".recuperadosTotal" , "si" , 10 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
+		div.icono
+			img( class='lazyload' data-src='./imagenes/resumen/check.png' )
+		p.titulo Total Recuperados
+		div.cifras
+			span.numero
+	
 	div.resumen.ventiladoresDisponibles
 		script.
 			resumen( ".ventiladoresDisponibles" , "si" , 2 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/input/ReporteDiario/NumeroVentiladores.csv" )
@@ -228,15 +252,6 @@ div#resumen
 			span.numero
 				span.estado
 				span.porcentaje
-
-	div.resumen.recuperadosTotal
-		script.
-			resumen( ".recuperadosTotal" , "si" , 10 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
-		div.icono
-			img( class='lazyload' data-src='./imagenes/resumen/check.png' )
-		p.titulo Total Recuperados
-		div.cifras
-			span.numero
 
 	div.resumen.cuposResidenciasSanitarias
 		script.
@@ -259,7 +274,7 @@ div#resumen
 			span.numero
 				span.estado
 				span.porcentaje
-				
+	
 	div.resumen.examenesPCR
 		script.
 			resumenIntervaloDatos( ".examenesPCR" , "si" , "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto7/PCR.csv" )
@@ -270,57 +285,20 @@ div#resumen
 			span.numero
 				span.estado
 				span.porcentaje
-				
-	br
-	br
-	br
-	br
-	br
-	br
 	
-	
-
-	div.resumen.fallecidosDia
-		script.
-			/*
-			89
-			-75.2%
-			*/
-			//- resumen( ".fallecidosDia" , "si" , 4 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
-			resumenUltimoDia( ".fallecidosDia" , "si" , 4 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
-		div.icono
-			img( class='lazyload' data-src='./imagenes/resumen/none.png' )
-		p.titulo Fallecidos último día
-		div.cifras
-			span.numero
-				span.estado
-				span.porcentaje
-
-
-	
-	br
-	br
-	br
-	br
-	br
-	br
-	br
-	br
-	br
-
-	div.resumen.sintomas
-		div.icono
-			img( class='lazyload' data-src='./imagenes/resumen/sintomas.png' )
-		p.titulo Casos nuevos
-		div.sintoma
-			p.conSintomas
-				strong 
-					img( class='lazyload' data-src=loadingggg )
-				span Con sintomas
-			p.sinSintomas
-				strong 
-					img( class='lazyload' data-src=loadingggg )
-				span Sin sintomas
+	//- div.resumen.sintomas
+	//- 	div.icono
+	//- 		img( class='lazyload' data-src='./imagenes/resumen/sintomas.png' )
+	//- 	p.titulo Casos nuevos
+	//- 	div.sintoma
+	//- 		p.conSintomas
+	//- 			strong 
+	//- 				img( class='lazyload' data-src=loadingggg )
+	//- 			span Con sintomas
+	//- 		p.sinSintomas
+	//- 			strong 
+	//- 				img( class='lazyload' data-src=loadingggg )
+	//- 			span Sin sintomas
 
 	//- div.resumen.recuperadosDia
 	//- 	div.icono
