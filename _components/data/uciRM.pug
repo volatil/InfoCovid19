@@ -1,52 +1,58 @@
 
 div.grafico#uciPorRegion(style='display:none;height:500px;')
 div.grafico#uci-metropolitana-grafico( style='width: 100%; height: 500px;' )
+	button.magia Mostrar data
 script.
 	traeCovid( "#uciPorRegion" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto8/UCI.csv" );
 
 //- INGRESA DATA
 //- REGION METROPOLITANA
 script.
-
-	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(uciMetropolitana);
-
-	function uciMetropolitana() { 
-			var datauciPorRegion = google.visualization.arrayToDataTable([
-				['Fecha' , 'Metropolitana'],
-				['0' , 0],
-		]);
-		
-		var options = {
-			title : 'UCI: Región Metropolitana (Por Día)',
-			vAxis: {title: 'Exámenes'},
-			hAxis: {title: 'Días'},
-			seriesType: 'bars',
-			colors: ['#0099c6'] ,
-
-			legend: { position: 'top', maxLines: 3 },
-			bar: { groupWidth: '75%' },
-			isStacked: true
-		};
-
-		var chart = new google.visualization.ComboChart(document.getElementById('uci-metropolitana-grafico'));
-		chart.draw(datauciPorRegion, options);
+	var activaUCIrm = function(){
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(uciMetropolitana);
 	
-		for ( sumaTR = 3 ; sumaTR <= $( $( "#uciPorRegion table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
-		
-			var fecha					= $( $( $( "#uciPorRegion table tr" )[0] ).find( "th" )[sumaTR] ).html();
-			var metropolitana				= $( $( $( "#uciPorRegion table tr" )[7] ).find( "td" )[sumaTR] ).html();
-			if ( metropolitana == "" ) {
-				var metropolitana = "0";
+		function uciMetropolitana() { 
+				var datauciPorRegion = google.visualization.arrayToDataTable([
+					['Fecha' , 'Metropolitana'],
+					['0' , 0],
+			]);
+			
+			var options = {
+				title : 'UCI: Región Metropolitana (Por Día)',
+				vAxis: {title: 'Exámenes'},
+				hAxis: {title: 'Días'},
+				seriesType: 'bars',
+				colors: ['#0099c6'] ,
+	
+				legend: { position: 'top', maxLines: 3 },
+				bar: { groupWidth: '75%' },
+				isStacked: true
 			};
-
-			var push_todosTotales 	= '[["' + fecha + '",' + metropolitana + ']]';
-			datauciPorRegion.addRows(JSON.parse(push_todosTotales));
-
+	
+			var chart = new google.visualization.ComboChart(document.getElementById('uci-metropolitana-grafico'));
+			chart.draw(datauciPorRegion, options);
+		
+			for ( sumaTR = 3 ; sumaTR <= $( $( "#uciPorRegion table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+			
+				var fecha					= $( $( $( "#uciPorRegion table tr" )[0] ).find( "th" )[sumaTR] ).html();
+				var metropolitana				= $( $( $( "#uciPorRegion table tr" )[7] ).find( "td" )[sumaTR] ).html();
+				if ( metropolitana == "" ) {
+					var metropolitana = "0";
+				};
+	
+				var push_todosTotales 	= '[["' + fecha + '",' + metropolitana + ']]';
+				datauciPorRegion.addRows(JSON.parse(push_todosTotales));
+	
+			}
+	
+			var chart = new google.visualization.ComboChart(document.getElementById('uci-metropolitana-grafico'));
+			chart.draw(datauciPorRegion, options);
+	
 		}
-
-		var chart = new google.visualization.ComboChart(document.getElementById('uci-metropolitana-grafico'));
-		chart.draw(datauciPorRegion, options);
-
-	}
+	};
+	$( "#uci-metropolitana-grafico button.magia" ).click(function(){
+		activaUCIrm();
+		$( this ).hide();
+	});
 	

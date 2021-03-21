@@ -958,6 +958,12 @@ table tbody tr td {
   text-align: center;
 }
 
+button.magia {
+  margin: 20px auto 0;
+  display: block;
+  padding: 10px;
+}
+
 .ilustracionHeader {
   height: 155px;
   width: 100%;

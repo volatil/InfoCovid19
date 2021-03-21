@@ -7,6 +7,15 @@
 @import 'dashboard';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap');
+
+button.magia {
+	margin: 20px auto 0;
+	display: block;
+	padding: 10px;
+	// position: relative;
+	// bottom: 40px;
+}
+
 .ilustracionHeader {
 	height: 155px;
 	width: 100%;
@@ -29,10 +38,10 @@
 	margin: 0;
 }
 .ilustracionHeader > p span {
-    position: absolute;
-    top: -30px;
-    font-size: 0.3em;
-    color: #dd3232;
+	position: absolute;
+	top: -30px;
+	font-size: 0.3em;
+	color: #dd3232;
 }
 .ilustracionHeader > img {
 	position: absolute;

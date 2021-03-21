@@ -28,6 +28,7 @@ div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
 		label( for='buscarRegionComuna' ) Buscar
 		input( id='buscarRegionComuna' , placeholder='Región o comuna' , type='text' )
 
+	button.magia Mostrar data
 	div
 		table
 			thead
@@ -40,82 +41,84 @@ div.grafico#contagiosPorRegion-grafico( style='width: 100%; height: 500px;' )
 			tbody
 
 script.
-	traeCovid( "#contagiosPorRegion" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto25/CasosActualesPorComuna.csv" );
 
 //- INGRESA DATA
 script.
-	$( document ).ready(function(){
-
-		setTimeout(function(){
-
-			for ( sumaTR = 1 ; sumaTR <= $( "#contagiosPorRegion table" ).find( "tr" ).length-2 ; sumaTR++  ) {
-
-				var nombreRegion 		= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[0] ).first().html();
-				var nombreComuna 	= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[2] ).first().html();
-				var cantPoblacion 		= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[4] ).first().html();
-				var contagiosRegion 	= $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" ).last().html();
-				//- var porcentaje          = contagiosRegion*100/cantPoblacion;
-				var porcentaje = function(){
-					if ( contagiosRegion*100/cantPoblacion == Infinity ) {
-						return "";
-					} else {
-						var algo = contagiosRegion*100/cantPoblacion;
-						return algo.toFixed( 2 )+"%";
+	var contagiosActualesRegion = function(){
+		traeCovid( "#contagiosPorRegion" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto25/CasosActualesPorComuna.csv" );
+		$( document ).ready(function(){
+	
+			setTimeout(function(){
+	
+				for ( sumaTR = 1 ; sumaTR <= $( "#contagiosPorRegion table" ).find( "tr" ).length-2 ; sumaTR++  ) {
+	
+					var nombreRegion 		= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[0] ).first().html();
+					var nombreComuna 	= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[2] ).first().html();
+					var cantPoblacion 		= $( $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" )[4] ).first().html();
+					var contagiosRegion 	= $( $( "#contagiosPorRegion table" ).find( "tr" )[sumaTR] ).find( "td" ).last().html();
+					//- var porcentaje          = contagiosRegion*100/cantPoblacion;
+					var porcentaje = function(){
+						if ( contagiosRegion*100/cantPoblacion == Infinity ) {
+							return "";
+						} else {
+							var algo = contagiosRegion*100/cantPoblacion;
+							return algo.toFixed( 2 )+"%";
+						};
 					};
+	
+					$( ".grafico#contagiosPorRegion-grafico > div table tbody" ).append( "" +
+						"<tr>" +
+							"<td>" + nombreRegion + "</td>" +
+							"<td>" + nombreComuna + "</td>" +
+							"<td>" + cantPoblacion + "</td>" +
+							"<td>" + contagiosRegion + "</td>" +
+							"<td>" + porcentaje() + "</td>" +
+						"</tr>" +
+					"" );
+	
 				};
-
-				$( ".grafico#contagiosPorRegion-grafico > div table tbody" ).append( "" +
-					"<tr>" +
-						"<td>" + nombreRegion + "</td>" +
-						"<td>" + nombreComuna + "</td>" +
-						"<td>" + cantPoblacion + "</td>" +
-						"<td>" + contagiosRegion + "</td>" +
-						"<td>" + porcentaje() + "</td>" +
-					"</tr>" +
-				"" );
-
-			};
-
-			$( ".grafico#contagiosPorRegion-grafico h2 span" ).html( $( $( "#contagiosPorRegion table tr" )[0] ).find( "th" ).last().html() );
-		
-		},1000);
-
-	});
-
-script.
-	$( document ).ready(function(){
-		setTimeout(function(){
-			$.each( $( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ) , function(){
-				var region 		= $( $( this ).find( "td" )[0] ).html().toLowerCase();
-				var comuna 	= $( $( this ).find( "td" )[1] ).html().toLowerCase();
-				$( this ).addClass( comuna ).addClass( region );
-				$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr.total" ).remove();
-			});
-		},2000)
-	});
-
-	//- BUSCADOR
-	$( ".grafico#contagiosPorRegion-grafico > form > input" ).keyup(function(){
-
-		$.each( $( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ) , function(){
-
-			var buscado = $( ".grafico#contagiosPorRegion-grafico > form > input" ).val();
-
-			if( buscado.length <= 1 ) {
-				$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ).removeClass( "hide" );
-				$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ).removeClass( "show" );
-			} else if ( $( this ).attr( "class" ).indexOf( buscado ) >= 0 ){
-				$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ).addClass( "hide" );
-				$( this ).addClass( "show" );
-			} else {
-				$( this ).removeClass( "show" );
-				$( this ).removeClass( "hide" );
-				$( this ).addClass( "hide" );
-			};
-
+	
+				$( ".grafico#contagiosPorRegion-grafico h2 span" ).html( $( $( "#contagiosPorRegion table tr" )[0] ).find( "th" ).last().html() );
+			
+			},1000);
+	
+			setTimeout(function(){
+				$.each( $( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ) , function(){
+					var region 		= $( $( this ).find( "td" )[0] ).html().toLowerCase();
+					var comuna 	= $( $( this ).find( "td" )[1] ).html().toLowerCase();
+					$( this ).addClass( comuna ).addClass( region );
+					$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr.total" ).remove();
+				});
+			},2000)
+			
 		});
-
+	
+		//- BUSCADOR
+		$( ".grafico#contagiosPorRegion-grafico > form > input" ).keyup(function(){
+	
+			$.each( $( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ) , function(){
+	
+				var buscado = $( ".grafico#contagiosPorRegion-grafico > form > input" ).val();
+	
+				if( buscado.length <= 1 ) {
+					$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ).removeClass( "hide" );
+					$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ).removeClass( "show" );
+				} else if ( $( this ).attr( "class" ).indexOf( buscado ) >= 0 ){
+					$( ".grafico#contagiosPorRegion-grafico > div > table tbody tr" ).addClass( "hide" );
+					$( this ).addClass( "show" );
+				} else {
+					$( this ).removeClass( "show" );
+					$( this ).removeClass( "hide" );
+					$( this ).addClass( "hide" );
+				};
+	
+			});
+	
+		});
+	};
+	$( "#contagiosPorRegion-grafico button.magia" ).click(function(){
+		contagiosActualesRegion();
+		$( this ).hide();
 	});
-
 
 
