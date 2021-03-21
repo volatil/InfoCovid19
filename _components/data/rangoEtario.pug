@@ -3,50 +3,62 @@
 
 div.grafico#rangoEtario(style='display:none;')
 div.grafico#rangoEtario-grafico( style='width: 100%; height: 500px;' )
+	button.magia Mostrar data
+	
 script.
 	traeCovid( "#rangoEtario" , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/input/ReporteDiario/FallecidosEtario.csv" );
 
 //- INGRESA DATA
 script.
-	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(rangoEtario);
-
-	function rangoEtario() { 
-			var dataRangoEtarioDia = google.visualization.arrayToDataTable([
-				['Fecha', '<=39' , '40-49', '50-59', '60-69', '70-79', '80-89', '>=90'],
-				['0',  0, 0, 0, 0, 0, 0, 0],
-		]);
-
-		var options = {
-			title : 'Fallecidos por Rango Etario (Total)',
-			vAxis: {title: 'Edad'},
-			hAxis: {title: 'Días'},
-			seriesType: 'bars',
-
-			legend: { position: 'top', maxLines: 3 },
-			bar: { groupWidth: '75%' },
-			isStacked: true
-		};
-
-		var chart = new google.visualization.ComboChart(document.getElementById('rangoEtario-grafico'));
-		chart.draw(dataRangoEtarioDia, options);
+	var rangoEtario = function(){
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(rangoEtario);
 	
-		for ( sumaTR = 1 ; sumaTR <= $( $( "#rangoEtario table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+		function rangoEtario() { 
+				var dataRangoEtarioDia = google.visualization.arrayToDataTable([
+					['Fecha', '<=39' , '40-49', '50-59', '60-69', '70-79', '80-89', '>=90'],
+					['0',  0, 0, 0, 0, 0, 0, 0],
+			]);
+	
+			var options = {
+				title : 'Fallecidos por Rango Etario (Total)',
+				vAxis: {title: 'Edad'},
+				hAxis: {title: 'Días'},
+				seriesType: 'bars',
+	
+				legend: { position: 'top', maxLines: 3 },
+				bar: { groupWidth: '75%' },
+				isStacked: true
+			};
+	
+			var chart = new google.visualization.ComboChart(document.getElementById('rangoEtario-grafico'));
+			chart.draw(dataRangoEtarioDia, options);
 		
-			var fecha		= $( $( $( "#rangoEtario table tr" )[0] ).find( "th" )[sumaTR] ).html();
-			var menos39	= $( $( $( "#rangoEtario table tr" )[1] ).find( "td" )[sumaTR] ).html();
-			var de40a49	= $( $( $( "#rangoEtario table tr" )[2] ).find( "td" )[sumaTR] ).html();
-			var de50a59	= $( $( $( "#rangoEtario table tr" )[3] ).find( "td" )[sumaTR] ).html();
-			var de60a69	= $( $( $( "#rangoEtario table tr" )[4] ).find( "td" )[sumaTR] ).html();
-			var de70a79	= $( $( $( "#rangoEtario table tr" )[5] ).find( "td" )[sumaTR] ).html();
-			var de80a89	= $( $( $( "#rangoEtario table tr" )[6] ).find( "td" )[sumaTR] ).html();
-			var mas90		= $( $( $( "#rangoEtario table tr" )[7] ).find( "td" )[sumaTR] ).html();
-			var push_todosTotales 	= '[["' + fecha + '",' + menos39 + ',' + de40a49 + ',' + de50a59 + ',' + de60a69 + ',' + de70a79 + ',' + de80a89 + ',' + mas90 + ']]';
-			dataRangoEtarioDia.addRows(JSON.parse(push_todosTotales));
-
+			for ( sumaTR = 1 ; sumaTR <= $( $( "#rangoEtario table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
+			
+				var fecha		= $( $( $( "#rangoEtario table tr" )[0] ).find( "th" )[sumaTR] ).html();
+				var menos39	= $( $( $( "#rangoEtario table tr" )[1] ).find( "td" )[sumaTR] ).html();
+				var de40a49	= $( $( $( "#rangoEtario table tr" )[2] ).find( "td" )[sumaTR] ).html();
+				var de50a59	= $( $( $( "#rangoEtario table tr" )[3] ).find( "td" )[sumaTR] ).html();
+				var de60a69	= $( $( $( "#rangoEtario table tr" )[4] ).find( "td" )[sumaTR] ).html();
+				var de70a79	= $( $( $( "#rangoEtario table tr" )[5] ).find( "td" )[sumaTR] ).html();
+				var de80a89	= $( $( $( "#rangoEtario table tr" )[6] ).find( "td" )[sumaTR] ).html();
+				var mas90		= $( $( $( "#rangoEtario table tr" )[7] ).find( "td" )[sumaTR] ).html();
+				var push_todosTotales 	= '[["' + fecha + '",' + menos39 + ',' + de40a49 + ',' + de50a59 + ',' + de60a69 + ',' + de70a79 + ',' + de80a89 + ',' + mas90 + ']]';
+				dataRangoEtarioDia.addRows(JSON.parse(push_todosTotales));
+	
+			}
+	
+			var chart = new google.visualization.ComboChart(document.getElementById('rangoEtario-grafico'));
+			chart.draw(dataRangoEtarioDia, options);
+	
 		}
-
-		var chart = new google.visualization.ComboChart(document.getElementById('rangoEtario-grafico'));
-		chart.draw(dataRangoEtarioDia, options);
-
-	}
+	};
+	$( "#rangoEtario-grafico button.magia" ).click(function(){
+		rangoEtario();
+		$( this ).hide();
+	});
+	
+	
+	
+	

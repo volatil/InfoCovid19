@@ -962,6 +962,7 @@ button.magia {
   margin: 20px auto 0;
   display: block;
   padding: 10px;
+  cursor: pointer;
 }
 
 .ilustracionHeader {
