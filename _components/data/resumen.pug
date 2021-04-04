@@ -125,12 +125,17 @@ script( type="text/javascript" ).
 			download: true,
 			complete: function(results) {
 				var fila            = results.data[posicionData];
-				var dataHoy         = fila[fila.length-1];
-				var dataAyer        = fila[fila.length-2];
-				var dataUltimoDia   = dataHoy - dataAyer;
+				var dataHoy_total         = fila[fila.length-1];
+				var dataAyer_total        = fila[fila.length-2];
+				var dataAnteAyer_total    = fila[fila.length-3];
+				var dataUltimoDia   =  dataHoy_total-dataAyer_total;
 				
-				var posi_restante   = dataHoy - dataAyer;
-				var calculoPorcentaje 	= posi_restante * 100 / dataHoy;
+				var dataAyer_dia = dataAyer_total-dataAnteAyer_total;
+				var dataHoy_dia = dataHoy_total-dataAyer_total;
+				
+				var porcentaje      = Number(dataAyer_dia)*100/Number(dataHoy_dia);
+				var calculoPorcentaje = Number(porcentaje)-100;
+				calculoPorcentaje = String(calculoPorcentaje).replaceAll( "-" , "" );
 				
 				if ( puntuando === "si" ) {
 					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${puntuacion(String(dataUltimoDia))}` );
@@ -140,7 +145,7 @@ script( type="text/javascript" ).
 				
 				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 4 )}%)` );
 				
-				if ( dataHoy >= dataAyer ) {
+				if ( dataHoy_dia >= dataAyer_dia ) {
 					$( `.resumen${dondeImprimir} .cifras` ).addClass( "positivo" );
 				} else {
 					$( `.resumen${dondeImprimir} .cifras` ).addClass( "negativo" );
@@ -149,6 +154,7 @@ script( type="text/javascript" ).
 			}
 		});
 	}
+	
 	
 div#resumen
 	div.fecha
@@ -215,7 +221,7 @@ div#resumen
 			89
 			-75.2%
 			*/
-			resumenUltimoDia( ".fallecidosDia" , "si" , 4 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
+			resumenUltimoDia( ".fallecidosDia" , "no" , 4 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
 		div.icono
 			img( class='lazyload' data-src='./imagenes/resumen/none.png' )
 		p.titulo Fallecidos último día
