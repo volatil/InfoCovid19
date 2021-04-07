@@ -159,11 +159,7 @@ div#resumen .resumen > div.cifras.negativo > span.numero > span.porcentaje {
   color: #f02c2c;
 }
 
-div#resumen .resumen > div.cifras.positivo > span.numero > span.porcentaje:before {
-  content: "(+";
-}
-
-div#resumen .resumen > div.cifras.negativo > span.numero > span.porcentaje:before {
+div#resumen .resumen > div.cifras > span.numero > span.porcentaje:before {
   content: "(";
 }
 

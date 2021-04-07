@@ -61,6 +61,10 @@ script( type="text/javascript" ).
 				var dataAyer        = todaLaFila[todaLaFila.length-2];
 				var posi_restante   = dataHoy - dataAyer;
 				var calculoPorcentaje 	= posi_restante * 100 / dataHoy;
+				if( String(calculoPorcentaje).includes( "-" ) ){
+					calculoPorcentaje = String(calculoPorcentaje).replaceAll( "-" , "" );
+				}
+				console.log( `calculoPorcentaje ${calculoPorcentaje}` )
 				
 				if ( puntuando === "si" ) {
 					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${puntuacion(dataHoy)}` );

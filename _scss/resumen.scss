@@ -111,12 +111,15 @@ div#resumen .resumen > div.cifras.positivo > span.numero > span.porcentaje {
 div#resumen .resumen > div.cifras.negativo > span.numero > span.porcentaje {
 	color: $negativo;
 }
-div#resumen .resumen > div.cifras.positivo > span.numero > span.porcentaje:before {
-	content: "(+";
-}
-div#resumen .resumen > div.cifras.negativo > span.numero > span.porcentaje:before {
+div#resumen .resumen > div.cifras > span.numero > span.porcentaje:before {
 	content: "(";
 }
+// div#resumen .resumen > div.cifras.positivo > span.numero > span.porcentaje:before {
+// 	content: "(";
+// }
+// div#resumen .resumen > div.cifras.negativo > span.numero > span.porcentaje:before {
+// 	content: "(";
+// }
 div#resumen .resumen.sintomas > div.sintoma {
 	width: calc( 100% - 95px );
 	display: block;
