@@ -64,12 +64,16 @@ script( type="text/javascript" ).
 				if( String(calculoPorcentaje).includes( "-" ) ){
 					calculoPorcentaje = String(calculoPorcentaje).replaceAll( "-" , "" );
 				}
-				console.log( `calculoPorcentaje ${calculoPorcentaje}` )
 				
 				if ( puntuando === "si" ) {
 					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${puntuacion(dataHoy)}` );
 				} else {
-					$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${dataHoy}` );
+					if( dondeImprimir == ".positividadDiaria" ) {
+						var dataHoy100 = Number(dataHoy)*100;
+						$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${dataHoy100}` );
+					} else {
+						$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${dataHoy100}` );
+					};
 				}
 				
 				$( `.resumen${dondeImprimir} .cifras .numero .porcentaje` ).html( `${String(calculoPorcentaje).slice( 0 , 4 )}%)` );
@@ -79,7 +83,6 @@ script( type="text/javascript" ).
 				} else {
 					$( `.resumen${dondeImprimir} .cifras` ).addClass( "negativo" );
 				};
-				
 			}
 		});
 	}
@@ -222,10 +225,6 @@ div#resumen
 	
 	div.resumen.fallecidosDia
 		script.
-			/*
-			89
-			-75.2%
-			*/
 			resumenUltimoDia( ".fallecidosDia" , "no" , 4 , "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto5/TotalesNacionales.csv" )
 		div.icono
 			img( class='lazyload' data-src='./imagenes/resumen/none.png' )
