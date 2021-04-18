@@ -70,7 +70,7 @@ script( type="text/javascript" ).
 				} else {
 					if( dondeImprimir == ".positividadDiaria" ) {
 						var dataHoy100 = Number(dataHoy)*100;
-						$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${dataHoy100}` );
+						$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${String( dataHoy100 ).slice( 0 , 4 )}` );
 					} else {
 						$( `.resumen${dondeImprimir} .cifras .numero` ).append( `${dataHoy100}` );
 					};
