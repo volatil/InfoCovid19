@@ -1,4 +1,15 @@
 
+style( type="text/css" ).
+	#casosActivos-grafico {
+		width: 2200px !important;
+	}
+	#casosActivos-grafico.fixAncho {
+		overflow: scroll !important;
+		overflow-y: hidden !important;
+		overflow-x: auto;
+		width: 100% !important;
+	}
+
 div.grafico#casosActivos-grafico( style='width: 100%; height: 500px;' )
 
 	script.
@@ -36,3 +47,13 @@ div.grafico#casosActivos-grafico( style='width: 100%; height: 500px;' )
 			chart.draw(dataActualesDia, options);
 
 		}
+
+	script( type="text/javascript" ).
+		console.log( "cargando ..." );
+		setTimeout(function(){
+			console.log( "voy!" );
+			//- setTimeout(function(){
+				console.log( "entre!" );
+				$( "#casosActivos-grafico" ).addClass( "fixAncho" );
+			//- },2000);
+		},2000);
