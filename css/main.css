@@ -797,6 +797,17 @@ body {
   display: block;
 }
 
+/*
+================================
+=> LOADING DENTRO DE LOS COMPONENTS CON BOTON QUE TRAEN LA DATA
+================================
+*/
+.grafico img.cargandoData {
+  margin: 0 auto;
+  display: block;
+  width: 100px;
+}
+
 @media (max-width: 768px) {
   .graficos > #casosTotales,
 .graficos .grafico {

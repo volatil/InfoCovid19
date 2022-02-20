@@ -52,6 +52,8 @@ script.
 		}
 	};
 	$( "#uci-metropolitana-grafico button.magia" ).click(function(){
+		var dondeEstoy = $( this ).parent().attr( "id" );
+		$( `.grafico#${ dondeEstoy } > div` ).before().append( `<img class="cargandoData" src="./imagenes/resumen/loading2.gif" alt="Cargando ..." />` )
 		activaUCIrm();
 		$( this ).hide();
 	});
