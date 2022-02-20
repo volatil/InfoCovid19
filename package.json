@@ -1,0 +1,8 @@
+{
+	"name": "infocovid19" ,
+	"version": "20200220.0337" ,
+	"descripcion": "Estadisticas Covid Chile" ,
+	"main": "index.html" ,
+	"keywords": [] ,
+	"author": "Paulo Torrealba"
+}
