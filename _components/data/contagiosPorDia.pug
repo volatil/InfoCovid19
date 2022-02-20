@@ -1,56 +1,76 @@
 
 style( type="text/css" ).
-	#casosNuevos-grafico {
+	.grafico[data-grafico="graficoContagiosPorDiaNacional"] {
 		width: 2200px !important;
 	}
-	#casosNuevos-grafico.fixAncho {
+	.grafico[data-grafico="graficoContagiosPorDiaNacional"].fixAncho {
 		overflow: scroll !important;
 		overflow-y: hidden !important;
 		overflow-x: auto;
 		width: 100% !important;
 	}
-
-div.grafico#casosNuevos-grafico( style='width: 100%; height: 710px;' )
-
-	script.
-		google.charts.load('current', {'packages':['corechart']});
-		google.charts.setOnLoadCallback(casosNuevos);
-
-		function casosNuevos() { 
-				var dataContagiosDia = google.visualization.arrayToDataTable([
-					['Fecha', 'Contagiados (Por Día)'],
-					['0',  0],
-			]);
-
-			var options = {
-			title : 'Contagiados (Por Día)',
-			vAxis: {title: 'Casos'},
-			hAxis: {title: 'Días'},
-			seriesType: 'bars',
-			legend: { position: 'top', maxLines: 3 },
-			series: {5: {type: 'line'}}        };
-
-			var chart = new google.visualization.ComboChart(document.getElementById('casosNuevos-grafico'));
-			chart.draw(dataContagiosDia, options);
-		
-
-			
-
-			for ( sumaTR = 1 ; sumaTR <= $( $( "#TotalesNacionales table tr" )[2] ).find( "td" ).length-1 ; sumaTR++  ) {
-			
-				var fecha 				= $( $( $( "#TotalesNacionales table tr" )[0] ).find( "th" )[sumaTR] ).html();
-				var contagiosDia		= $( $( $( "#TotalesNacionales table tr" )[7] ).find( "td" )[sumaTR] ).html();
-				var push_todosTotales 	= '[["' + fecha + '",' + contagiosDia + ']]';
-				dataContagiosDia.addRows(JSON.parse(push_todosTotales));
-
-			}
-
-			var chart = new google.visualization.ComboChart(document.getElementById('casosNuevos-grafico'));
-			chart.draw(dataContagiosDia, options);
-
-		}
+	
+div.grafico(data-grafico="graficoContagiosPorDiaNacional")( style='width: 100%; height: 710px;' )
 
 	script( type="text/javascript" ).
-		setTimeout(function(){
-			$( "#casosNuevos-grafico" ).addClass( "fixAncho" );
-		},2000);
+	
+		var data = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto13/CasosNuevosCumulativo.csv";
+	
+		Papa.parse( data , {
+			download: true,
+			complete: function(results) {
+			
+				const resultado = new Promise( ( resolve , reject ) => {
+					results ? resolve( results ) : reject ();
+				} );
+				
+				resultado
+					.then( x => {
+					
+						google.charts.load('current', {'packages':['corechart']});
+						google.charts.setOnLoadCallback(casosNuevos);
+				
+						function casosNuevos() { 
+							var dataContagiosDia = google.visualization.arrayToDataTable([
+								['Fecha', 'Contagios (Por Día)'],
+								['0',  0],
+							]);
+				
+							var options = {
+								title : 'Contagios (Por Día)',
+								vAxis: {title: 'Casos'},
+								hAxis: {title: 'Días'},
+								seriesType: 'bars',
+								colors: ['#36c'] ,
+								legend: { position: 'top', maxLines: 3 },
+								series: {5: {type: 'line'}}        
+							};
+				
+							var chart = new google.visualization.ComboChart(document.querySelector('[data-grafico=graficoContagiosPorDiaNacional]'));
+							chart.draw(dataContagiosDia, options);
+				
+							var contadioDiarioFila = x.data[17];
+							var fechaFila = x.data[0];
+							
+							for ( let count = 1; count <= contadioDiarioFila.length-1; count ++ ) {
+								let fecha           = fechaFila[count];
+								let contadioDiario  = contadioDiarioFila[count];
+								var push_todosTotales 	= '[["' + fecha + '",' + contadioDiario + ']]';
+								dataContagiosDia.addRows(JSON.parse(push_todosTotales));
+							};
+				
+							var chart = new google.visualization.ComboChart(document.querySelector('[data-grafico=graficoContagiosPorDiaNacional]'));
+							chart.draw(dataContagiosDia, options);
+				
+						}
+						
+					} )
+					.then( x => {
+						setTimeout(function(){
+							$( "[data-grafico=graficoContagiosPorDiaNacional]" ).addClass( "fixAncho" );
+						},1000);
+					} )
+				
+			}
+		})
+	
