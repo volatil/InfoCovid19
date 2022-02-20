@@ -10,18 +10,15 @@
 	background: white;
 	border: 1px solid $d;
 	width: 95%;
-	height: 400px;
+	height: 450px;
 	margin: 0 1% 1% 0;
 	display: inline-block;
-	box-shadow: 0px 20px 26px -28px black;
 	-webkit-transition: all .2s ease;
 	-moz-transition:    all .2s ease;
 	-o-transition:      all .2s ease;
 	transition:         all .2s ease;
 }
 	.graficos .grafico:hover {
-		box-shadow: none;
-		box-shadow: 1px 10px 26px -28px black;
 		-webkit-transition: all .2s ease;
 		-moz-transition:    all .2s ease;
 		-o-transition:      all .2s ease;
@@ -35,7 +32,7 @@
 */
 
 .variosTabs {
-	height: 670px;
+	height: 830px;
 	overflow: hidden;
 }
 .variosTabs .tabs {
@@ -61,6 +58,19 @@
 .variosTabs .tabs > p:hover {
 	background: white;
 	border-bottom: 1px solid white;
+}
+.variosTabs .tab {
+	position: relative;
+}
+.variosTabs .tab > div {
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	margin-bottom: 100px
+}
+.variosTabs .tab > div.activo {
+	z-index: 1;
 }
 
 /*
