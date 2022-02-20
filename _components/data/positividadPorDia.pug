@@ -1,0 +1,77 @@
+
+style( type="text/css" ).
+	.grafico[data-grafico="graficoPositividadPorDiaNacional"] {
+		width: 2200px !important;
+	}
+	.grafico[data-grafico="graficoPositividadPorDiaNacional"].fixAncho {
+		overflow: scroll !important;
+		overflow-y: hidden !important;
+		overflow-x: auto;
+		width: 100% !important;
+	}
+	
+div.grafico(data-grafico="graficoPositividadPorDiaNacional")( style='width: 100%; height: 500px;' )
+
+	script( type="text/javascript" ).
+	
+		var data = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto49/Positividad_Diaria_Media.csv";
+	
+		Papa.parse( data , {
+			download: true,
+			complete: function(results) {
+			
+				const resultado = new Promise( ( resolve , reject ) => {
+					results ? resolve( results ) : reject ();
+				} );
+				
+				resultado
+					.then( x => {
+					
+						google.charts.load('current', {'packages':['corechart']});
+						google.charts.setOnLoadCallback(casosNuevos);
+				
+						function casosNuevos() { 
+							var dataContagiosDia = google.visualization.arrayToDataTable([
+								['Fecha', 'Positividad (Por Día)'],
+								['0',  0],
+							]);
+				
+							var options = {
+								title : 'Positividad (Por Día)',
+								vAxis: {title: 'Casos'},
+								hAxis: {title: 'Días'},
+								seriesType: 'bars',
+								legend: { position: 'top', maxLines: 3 },
+								series: {5: {type: 'line'}}        
+							};
+				
+							var chart = new google.visualization.ComboChart(document.querySelector('[data-grafico=graficoPositividadPorDiaNacional]'));
+							chart.draw(dataContagiosDia, options);
+				
+				
+							const data = x.data;
+							const titulo = data[0];
+							const positividad_pcr = data[4];
+							
+							for ( let count = 1; count <= titulo.length-1; count++ ) {
+								let fecha                   = titulo[count];
+								let positividad_diaria_porcentaje   = String( positividad_pcr[count] )*100;
+								var push_todosTotales 	= '[["' + fecha + '",' + positividad_diaria_porcentaje + ']]';
+								dataContagiosDia.addRows(JSON.parse(push_todosTotales));
+							};
+				
+							var chart = new google.visualization.ComboChart(document.querySelector('[data-grafico=graficoPositividadPorDiaNacional]'));
+							chart.draw(dataContagiosDia, options);
+				
+						}
+						
+					} )
+					.then( x => {
+						setTimeout(function(){
+							$( "[data-grafico=graficoPositividadPorDiaNacional]" ).addClass( "fixAncho" );
+						},1000);
+					} )
+				
+			}
+		})
+	

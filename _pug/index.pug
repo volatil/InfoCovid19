@@ -58,27 +58,32 @@ html( lang="es" )
 		.graficos
 			
 			include ../_components/data/casosTotales
-
-			.tabs.contagiosDia
-				.tab
-					p Contagios Por Día
-					div
-						include ../_components/data/contagiosPorDia
-				.tab
-					p Casos Activos Por Día
-					div
-						include ../_components/data/casosActivosPorDia
-						
-				//- .tab
-				//- 	p Recuperados Por Día
-				//- 	div
-				//- 		include ../_components/data/recuperadosPorDia
-				
-				.tab
-					p Fallecidos Por Día
-					div
-						include ../_components/data/fallecidosPorDia
 			
+			.variosTabs
+				.tabs
+					p.activo( data-tabs="contagiosPorDia" ) Contagios Por Día
+					p( data-tabs="positividadPorDia" ) % Positividad Por Día
+					p( data-tabs="casosActivosPorDia" ) Casos Activos Por Día
+					p( data-tabs="fallecidosPorDia" ) Fallecidos Por Día
+				.tab
+					div( data-tab="contagiosPorDia" )
+						include ../_components/data/contagiosPorDia
+					div( data-tab="positividadPorDia" )
+						include ../_components/data/positividadPorDia
+					div( data-tab="casosActivosPorDia" )
+						include ../_components/data/casosActivosPorDia
+					div( data-tab="fallecidosPorDia" )
+						include ../_components/data/fallecidosPorDia
+				
+				script( type='text/javascript' ).
+					$( ".variosTabs > .tabs p" ).click( function() {
+						let abrirTab = $( this ).attr( "data-tabs" );
+						$( `.variosTabs .tabs > p` ).removeClass( 'activo' );
+						$( ".variosTabs .tab > div" ).hide();
+						$( `.variosTabs .tab > div[data-tab=${ abrirTab }]` ).show();
+						$( `.variosTabs .tabs > p[data-tabs=${ abrirTab }]` ).addClass( 'activo' );
+					});
+				
 			include ../_components/data/comunasFase
 			
 			include ../_components/data/contagiosPorRegion
@@ -122,6 +127,7 @@ html( lang="es" )
 
 			//- TABS
 			script.
+				/*
 				setTimeout(function(){
 					$( ".graficos .tabs .tab > div" ).css( "position" , "absolute" );
 
@@ -139,6 +145,7 @@ html( lang="es" )
 					$( this ).find( "> div" ).css( "visibility" , "initial" );
 				
 				});
+				*/
 
 		include ../_components/footer
 
