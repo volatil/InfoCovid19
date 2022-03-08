@@ -30,6 +30,7 @@ header
 						
 					script( type="text/javascript" ).
 						//- DARKMODE FUNCTION
+						/*
 						var darkmode = function(){
 							for ( var count = 0; count <= document.cookie.split( " " ).length-1; count ++ ) {
 								var cookie = document.cookie.split( " " )[count];
@@ -46,16 +47,34 @@ header
 							}
 						};
 						darkmode();
+						*/
+						
+						const estadoDarkMode = () => {
+							if ( localStorage.getItem( "darkmode" ) ) {
+								if ( localStorage.getItem( "darkmode" ) == "activado" ) {
+									console.log( `Estamos activo paaapiii !` );
+									$( "body" ).addClass( "darkmode-si" );
+									$( ".toggle-container .label" ).click()
+								} else {
+									console.log( `Buuuu ... estamOFF` );
+								};
+							} else {
+								localStorage.setItem( "darkmode" , "desactivado" );
+							};
+						};
+							estadoDarkMode();
 						
 						//- CLICK MENU DARKMODE
 						$( ".toggle-container > label" ).click(function(){
 							var estado = $( ".toggle-container > input" ).prop( "checked" );
 							if ( estado == false ) {
-								document.cookie = "darkmode=activado";
+								//- document.cookie = "darkmode=activado";
 								$( "body" ).addClass( "darkmode-si" );
+								localStorage.setItem( "darkmode" , "activado" );
 							} else {
-								document.cookie = "darkmode=desactivado";
+								//- document.cookie = "darkmode=desactivado";
 								$( "body" ).removeClass( "darkmode-si" );
+								localStorage.setItem( "darkmode" , "desactivado" );
 							};
 						});
 				
