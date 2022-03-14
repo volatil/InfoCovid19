@@ -91,9 +91,21 @@ header nav ul li.darkmode > p > strong {
 // ===================================================================================================
 
 
+// body.darkmode-si {
 body.darkmode-si {
-	background: #303030 !important;
+	background: $darkmode_opaco;
 }
+body.darkmode-si div#resumen > div.fecha > p {
+	background: $darkmode_opaco;
+	color: white;
+}
+body.darkmode-si div#resumen .resumen {
+	background: $darkmode_negro;
+}
+body.darkmode-si div#resumen .resumen > div.cifras > span.numero {
+	color: white;
+}
+/*
 body.darkmode-si .grafico ,
 body.darkmode-si .graficos .grafico svg[aria-label="A chart."]  rect ,
 body.darkmode-si #resumen .resumen {
@@ -115,4 +127,5 @@ body.darkmode-si #resumen .resumen > div.cifras > span.numero {
 body.darkmode-si .graficos .grafico text {
 	fill: white;
 }
+*/
 

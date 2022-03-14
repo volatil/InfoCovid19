@@ -146,29 +146,42 @@ header nav ul li.darkmode > p > strong {
   }
 }
 body.darkmode-si {
-  background: #303030 !important;
+  background: #303030;
 }
 
-body.darkmode-si .grafico,
-body.darkmode-si .graficos .grafico svg[aria-label="A chart."] rect,
+body.darkmode-si div#resumen > div.fecha > p {
+  background: #303030;
+  color: white;
+}
+
+body.darkmode-si div#resumen .resumen {
+  background: #181818;
+}
+
+body.darkmode-si div#resumen .resumen > div.cifras > span.numero {
+  color: white;
+}
+
+/*
+body.darkmode-si .grafico ,
+body.darkmode-si .graficos .grafico svg[aria-label="A chart."]  rect ,
 body.darkmode-si #resumen .resumen {
-  background: #181818 !important;
+	background: #181818 !important;
+	// fill: #181818 !important;
 }
-
-body.darkmode-si table,
+body.darkmode-si table , 
 body.darkmode-si #resumen > div.fecha > p {
-  background: #0f0f0f !important;
-  color: white !important;
+	background: #0f0f0f !important;
+	color: white !important;
 }
-
-body.darkmode-si table tbody tr td,
-body.darkmode-si .grafico > h1,
+body.darkmode-si table tbody tr td ,
+body.darkmode-si .grafico > h1 ,
 body.darkmode-si .grafico > h2,
-body.darkmode-si .grafico > p,
+body.darkmode-si .grafico > p ,
 body.darkmode-si #resumen .resumen > div.cifras > span.numero {
-  color: white !important;
+	color: white !important;
 }
-
 body.darkmode-si .graficos .grafico text {
-  fill: white;
+	fill: white;
 }
+*/
